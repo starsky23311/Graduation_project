@@ -1,0 +1,4 @@
+source;share/jkrobotcontrol/local_setup.bash
+source;share/jkrobotcontrol/local_setup.dsv
+source;share/jkrobotcontrol/local_setup.sh
+source;share/jkrobotcontrol/local_setup.zsh

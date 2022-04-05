@@ -1,0 +1,21 @@
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/ros2_intel_realsense/realsense_ros/src/rs_base.cpp:[m[K In constructor ‘[01m[Krealsense::RealSenseBase::RealSenseBase(rs2::context, rs2::device, rclcpp::Node&)[m[K’:
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/ros2_intel_realsense/realsense_ros/src/rs_base.cpp:45:29:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Node::OnParametersSetCallbackType rclcpp::Node::set_on_parameters_set_callback(rclcpp::Node::OnParametersSetCallbackType)[m[K’ is deprecated: use add_on_set_parameters_callback(OnParametersSetCallbackType callback) instead [[01;35m[K-Wdeprecated-declarations[m[K]
+   45 |       std::placeholders::_1)[01;35m[K)[m[K;
+      |                             [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/foxy/include/rclcpp/executors/single_threaded_executor.hpp:28[m[K,
+                 from [01m[K/opt/ros/foxy/include/rclcpp/executors.hpp:22[m[K,
+                 from [01m[K/opt/ros/foxy/include/rclcpp/rclcpp.hpp:146[m[K,
+                 from [01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/ros2_intel_realsense/realsense_ros/include/realsense/rs_base.hpp:22[m[K,
+                 from [01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/ros2_intel_realsense/realsense_ros/src/rs_base.cpp:21[m[K:
+[01m[K/opt/ros/foxy/include/rclcpp/node.hpp:866:3:[m[K [01;36m[Knote: [m[Kdeclared here
+  866 |   [01;36m[Kset_on_parameters_set_callback[m[K(rclcpp::Node::OnParametersSetCallbackType callback);
+      |   [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/ros2_intel_realsense/realsense_ros/tests/camera_core.cpp:[m[K In function ‘[01m[Kvoid getMsgInfo(rs2_stream, const ConstSharedPtr&)[m[K’:
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/ros2_intel_realsense/realsense_ros/tests/camera_core.cpp:88:86:[m[K [01;35m[Kwarning: [m[Kformat not a string literal and no format arguments [[01;35m[K-Wformat-security[m[K]
+   88 | cv[stream], msg->encoding.length() + 1, msg->encoding.c_str()[01;35m[K)[m[K;
+      |                                                              [01;35m[K^[m[K
+
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/ros2_intel_realsense/realsense_ros/tests/camera_core.cpp:[m[K In function ‘[01m[Kvoid getCameraInfo(rs2_stream, sensor_msgs::msg::CameraInfo_<std::allocator<void> >::SharedPtr)[m[K’:
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/ros2_intel_realsense/realsense_ros/tests/camera_core.cpp:101:39:[m[K [01;35m[Kwarning: [m[Kformat not a string literal and no format arguments [[01;35m[K-Wformat-security[m[K]
+  101 |     info_msg->distortion_model.c_str()[01;35m[K)[m[K;
+      |                                       [01;35m[K^[m[K

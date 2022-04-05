@@ -1,0 +1,6 @@
+Invoking command in '/home/wzf/main_folder/CLionProjects/JK_project/build/cpp_pubsub': /usr/bin/cmake /home/wzf/main_folder/CLionProjects/JK_project/src/cpp_pubsub -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_INSTALL_PREFIX=/home/wzf/main_folder/CLionProjects/JK_project/install/cpp_pubsub
+Invoked command in '/home/wzf/main_folder/CLionProjects/JK_project/build/cpp_pubsub' returned '0': /usr/bin/cmake /home/wzf/main_folder/CLionProjects/JK_project/src/cpp_pubsub -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_INSTALL_PREFIX=/home/wzf/main_folder/CLionProjects/JK_project/install/cpp_pubsub
+Invoking command in '/home/wzf/main_folder/CLionProjects/JK_project/build/cpp_pubsub': /usr/bin/cmake --build /home/wzf/main_folder/CLionProjects/JK_project/build/cpp_pubsub -- -j12 -l12
+Invoked command in '/home/wzf/main_folder/CLionProjects/JK_project/build/cpp_pubsub' returned '0': /usr/bin/cmake --build /home/wzf/main_folder/CLionProjects/JK_project/build/cpp_pubsub -- -j12 -l12
+Invoking command in '/home/wzf/main_folder/CLionProjects/JK_project/build/cpp_pubsub': /usr/bin/cmake --install /home/wzf/main_folder/CLionProjects/JK_project/build/cpp_pubsub
+Invoked command in '/home/wzf/main_folder/CLionProjects/JK_project/build/cpp_pubsub' returned '0': /usr/bin/cmake --install /home/wzf/main_folder/CLionProjects/JK_project/build/cpp_pubsub

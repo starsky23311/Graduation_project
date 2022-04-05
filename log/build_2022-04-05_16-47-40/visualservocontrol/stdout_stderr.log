@@ -1,0 +1,207 @@
+-- The C compiler identification is GNU 9.4.0
+-- The CXX compiler identification is GNU 9.4.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Found rclcpp: 2.4.1 (/opt/ros/foxy/share/rclcpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+-- Found FastRTPS: /opt/ros/foxy/include  
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)
+-- Found cv_bridge: 2.2.1 (/opt/ros/foxy/share/cv_bridge/cmake)
+-- Found image_transport: 2.3.0 (/opt/ros/foxy/share/image_transport/cmake)
+-- Found OpenCV: /usr/local (found version "4.5.5") 
+-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found version "1.71.0") found components: thread date_time 
+-- Checking for module 'eigen3'
+--   Found eigen3, version 3.3.7
+-- Found Eigen: /usr/include/eigen3 (Required is at least version "3.1") 
+-- Eigen found (include: /usr/include/eigen3, version: 3.3.7)
+-- Found Boost: /usr/include (found suitable version "1.71.0", minimum required is "1.55.0") found components: system filesystem date_time iostreams serialization regex 
+-- Checking for module 'flann'
+--   Found flann, version 1.9.1
+-- Found FLANN: /usr/lib/x86_64-linux-gnu/libflann_cpp.so  
+-- Checking for module 'libusb-1.0'
+--   Found libusb-1.0, version 1.0.23
+-- Found USB_10: /usr/lib/x86_64-linux-gnu/libusb-1.0.so  
+-- Found OpenNI: /usr/lib/libOpenNI.so  
+-- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+-- Found OpenNI2: /usr/lib/libOpenNI2.so  
+-- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)
+** WARNING ** io features related to pcap will be disabled
+** WARNING ** io features related to png will be disabled
+-- Found libusb-1.0: /usr/include  
+** WARNING ** io features related to libusb-1.0 will be disabled
+-- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+-- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)
+-- Found Qhull: optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so  
+-- QHULL found (include: /usr/include, lib: optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so)
+-- looking for PCL_COMMON
+-- Found PCL_COMMON: /usr/local/lib/libpcl_common.so  
+-- looking for PCL_KDTREE
+-- Found PCL_KDTREE: /usr/local/lib/libpcl_kdtree.so  
+-- looking for PCL_OCTREE
+-- Found PCL_OCTREE: /usr/local/lib/libpcl_octree.so  
+-- looking for PCL_SEARCH
+-- Found PCL_SEARCH: /usr/local/lib/libpcl_search.so  
+-- looking for PCL_SAMPLE_CONSENSUS
+-- Found PCL_SAMPLE_CONSENSUS: /usr/local/lib/libpcl_sample_consensus.so  
+-- looking for PCL_FILTERS
+-- Found PCL_FILTERS: /usr/local/lib/libpcl_filters.so  
+-- looking for PCL_2D
+-- Found PCL_2D: /usr/local/include/pcl-1.11  
+-- looking for PCL_GEOMETRY
+-- Found PCL_GEOMETRY: /usr/local/include/pcl-1.11  
+-- looking for PCL_IO
+-- Found PCL_IO: /usr/local/lib/libpcl_io.so  
+-- looking for PCL_FEATURES
+-- Found PCL_FEATURES: /usr/local/lib/libpcl_features.so  
+-- looking for PCL_ML
+-- Found PCL_ML: /usr/local/lib/libpcl_ml.so  
+-- looking for PCL_SEGMENTATION
+-- Found PCL_SEGMENTATION: /usr/local/lib/libpcl_segmentation.so  
+-- looking for PCL_VISUALIZATION
+-- Found PCL_VISUALIZATION: /usr/local/lib/libpcl_visualization.so  
+-- looking for PCL_SURFACE
+-- Found PCL_SURFACE: /usr/local/lib/libpcl_surface.so  
+-- looking for PCL_REGISTRATION
+-- Found PCL_REGISTRATION: /usr/local/lib/libpcl_registration.so  
+-- looking for PCL_KEYPOINTS
+-- Found PCL_KEYPOINTS: /usr/local/lib/libpcl_keypoints.so  
+-- looking for PCL_TRACKING
+-- Found PCL_TRACKING: /usr/local/lib/libpcl_tracking.so  
+-- looking for PCL_RECOGNITION
+-- Found PCL_RECOGNITION: /usr/local/lib/libpcl_recognition.so  
+-- looking for PCL_STEREO
+-- Found PCL_STEREO: /usr/local/lib/libpcl_stereo.so  
+-- looking for PCL_OUTOFCORE
+-- Found PCL_OUTOFCORE: /usr/local/lib/libpcl_outofcore.so  
+-- looking for PCL_PEOPLE
+-- Found PCL_PEOPLE: /usr/local/lib/libpcl_people.so  
+-- Found PCL: pcl_common;pcl_kdtree;pcl_octree;pcl_search;pcl_sample_consensus;pcl_filters;pcl_io;pcl_features;pcl_ml;pcl_segmentation;pcl_visualization;pcl_surface;pcl_registration;pcl_keypoints;pcl_tracking;pcl_recognition;pcl_stereo;pcl_outofcore;pcl_people;/usr/lib/x86_64-linux-gnu/libboost_system.so;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0;/usr/lib/x86_64-linux-gnu/libboost_iostreams.so;/usr/lib/x86_64-linux-gnu/libboost_serialization.so;/usr/lib/x86_64-linux-gnu/libboost_regex.so;optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so;/usr/lib/libOpenNI.so;/usr/lib/libOpenNI2.so;vtkChartsCore;vtkCommonColor;vtkCommonCore;vtksys;vtkCommonDataModel;vtkCommonMath;vtkCommonMisc;vtkCommonSystem;vtkCommonTransforms;vtkCommonExecutionModel;vtkFiltersGeneral;vtkCommonComputationalGeometry;vtkFiltersCore;vtkInfovisCore;vtkFiltersExtraction;vtkFiltersStatistics;vtkImagingFourier;vtkImagingCore;vtkRenderingContext2D;vtkRenderingCore;vtkFiltersGeometry;vtkFiltersSources;vtkRenderingFreeType;vtkfreetype;vtkzlib;vtkFiltersModeling;vtkImagingSources;vtkInteractionStyle;vtkInteractionWidgets;vtkFiltersHybrid;vtkImagingColor;vtkImagingGeneral;vtkImagingHybrid;vtkIOImage;vtkDICOMParser;vtkmetaio;vtkjpeg;vtkpng;vtktiff;vtkRenderingAnnotation;vtkRenderingVolume;vtkIOXML;vtkIOCore;vtkdoubleconversion;vtklz4;vtklzma;vtkIOXMLParser;vtkexpat;vtkIOGeometry;vtkIOLegacy;vtkIOPLY;vtkRenderingLOD;vtkViewsContext2D;vtkViewsCore;vtkRenderingContextOpenGL2;vtkRenderingOpenGL2;vtkglew;vtkRenderingQt;vtkFiltersTexture;vtkGUISupportQt;vtkRenderingLabel;FLANN::FLANN (Required is at least version "1.11.1") 
+CMake Warning (dev) at /usr/share/cmake-3.16/Modules/FindOpenGL.cmake:275 (message):
+  Policy CMP0072 is not set: FindOpenGL prefers GLVND by default when
+  available.  Run "cmake --help-policy CMP0072" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  FindOpenGL found both a legacy GL library:
+
+    OPENGL_gl_LIBRARY: /usr/lib/x86_64-linux-gnu/libGL.so
+
+  and GLVND libraries for OpenGL and GLX:
+
+    OPENGL_opengl_LIBRARY: /usr/lib/x86_64-linux-gnu/libOpenGL.so
+    OPENGL_glx_LIBRARY: /usr/lib/x86_64-linux-gnu/libGLX.so
+
+  OpenGL_GL_PREFERENCE has not been set to "GLVND" or "LEGACY", so for
+  compatibility with CMake 3.10 and below the legacy GL library will be used.
+Call Stack (most recent call first):
+  CMakeLists.txt:78 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Found OpenGL: /usr/lib/x86_64-linux-gnu/libOpenGL.so   
+-- Found realsense_ros: 2.0.8 (/home/wzf/main_folder/MyProject/Graduation_project/install/realsense_ros/share/realsense_ros/cmake)
+-- Found realsense_msgs: 2.0.8 (/home/wzf/main_folder/MyProject/Graduation_project/install/realsense_msgs/share/realsense_msgs/cmake)
+-- Found nav_msgs: 2.0.5 (/opt/ros/foxy/share/nav_msgs/cmake)
+-- Found tf2: 0.13.13 (/opt/ros/foxy/share/tf2/cmake)
+-- Found tf2_ros: 0.13.13 (/opt/ros/foxy/share/tf2_ros/cmake)
+-- Found pcl_conversions: 2.2.1 (/opt/ros/foxy/share/pcl_conversions/cmake)
+-- HDF5: Using hdf5 compiler wrapper to determine C configuration
+-- Found HDF5: /usr/lib/x86_64-linux-gnu/hdf5/serial/libhdf5.so;/usr/lib/x86_64-linux-gnu/libpthread.so;/usr/lib/x86_64-linux-gnu/libsz.so;/usr/lib/x86_64-linux-gnu/libz.so;/usr/lib/x86_64-linux-gnu/libdl.so;/usr/lib/x86_64-linux-gnu/libm.so (found version "1.10.4")  
+CMake Warning (dev) at CMakeLists.txt:108 (find_package):
+  Policy CMP0074 is not set: find_package uses <PackageName>_ROOT variables.
+  Run "cmake --help-policy CMP0074" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+
+  CMake variable FLANN_ROOT is set to:
+
+    /usr
+
+  For compatibility, CMake is ignoring the variable.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+-- Added test 'copyright' to check source files copyright and LICENSE
+-- Added test 'cppcheck' to perform static code analysis on C / C++ code
+-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/wzf/main_folder/MyProject/Graduation_project/src/visualservocontrol/include>;/home/wzf/main_folder/MyProject/Graduation_project/src/visualservocontrol/include
+-- Configured cppcheck exclude dirs and/or files: 
+-- Added test 'cpplint' to check C / C++ code against the Google style
+-- Configured cpplint exclude dirs and/or files: 
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'uncrustify' to check C / C++ code style
+-- Configured uncrustify additional arguments: 
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/wzf/main_folder/MyProject/Graduation_project/build/visualservocontrol
+[35m[1mScanning dependencies of target ModelBasedVisualServo[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/ModelBasedVisualServo.dir/src/ModelBasedVisualServo.cpp.o[0m
+In file included from [01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/visualservocontrol/src/ModelBasedVisualServo.cpp:21[m[K:
+[01m[K/opt/ros/foxy/include/image_transport/image_transport.h:41:89:[m[K [01;36m[Knote: [m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead
+   41 | This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+      |                                                              [01;36m[K^[m[K
+
+In file included from [01m[K/home/wzf/MyLibrary/VISP/visp-ws/visp-3.3.0/modules/core/include/visp3/core/vpMatrix.h:48[m[K,
+                 from [01m[K/home/wzf/MyLibrary/VISP/visp-ws/visp-3.3.0/modules/core/include/visp3/core/vpTranslationVector.h:50[m[K,
+                 from [01m[K/home/wzf/MyLibrary/VISP/visp-ws/visp-3.3.0/modules/core/include/visp3/core/vpRotationMatrix.h:55[m[K,
+                 from [01m[K/home/wzf/MyLibrary/VISP/visp-ws/visp-3.3.0/modules/core/include/visp3/core/vpHomogeneousMatrix.h:60[m[K,
+                 from [01m[K/home/wzf/MyLibrary/VISP/visp-ws/visp-3.3.0/modules/core/include/visp3/core/vpPoseVector.h:59[m[K,
+                 from [01m[K/home/wzf/MyLibrary/VISP/visp-ws/visp-3.3.0/modules/core/include/visp3/core/vpColVector.h:44[m[K,
+                 from [01m[K/home/wzf/MyLibrary/VISP/visp-ws/visp-3.3.0/modules/core/include/visp3/core/vpCameraParameters.h:52[m[K,
+                 from [01m[K/home/wzf/MyLibrary/VISP/visp-ws/visp-3.3.0/modules/core/include/visp3/core/vpDisplay.h:46[m[K,
+                 from [01m[K/home/wzf/MyLibrary/VISP/visp-ws/visp-3.3.0/modules/tracker/blob/include/visp3/blob/vpDot.h:49[m[K,
+                 from [01m[K/home/wzf/MyLibrary/VISP/visp-ws/visp-3.3.0/modules/visual_features/include/visp3/visual_features/vpFeatureBuilder.h:51[m[K,
+                 from [01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/visualservocontrol/src/ModelBasedVisualServo.cpp:26[m[K:
+[01m[K/home/wzf/MyLibrary/VISP/visp-ws/visp-3.3.0/modules/core/include/visp3/core/vpTime.h:88:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+   88 | }[01;35m[K;[m[K
+      |  [01;35m[K^[m[K
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/visualservocontrol/src/ModelBasedVisualServo.cpp:[m[K In member function ‘[01m[Kvoid ModelBasedVisualServo::getVisualServoSimVISP()[m[K’:
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/visualservocontrol/src/ModelBasedVisualServo.cpp:592:22:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kiter[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  592 |         unsigned int [01;35m[Kiter[m[K = 0;
+      |                      [01;35m[K^~~~[m[K
+[100%] [32m[1mLinking CXX executable ModelBasedVisualServo[0m
+/usr/bin/ld: warning: libopencv_imgproc.so.4.2, needed by /opt/ros/foxy/lib/libcv_bridge.so, may conflict with libopencv_imgproc.so.405
+/usr/bin/ld: warning: libopencv_core.so.4.2, needed by /opt/ros/foxy/lib/libcv_bridge.so, may conflict with libopencv_core.so.405
+[100%] Built target ModelBasedVisualServo
+-- Install configuration: ""
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/lib/visualservocontrol/ModelBasedVisualServo
+-- Set runtime path of "/home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/lib/visualservocontrol/ModelBasedVisualServo" to ""
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/share/ament_index/resource_index/package_run_dependencies/visualservocontrol
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/share/ament_index/resource_index/parent_prefix_path/visualservocontrol
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/share/visualservocontrol/environment/ament_prefix_path.sh
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/share/visualservocontrol/environment/ament_prefix_path.dsv
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/share/visualservocontrol/environment/path.sh
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/share/visualservocontrol/environment/path.dsv
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/share/visualservocontrol/local_setup.bash
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/share/visualservocontrol/local_setup.sh
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/share/visualservocontrol/local_setup.zsh
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/share/visualservocontrol/local_setup.dsv
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/share/visualservocontrol/package.dsv
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/share/ament_index/resource_index/packages/visualservocontrol
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/share/visualservocontrol/cmake/visualservocontrolConfig.cmake
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/share/visualservocontrol/cmake/visualservocontrolConfig-version.cmake
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/visualservocontrol/share/visualservocontrol/package.xml

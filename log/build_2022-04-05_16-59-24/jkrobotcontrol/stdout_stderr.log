@@ -1,0 +1,114 @@
+-- The C compiler identification is GNU 9.4.0
+-- The CXX compiler identification is GNU 9.4.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Found rclcpp: 2.4.1 (/opt/ros/foxy/share/rclcpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+-- Found FastRTPS: /opt/ros/foxy/include  
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)
+-- Found nav_msgs: 2.0.5 (/opt/ros/foxy/share/nav_msgs/cmake)
+-- Found tf2: 0.13.13 (/opt/ros/foxy/share/tf2/cmake)
+-- Found tf2_ros: 0.13.13 (/opt/ros/foxy/share/tf2_ros/cmake)
+-- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+-- Added test 'copyright' to check source files copyright and LICENSE
+-- Added test 'cppcheck' to perform static code analysis on C / C++ code
+-- Configured cppcheck include dirs: /home/wzf/main_folder/MyProject/Graduation_project/src/jkrobotcontrol/include;$<BUILD_INTERFACE:/home/wzf/main_folder/MyProject/Graduation_project/src/jkrobotcontrol/include>
+-- Configured cppcheck exclude dirs and/or files: 
+-- Added test 'cpplint' to check C / C++ code against the Google style
+-- Configured cpplint exclude dirs and/or files: 
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'uncrustify' to check C / C++ code style
+-- Configured uncrustify additional arguments: 
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/wzf/main_folder/MyProject/Graduation_project/build/jkrobotcontrol
+[35m[1mScanning dependencies of target MathFunctions[0m
+[ 14%] [32mBuilding CXX object CMakeFiles/MathFunctions.dir/src/keyboard.cpp.o[0m
+[ 57%] [32mBuilding CXX object CMakeFiles/MathFunctions.dir/src/TCPServer.cpp.o[0m
+[ 57%] [32mBuilding CXX object CMakeFiles/MathFunctions.dir/src/robotState.cpp.o[0m
+[ 28%] [32mBuilding CXX object CMakeFiles/MathFunctions.dir/src/TCPClient.cpp.o[0m
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/jkrobotcontrol/src/TCPClient.cpp:[m[K In member function ‘[01m[Kbool TCPClient::setup(std::string, int)[m[K’:
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/jkrobotcontrol/src/TCPClient.cpp:16:34:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kin_addr_t[m[K’ {aka ‘[01m[Kunsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+   16 |   if ([01;35m[Kinet_addr(address.c_str()) == -1[m[K) {
+      |       [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/jkrobotcontrol/src/TCPClient.cpp:[m[K In member function ‘[01m[Kstd::string TCPClient::receive(int)[m[K’:
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/jkrobotcontrol/src/TCPClient.cpp:54:8:[m[K [01;35m[Kwarning: [m[KISO C++ forbids variable length array ‘[01m[Kbuffer[m[K’ [[01;35m[K-Wvla[m[K]
+   54 |   char [01;35m[Kbuffer[m[K[size];
+      |        [01;35m[K^~~~~~[m[K
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/jkrobotcontrol/src/robotState.cpp:[m[K In member function ‘[01m[Kint robotState::movPosAndForceLimit(const Eigen::Matrix<double, 6, 1>&, double, Eigen::Matrix<double, 6, 1>, Eigen::Matrix<double, 6, 1>, int, int)[m[K’:
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/jkrobotcontrol/src/robotState.cpp:747:30:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KForcelimits[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  747 |         double Pvr, Vector6d Forcelimits,
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/jkrobotcontrol/src/robotState.cpp:[m[K In member function ‘[01m[Kint robotState::movJointAndForceLimit(const Eigen::Matrix<double, 6, 1>&, double, Eigen::Matrix<double, 6, 1>, Eigen::Matrix<double, 6, 1>, int, int)[m[K’:
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/jkrobotcontrol/src/robotState.cpp:784:30:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KForcelimits[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  784 |         double Jvr, Vector6d Forcelimits,
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/jkrobotcontrol/src/robotState.cpp:[m[K In member function ‘[01m[Kint robotState::movRelTool(const Eigen::Matrix<double, 6, 1>&, double)[m[K’:
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/jkrobotcontrol/src/robotState.cpp:1026:7:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[KtouchFlag[m[K’ [[01;35m[K-Wunused-variable[m[K]
+ 1026 |   int [01;35m[KtouchFlag[m[K = 0;
+      |       [01;35m[K^~~~~~~~~[m[K
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/jkrobotcontrol/src/robotState.cpp:1027:7:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[KforceSensorFlag[m[K’ [[01;35m[K-Wunused-variable[m[K]
+ 1027 |   int [01;35m[KforceSensorFlag[m[K = 0;
+      |       [01;35m[K^~~~~~~~~~~~~~~[m[K
+[ 71%] [32m[1mLinking CXX shared library libMathFunctions.so[0m
+[ 71%] Built target MathFunctions
+[35m[1mScanning dependencies of target main[0m
+[ 85%] [32mBuilding CXX object CMakeFiles/main.dir/src/main.cpp.o[0m
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/jkrobotcontrol/src/main.cpp:[m[K In member function ‘[01m[Kint RobotHandle::CheckKeyEvent()[m[K’:
+[01m[K/home/wzf/main_folder/MyProject/Graduation_project/src/jkrobotcontrol/src/main.cpp:227:5:[m[K [01;35m[Kwarning: [m[Kcontrol reaches end of non-void function [[01;35m[K-Wreturn-type[m[K]
+  227 |     [01;35m[K}[m[K
+      |     [01;35m[K^[m[K
+[100%] [32m[1mLinking CXX executable main[0m
+[100%] Built target main
+-- Install configuration: ""
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/include
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/include/JKRobotControl
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/include/JKRobotControl/main.h
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/include/JKRobotControl/TCPServer.h
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/include/JKRobotControl/keyboard.h
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/include/JKRobotControl/TCPClient.h
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/include/JKRobotControl/robotState.h
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/lib/libMathFunctions.so
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/lib/jkrobotcontrol/main
+-- Set runtime path of "/home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/lib/jkrobotcontrol/main" to ""
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/share/ament_index/resource_index/package_run_dependencies/jkrobotcontrol
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/share/ament_index/resource_index/parent_prefix_path/jkrobotcontrol
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/share/jkrobotcontrol/environment/ament_prefix_path.sh
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/share/jkrobotcontrol/environment/ament_prefix_path.dsv
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/share/jkrobotcontrol/environment/path.sh
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/share/jkrobotcontrol/environment/path.dsv
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/share/jkrobotcontrol/local_setup.bash
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/share/jkrobotcontrol/local_setup.sh
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/share/jkrobotcontrol/local_setup.zsh
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/share/jkrobotcontrol/local_setup.dsv
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/share/jkrobotcontrol/package.dsv
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/share/ament_index/resource_index/packages/jkrobotcontrol
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/share/jkrobotcontrol/cmake/jkrobotcontrolConfig.cmake
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/share/jkrobotcontrol/cmake/jkrobotcontrolConfig-version.cmake
+-- Installing: /home/wzf/main_folder/MyProject/Graduation_project/install/jkrobotcontrol/share/jkrobotcontrol/package.xml
