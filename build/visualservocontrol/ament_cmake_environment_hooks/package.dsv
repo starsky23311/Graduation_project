@@ -1,4 +1,0 @@
-source;share/visualservocontrol/local_setup.bash
-source;share/visualservocontrol/local_setup.dsv
-source;share/visualservocontrol/local_setup.sh
-source;share/visualservocontrol/local_setup.zsh

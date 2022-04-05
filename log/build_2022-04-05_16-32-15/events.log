@@ -1,7 +1,0 @@
-[0.000000] (-) TimerEvent: {}
-[0.000082] (-) JobUnselected: {'identifier': 'cpp_pubsub'}
-[0.000099] (-) JobUnselected: {'identifier': 'realsense_examples'}
-[0.000110] (-) JobUnselected: {'identifier': 'realsense_msgs'}
-[0.000119] (-) JobUnselected: {'identifier': 'realsense_node'}
-[0.000127] (-) JobUnselected: {'identifier': 'realsense_ros'}
-[0.000135] (-) EventReactorShutdown: {}

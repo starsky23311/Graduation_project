@@ -1,6 +1,0 @@
-{
-  "package_name": "realsense_msgs",
-  "non_idl_tuples": [
-    "/home/wzf/main_folder/MyProject/Graduation_project/src/ros2_intel_realsense/realsense_msgs:msg/IMUInfo.msg"
-  ]
-}

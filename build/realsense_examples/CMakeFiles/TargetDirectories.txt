@@ -1,9 +1,0 @@
-/home/wzf/main_folder/MyProject/Graduation_project/build/realsense_examples/CMakeFiles/install/local.dir
-/home/wzf/main_folder/MyProject/Graduation_project/build/realsense_examples/CMakeFiles/install.dir
-/home/wzf/main_folder/MyProject/Graduation_project/build/realsense_examples/CMakeFiles/list_install_components.dir
-/home/wzf/main_folder/MyProject/Graduation_project/build/realsense_examples/CMakeFiles/rebuild_cache.dir
-/home/wzf/main_folder/MyProject/Graduation_project/build/realsense_examples/CMakeFiles/edit_cache.dir
-/home/wzf/main_folder/MyProject/Graduation_project/build/realsense_examples/CMakeFiles/test.dir
-/home/wzf/main_folder/MyProject/Graduation_project/build/realsense_examples/CMakeFiles/install/strip.dir
-/home/wzf/main_folder/MyProject/Graduation_project/build/realsense_examples/CMakeFiles/realsense_examples_uninstall.dir
-/home/wzf/main_folder/MyProject/Graduation_project/build/realsense_examples/CMakeFiles/uninstall.dir

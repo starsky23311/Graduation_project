@@ -1,3 +1,0 @@
-source;share/realsense_ros/environment/ament_prefix_path.sh
-source;share/realsense_ros/environment/library_path.sh
-source;share/realsense_ros/environment/path.sh
