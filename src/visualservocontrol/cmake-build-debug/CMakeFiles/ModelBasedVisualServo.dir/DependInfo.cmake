@@ -51,7 +51,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/wzf/MyLibrary/VISP/visp-ws/visp-3.3.0/modules/tracker/tt_mi/include"
   "/home/wzf/main_folder/librealsense/examples"
   "/home/wzf/main_folder/MyProject/Graduation_project/install/realsense_ros/include"
-  "/usr/local/include/opencv4"
+  "/usr/include/opencv4"
   "/usr/include/eigen3"
   "/usr/include/libxml2"
   "/usr/include/libusb-1.0"

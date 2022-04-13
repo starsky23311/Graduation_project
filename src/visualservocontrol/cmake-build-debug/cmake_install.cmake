@@ -43,6 +43,26 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/visualservocontrol/GGCNNBasedVisualServo" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/visualservocontrol/GGCNNBasedVisualServo")
+    file(RPATH_CHECK
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/visualservocontrol/GGCNNBasedVisualServo"
+         RPATH "")
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/visualservocontrol" TYPE EXECUTABLE FILES "/home/wzf/main_folder/MyProject/Graduation_project/src/visualservocontrol/cmake-build-debug/GGCNNBasedVisualServo")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/visualservocontrol/GGCNNBasedVisualServo" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/visualservocontrol/GGCNNBasedVisualServo")
+    file(RPATH_CHANGE
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/visualservocontrol/GGCNNBasedVisualServo"
+         OLD_RPATH "/opt/ros/foxy/lib:/home/wzf/main_folder/MyProject/Graduation_project/install/realsense_msgs/lib:/usr/local/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/home/wzf/main_folder/MyProject/Graduation_project/install/realsense_ros/lib:/home/wzf/MyLibrary/VISP/visp-ws/visp-build/lib:/usr/lib/x86_64-linux-gnu/hdf5/serial:/home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/lib:"
+         NEW_RPATH "")
+    if(CMAKE_INSTALL_DO_STRIP)
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/visualservocontrol/GGCNNBasedVisualServo")
+    endif()
+  endif()
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/visualservocontrol/ModelBasedVisualServo" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/visualservocontrol/ModelBasedVisualServo")
     file(RPATH_CHECK

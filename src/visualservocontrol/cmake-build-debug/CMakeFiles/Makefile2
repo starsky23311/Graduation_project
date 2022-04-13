@@ -73,6 +73,7 @@ CMAKE_BINARY_DIR = /home/wzf/main_folder/MyProject/Graduation_project/src/visual
 
 # The main recursive "all" target.
 all: CMakeFiles/ModelBasedVisualServo.dir/all
+all: CMakeFiles/GGCNNBasedVisualServo.dir/all
 
 .PHONY : all
 
@@ -84,6 +85,7 @@ preinstall:
 # The main recursive "clean" target.
 clean: CMakeFiles/ModelBasedVisualServo.dir/clean
 clean: CMakeFiles/uninstall.dir/clean
+clean: CMakeFiles/GGCNNBasedVisualServo.dir/clean
 clean: CMakeFiles/visualservocontrol_uninstall.dir/clean
 
 .PHONY : clean
@@ -95,7 +97,7 @@ clean: CMakeFiles/visualservocontrol_uninstall.dir/clean
 CMakeFiles/ModelBasedVisualServo.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ModelBasedVisualServo.dir/build.make CMakeFiles/ModelBasedVisualServo.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ModelBasedVisualServo.dir/build.make CMakeFiles/ModelBasedVisualServo.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wzf/main_folder/MyProject/Graduation_project/src/visualservocontrol/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target ModelBasedVisualServo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wzf/main_folder/MyProject/Graduation_project/src/visualservocontrol/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target ModelBasedVisualServo"
 .PHONY : CMakeFiles/ModelBasedVisualServo.dir/all
 
 # Build rule for subdir invocation for target.
@@ -141,6 +143,33 @@ uninstall: CMakeFiles/uninstall.dir/rule
 CMakeFiles/uninstall.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/uninstall.dir/build.make CMakeFiles/uninstall.dir/clean
 .PHONY : CMakeFiles/uninstall.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/GGCNNBasedVisualServo.dir
+
+# All Build rule for target.
+CMakeFiles/GGCNNBasedVisualServo.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GGCNNBasedVisualServo.dir/build.make CMakeFiles/GGCNNBasedVisualServo.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GGCNNBasedVisualServo.dir/build.make CMakeFiles/GGCNNBasedVisualServo.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wzf/main_folder/MyProject/Graduation_project/src/visualservocontrol/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target GGCNNBasedVisualServo"
+.PHONY : CMakeFiles/GGCNNBasedVisualServo.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/GGCNNBasedVisualServo.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wzf/main_folder/MyProject/Graduation_project/src/visualservocontrol/cmake-build-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/GGCNNBasedVisualServo.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wzf/main_folder/MyProject/Graduation_project/src/visualservocontrol/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/GGCNNBasedVisualServo.dir/rule
+
+# Convenience name for target.
+GGCNNBasedVisualServo: CMakeFiles/GGCNNBasedVisualServo.dir/rule
+
+.PHONY : GGCNNBasedVisualServo
+
+# clean rule for target.
+CMakeFiles/GGCNNBasedVisualServo.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GGCNNBasedVisualServo.dir/build.make CMakeFiles/GGCNNBasedVisualServo.dir/clean
+.PHONY : CMakeFiles/GGCNNBasedVisualServo.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/visualservocontrol_uninstall.dir
