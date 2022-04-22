@@ -55,6 +55,10 @@ class GGCNNReady:
 
 picture_ready = GGCNNReady()
 
+from scipy import ndimage as ndi
+import matplotlib.pyplot as plt
+from skimage.feature import peak_local_max
+from skimage import data, img_as_float
 
 class GraspGenerater(Node):
 
@@ -72,9 +76,10 @@ class GraspGenerater(Node):
         self.depth_image = np.zeros([480, 640])
         self.color_after_crop = np.zeros([300, 300, 3], np.uint8)
         self.ggcnn_input = np.zeros([300, 300])
+        self.bias = np.zeros(2)
 
 
-        self.publisher_ = self.create_publisher(String, 'GGCNNOutput', 10)
+        self.publisher_ = self.create_publisher(String, 'GGCNNOutput', 5)
         self.subscription_color = self.create_subscription(
             sensor_msgs.msg.Image,
             "/camera/color/image_raw",
@@ -86,17 +91,34 @@ class GraspGenerater(Node):
             self.align_callback,
             5)
     # output_size = 300,shape = [640, 480]
+# 以下函数用于图像裁剪
+    def get_crop_center(self):
+        # dst = self.delete_zero(self.depth_image)
+        dst = self.depth_image / 64
+        mask = (dst < 9).astype(np.float)
+        dst = (dst * mask).astype(np.uint8)
+        # calculate moments of binary image
+        M = cv2.moments(dst)
+        # calculate x,y coordinate of center
+        cX = int(M["m10"] / M["m00"])
+        cY = int(M["m01"] / M["m00"])
+        center = [cY, cX]
+
+        return center
+
     def get_crop_attr(self, center, output_size, shape):
 
         # 自主检测目标大致位置模式
         if center == [-1, -1]:
-            pass
+            center = self.get_crop_center()
         # 人为设定裁剪位置
         else:
             pass
 
         left = max(0, min(center[1] - output_size // 2, shape[0] - output_size))
         top = max(0, min(center[0] - output_size // 2, shape[1] - output_size))
+        self.bias[0] = left
+        self.bias[1] = top
         return center, left, top
 
     def delete_zero(self, img):
@@ -125,7 +147,7 @@ class GraspGenerater(Node):
             img_output.reshape((output_size, output_size))
 
         return img_output
-
+# 获取裁剪后的彩色、深度图
     def get_ggcnn_input(self, center):
         _, left, top = self.get_crop_attr(center, 300, [640, 480])
         self.color_after_crop = self.picture_crop(self.color_image, left, top, "rgb")
@@ -136,7 +158,7 @@ class GraspGenerater(Node):
             return torch.from_numpy(np.expand_dims(s, 0).astype(np.float32))
         else:
             return torch.from_numpy(s.astype(np.float32))
-
+# 输出抓取点参数
     def get_ggcnn_output(self, vis=True):
         with torch.no_grad():
             x = self.numpy_to_torch(self.ggcnn_input).to(self.device)
@@ -167,13 +189,13 @@ class GraspGenerater(Node):
             cv2.waitKey(1)
             self.GGCNNOutputPublish(x, y, angle, width)
 
-
+# 发布抓取点信息
     def GGCNNOutputPublish(self, x, y, angle, width):
         msg = String()
-        msg.data = "["+str(x)+","+str(y)+","+str(angle)+","+str(width)+"]"
+        msg.data = "["+str(x+self.bias[0])+","+str(y+self.bias[1])+","+str(angle)+","+str(width)+"]"
         self.publisher_.publish(msg)
         self.get_logger().info('Publishing: "%s"' % msg.data)
-
+# 回调函数
     def color_callback(self, msg):
         bridge = CvBridge()
         self.get_logger().info('I heard COLOR: "%s"' % msg.encoding)
@@ -200,7 +222,7 @@ def main(args=None):
         rclpy.spin_once(GGCNNTool)
         if picture_ready.get_ggcnn_ok():
             picture_ready.refresh_ok()
-            GGCNNTool.get_ggcnn_input([200, 300])
+            GGCNNTool.get_ggcnn_input([-1, -1])
             GGCNNTool.get_ggcnn_output()
 
             # GGCNNTool.GGCNNOutputPublish()
@@ -215,6 +237,7 @@ def main(args=None):
         # when the garbage collector destroys the node object)
     GGCNNTool.destroy_node()
     rclpy.shutdown()
+
 
 
 if __name__ == '__main__':
