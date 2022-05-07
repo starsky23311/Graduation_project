@@ -26,6 +26,7 @@ set(FastRTPS_LIBRARY_RELEASE /opt/ros/foxy/lib/libfastrtps.so)
 
 #添加执行文件
 aux_source_directory(./src SRC_LIST)
+
 set(SRC_LIST_WITHOUTE)
 #file(READ "src/*.cpp" SRC_LIST)
 #去掉扩展名
@@ -33,7 +34,7 @@ foreach(SRC_FILE ${SRC_LIST})
   get_filename_component(SRC_FILE_WITHOUTE ${SRC_FILE} NAME_WLE)
   set(SRC_LIST_WITHOUTE ${SRC_LIST_WITHOUTE} ${SRC_FILE_WITHOUTE} )
 endforeach()
-
+message(STATUS "${SRC_LIST_WITHOUTE}")
 foreach(SRC_FILE ${SRC_LIST_WITHOUTE})
   add_executable(${SRC_FILE} src/${SRC_FILE}.cpp)
 endforeach()
@@ -58,6 +59,10 @@ set(AMENT_DEPENDENCIES ${AMENT_DEPENDENCIES} rclcpp std_msgs sensor_msgs cv_brid
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 set(MYLIBRARIES ${MYLIBRARIES} ${OpenCV_LIBS})
+#寻找eigen库
+find_package(Eigen3 REQUIRED)
+include_directories(${EIGEN3_INCLUDE_DIRS})
+#message(STATUS "${EIGEN3_INCLUDE_DIRS}")
 #寻找VISP库
 #find_package(VISP REQUIRED visp_core visp_robot visp_vs visp_blob visp_vision visp_io visp_gui visp_ar)
 find_package(VISP REQUIRED)
@@ -112,6 +117,14 @@ include_directories(SYSTEM
         )
 set(MYLIBRARIES ${MYLIBRARIES} FLANN::FLANN ${HDF5_LIBRARIES})
 # 依赖库链接安装等
+install(
+        DIRECTORY include/
+        DESTINATION include
+)
+install(
+        DIRECTORY launch/
+        DESTINATION share/${PROJECT_NAME}/launch
+)
 foreach(TARGET_NAME ${SRC_LIST_WITHOUTE})
   ament_target_dependencies(${TARGET_NAME} ${AMENT_DEPENDENCIES})
   target_link_libraries(${TARGET_NAME} ${MYLIBRARIES})

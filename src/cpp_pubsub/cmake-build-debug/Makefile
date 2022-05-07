@@ -238,6 +238,59 @@ listener/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/build
 .PHONY : listener/fast
 
+#=============================================================================
+# Target rules for targets named talker_autogen
+
+# Build rule for target.
+talker_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 talker_autogen
+.PHONY : talker_autogen
+
+# fast build rule for target.
+talker_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/talker_autogen.dir/build.make CMakeFiles/talker_autogen.dir/build
+.PHONY : talker_autogen/fast
+
+#=============================================================================
+# Target rules for targets named listener_autogen
+
+# Build rule for target.
+listener_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 listener_autogen
+.PHONY : listener_autogen
+
+# fast build rule for target.
+listener_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener_autogen.dir/build.make CMakeFiles/listener_autogen.dir/build
+.PHONY : listener_autogen/fast
+
+listener_autogen/mocs_compilation.o: listener_autogen/mocs_compilation.cpp.o
+
+.PHONY : listener_autogen/mocs_compilation.o
+
+# target to build an object file
+listener_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/listener_autogen/mocs_compilation.cpp.o
+.PHONY : listener_autogen/mocs_compilation.cpp.o
+
+listener_autogen/mocs_compilation.i: listener_autogen/mocs_compilation.cpp.i
+
+.PHONY : listener_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+listener_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/listener_autogen/mocs_compilation.cpp.i
+.PHONY : listener_autogen/mocs_compilation.cpp.i
+
+listener_autogen/mocs_compilation.s: listener_autogen/mocs_compilation.cpp.s
+
+.PHONY : listener_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+listener_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/listener_autogen/mocs_compilation.cpp.s
+.PHONY : listener_autogen/mocs_compilation.cpp.s
+
 src/publisher_member_function.o: src/publisher_member_function.cpp.o
 
 .PHONY : src/publisher_member_function.o
@@ -292,6 +345,33 @@ src/subscriber_member_function.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/src/subscriber_member_function.cpp.s
 .PHONY : src/subscriber_member_function.cpp.s
 
+talker_autogen/mocs_compilation.o: talker_autogen/mocs_compilation.cpp.o
+
+.PHONY : talker_autogen/mocs_compilation.o
+
+# target to build an object file
+talker_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/talker.dir/build.make CMakeFiles/talker.dir/talker_autogen/mocs_compilation.cpp.o
+.PHONY : talker_autogen/mocs_compilation.cpp.o
+
+talker_autogen/mocs_compilation.i: talker_autogen/mocs_compilation.cpp.i
+
+.PHONY : talker_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+talker_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/talker.dir/build.make CMakeFiles/talker.dir/talker_autogen/mocs_compilation.cpp.i
+.PHONY : talker_autogen/mocs_compilation.cpp.i
+
+talker_autogen/mocs_compilation.s: talker_autogen/mocs_compilation.cpp.s
+
+.PHONY : talker_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+talker_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/talker.dir/build.make CMakeFiles/talker.dir/talker_autogen/mocs_compilation.cpp.s
+.PHONY : talker_autogen/mocs_compilation.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -306,15 +386,23 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... cpp_pubsub_uninstall"
+	@echo "... listener_autogen"
+	@echo "... talker_autogen"
 	@echo "... uninstall"
 	@echo "... listener"
 	@echo "... talker"
+	@echo "... listener_autogen/mocs_compilation.o"
+	@echo "... listener_autogen/mocs_compilation.i"
+	@echo "... listener_autogen/mocs_compilation.s"
 	@echo "... src/publisher_member_function.o"
 	@echo "... src/publisher_member_function.i"
 	@echo "... src/publisher_member_function.s"
 	@echo "... src/subscriber_member_function.o"
 	@echo "... src/subscriber_member_function.i"
 	@echo "... src/subscriber_member_function.s"
+	@echo "... talker_autogen/mocs_compilation.o"
+	@echo "... talker_autogen/mocs_compilation.i"
+	@echo "... talker_autogen/mocs_compilation.s"
 .PHONY : help
 
 

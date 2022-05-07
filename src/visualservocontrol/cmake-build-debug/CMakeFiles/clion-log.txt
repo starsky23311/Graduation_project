@@ -1,4 +1,5 @@
 /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/wzf/main_folder/MyProject/Graduation_project/src/visualservocontrol
+-- GGCNNBasedVisualServo;ModelBasedVisualServo
 -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
 -- Using PYTHON_EXECUTABLE: /usr/bin/python3
 -- Found rclcpp: 2.4.1 (/opt/ros/foxy/share/rclcpp/cmake)
@@ -23,7 +24,7 @@ Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:176 (find_package)
   /usr/local/share/pcl-1.11/PCLConfig.cmake:319 (find_openni)
   /usr/local/share/pcl-1.11/PCLConfig.cmake:543 (find_external_library)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
@@ -37,7 +38,7 @@ Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:190 (find_package)
   /usr/local/share/pcl-1.11/PCLConfig.cmake:321 (find_openni2)
   /usr/local/share/pcl-1.11/PCLConfig.cmake:543 (find_external_library)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)
@@ -52,7 +53,7 @@ Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:288 (find_package_handle_standard_args)
   /usr/local/share/pcl-1.11/PCLConfig.cmake:335 (find_libusb)
   /usr/local/share/pcl-1.11/PCLConfig.cmake:543 (find_external_library)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 ** WARNING ** io features related to libusb-1.0 will be disabled
@@ -66,7 +67,7 @@ Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:176 (find_package)
   /usr/local/share/pcl-1.11/PCLConfig.cmake:319 (find_openni)
   /usr/local/share/pcl-1.11/PCLConfig.cmake:543 (find_external_library)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
@@ -80,7 +81,7 @@ Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:190 (find_package)
   /usr/local/share/pcl-1.11/PCLConfig.cmake:321 (find_openni2)
   /usr/local/share/pcl-1.11/PCLConfig.cmake:543 (find_external_library)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)
@@ -93,7 +94,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_KDTREE
@@ -104,7 +105,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_OCTREE
@@ -115,7 +116,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_SEARCH
@@ -126,7 +127,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_SAMPLE_CONSENSUS
@@ -138,7 +139,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_FILTERS
@@ -149,7 +150,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   variables (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_2D
@@ -160,7 +161,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:614 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_GEOMETRY
@@ -171,7 +172,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   variables (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:614 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_IO
@@ -182,7 +183,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_FEATURES
@@ -193,7 +194,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   variables (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_ML
@@ -204,7 +205,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_SEGMENTATION
@@ -215,7 +216,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   result variables (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_VISUALIZATION
@@ -226,7 +227,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   result variables (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_SURFACE
@@ -237,7 +238,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   variables (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_REGISTRATION
@@ -248,7 +249,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   result variables (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_KEYPOINTS
@@ -259,7 +260,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   variables (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_TRACKING
@@ -270,7 +271,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   variables (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_RECOGNITION
@@ -281,7 +282,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   result variables (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_STEREO
@@ -292,7 +293,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_OUTOFCORE
@@ -303,7 +304,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   variables (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- looking for PCL_PEOPLE
@@ -314,7 +315,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   (e.g., `_FOUND`) to follow a certain pattern.
 Call Stack (most recent call first):
   /usr/local/share/pcl-1.11/PCLConfig.cmake:611 (find_package_handle_standard_args)
-  CMakeLists.txt:72 (find_package)
+  CMakeLists.txt:77 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/linux/share/cmake-3.19/Modules/FindOpenGL.cmake:293 (message):
@@ -334,7 +335,7 @@ CMake Warning (dev) at /home/wzf/下载/clion2021.1.3/clion-2021.1.3/bin/cmake/l
   OpenGL_GL_PREFERENCE has not been set to "GLVND" or "LEGACY", so for
   compatibility with CMake 3.10 and below the legacy GL library will be used.
 Call Stack (most recent call first):
-  CMakeLists.txt:78 (find_package)
+  CMakeLists.txt:83 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 -- Found realsense_ros: 2.0.8 (/home/wzf/main_folder/MyProject/Graduation_project/install/realsense_ros/share/realsense_ros/cmake)
@@ -343,7 +344,7 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 -- Found tf2: 0.13.13 (/opt/ros/foxy/share/tf2/cmake)
 -- Found tf2_ros: 0.13.13 (/opt/ros/foxy/share/tf2_ros/cmake)
 -- Found pcl_conversions: 2.2.1 (/opt/ros/foxy/share/pcl_conversions/cmake)
-CMake Warning (dev) at CMakeLists.txt:108 (find_package):
+CMake Warning (dev) at CMakeLists.txt:113 (find_package):
   Policy CMP0074 is not set: find_package uses <PackageName>_ROOT variables.
   Run "cmake --help-policy CMP0074" for policy details.  Use the cmake_policy
   command to set the policy and suppress this warning.
@@ -362,7 +363,9 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 -- Configured cppcheck exclude dirs and/or files: 
 -- Added test 'cpplint' to check C / C++ code against the Google style
 -- Configured cpplint exclude dirs and/or files: 
+-- Added test 'flake8' to check Python code syntax and style conventions
 -- Added test 'lint_cmake' to check CMake code style
+-- Added test 'pep257' to check Python code against some of the style conventions in PEP 257
 -- Added test 'uncrustify' to check C / C++ code style
 -- Configured uncrustify additional arguments: 
 -- Added test 'xmllint' to check XML markup files

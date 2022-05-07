@@ -30,6 +30,9 @@ public:
         v.resize(6);vsreach = 0;
         subscription_ = this->create_subscription<std_msgs::msg::String>(
                 "VisualservoOutput", 10, std::bind(&VSCommandSubscriber::topic_callback, this, std::placeholders::_1));
+        subscription_speedcommand = this->create_subscription<std_msgs::msg::String>(
+                "SpeedCommand", 5, std::bind(&VSCommandSubscriber::speedcommand_callback, this, std::placeholders::_1));
+
         publisher_ = this->create_publisher<std_msgs::msg::String>("EncoderDepth", 5);
     }
     vector<float> getEndVelCommand(void)
@@ -72,14 +75,50 @@ private:
             }
         }
     }
+    void CommandParse_speedCommand(const string & command)
+    {
+        int step = 0;
+        while(1)
+        {
+            if(step == 0)
+            {
+                if(*command.begin() == '[' && *(command.end()-1) == ']')
+                    step++;
+                else
+                    step = 0;
+            }
+            else if(step == 1)
+            {
+                string s1(command.begin()+1,command.end()-1),s2;
+                stringstream ss(s1);int num = 0;
+                v[3] = 0;v[4] = 0;
+                while(getline(ss, s2, ',')) {
+                    if(num < 3) {
+                        v[num] = std::atof(s2.c_str());
+                    }
+                    else
+                    {
+                        v[5] = std::atof(s2.c_str());
+                    }
+                    num++;
+                }
+
+                break;
+            }
+        }
+    }
     void topic_callback(const std_msgs::msg::String::SharedPtr msg)
     {
         RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
         CommandParse(msg->data);
 
     }
+    void speedcommand_callback(const std_msgs::msg::String::SharedPtr msg){
+        RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
+        CommandParse_speedCommand(msg->data);
+    }
     rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
-
+    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_speedcommand;
     vector<float> v;
     int vsreach;
 };

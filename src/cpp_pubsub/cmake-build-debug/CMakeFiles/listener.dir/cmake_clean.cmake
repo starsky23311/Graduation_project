@@ -1,4 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/listener_autogen.dir/AutogenUsed.txt"
+  "CMakeFiles/listener_autogen.dir/ParseCache.txt"
+  "listener_autogen"
+  "CMakeFiles/listener.dir/listener_autogen/mocs_compilation.cpp.o"
   "CMakeFiles/listener.dir/src/subscriber_member_function.cpp.o"
   "listener"
   "listener.pdb"

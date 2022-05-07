@@ -77,7 +77,10 @@ class GraspGenerater(Node):
         self.color_after_crop = np.zeros([300, 300, 3], np.uint8)
         self.ggcnn_input = np.zeros([300, 300])
         self.bias = np.zeros(2)
-
+        self.font_depth = 0
+        self.back_depth = 0
+        self.color_x = 0
+        self.color_y = 0
 
         self.publisher_ = self.create_publisher(String, 'GGCNNOutput', 5)
         self.subscription_color = self.create_subscription(
@@ -94,14 +97,40 @@ class GraspGenerater(Node):
 # 以下函数用于图像裁剪
     def get_crop_center(self):
         # dst = self.delete_zero(self.depth_image)
-        dst = self.depth_image / 64
-        mask = (dst < 9).astype(np.float)
+        # dst = self.depth_image / 64
+        dst = self.delete_zero(self.depth_image)
+        #根据颜色进行前景提取
+        gray = cv2.cvtColor(self.color_image, cv2.COLOR_BGR2GRAY)
+        mask = (gray < 80).astype(np.float)
+        gray = (gray * mask).astype(np.uint8)
+
+        # # mask = (dst < 8.8).astype(np.float)
+        # #计算背景平均距离
+        self.back_depth = (dst * (1-mask)).sum()/(640*480-mask.sum())/1000
+        # #计算前景平均距离
+        self.font_depth = (dst * mask).sum()/mask.sum()/1000
+        # dst = dst * mask
+        mask = ((dst != 0)&(dst <= (self.font_depth)*1000)).astype(np.float)
+        # print("mask_sum:", mask.sum())
+        self.font_depth = (dst * mask).sum()/mask.sum()/1000
+
+        mask = ((dst != 0)&(dst <= (self.font_depth)*1000)).astype(np.float)
+        print("mask_sum:", mask.sum())
+        self.font_depth = (dst * mask).sum()/mask.sum()/1000
+        #
+        # # dst = cv2.cvtColor(dst, cv2.GR)#将图像转化为灰度图像
+        #
+        # # dst = cv2.Canny(dst * 4, 100, 150)#Canny边缘检测
         dst = (dst * mask).astype(np.uint8)
+        cv2.imshow("depth_canny", dst * 4)
+        # print("font_depth:",self.font_depth)
         # calculate moments of binary image
-        M = cv2.moments(dst)
+        M = cv2.moments(gray)
         # calculate x,y coordinate of center
         cX = int(M["m10"] / M["m00"])
         cY = int(M["m01"] / M["m00"])
+        self.color_x = cX
+        self.color_y = cY
         center = [cY, cX]
 
         return center
@@ -111,6 +140,7 @@ class GraspGenerater(Node):
         # 自主检测目标大致位置模式
         if center == [-1, -1]:
             center = self.get_crop_center()
+
         # 人为设定裁剪位置
         else:
             pass
@@ -119,6 +149,7 @@ class GraspGenerater(Node):
         top = max(0, min(center[0] - output_size // 2, shape[1] - output_size))
         self.bias[0] = left
         self.bias[1] = top
+
         return center, left, top
 
     def delete_zero(self, img):
@@ -192,7 +223,9 @@ class GraspGenerater(Node):
 # 发布抓取点信息
     def GGCNNOutputPublish(self, x, y, angle, width):
         msg = String()
-        msg.data = "["+str(x+self.bias[0])+","+str(y+self.bias[1])+","+str(angle)+","+str(width)+"]"
+        # msg.data = "["+str(x+self.bias[0])+","+str(y+self.bias[1])+","+str(angle)+","+str(width)+","+str(self.font_depth)+","+str(self.back_depth)+"]"
+        msg.data = "["+ str(self.color_x) +","+str(self.color_y)+","+str(angle)+","+str(width)+","+str(self.font_depth)+","+str(self.back_depth)+"]"
+
         self.publisher_.publish(msg)
         self.get_logger().info('Publishing: "%s"' % msg.data)
 # 回调函数

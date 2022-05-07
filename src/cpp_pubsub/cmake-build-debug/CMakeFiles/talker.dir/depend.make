@@ -282,3 +282,5 @@ CMakeFiles/talker.dir/src/publisher_member_function.cpp.o: /opt/ros/foxy/include
 CMakeFiles/talker.dir/src/publisher_member_function.cpp.o: /opt/ros/foxy/include/tracetools/utils.hpp
 CMakeFiles/talker.dir/src/publisher_member_function.cpp.o: /opt/ros/foxy/include/tracetools/visibility_control.hpp
 
+CMakeFiles/talker.dir/talker_autogen/mocs_compilation.cpp.o: talker_autogen/mocs_compilation.cpp
+

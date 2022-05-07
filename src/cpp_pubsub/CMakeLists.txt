@@ -16,15 +16,26 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 # find dependencies
+#set(EXECUTABLE_OUTPUT_PATH cpp_pubsub)
 set(FastRTPS_INCLUDE_DIR /opt/ros/foxy/include)
 set(FastRTPS_LIBRARY_RELEASE /opt/ros/foxy/lib/libfastrtps.so)
 
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+#寻找QT库
+set(CMAKE_AUTOMOC ON)#自动翻译信号与槽
+set(CMAKE_AUTORCC ON)#自动翻译资源文件为cpp文件
+set(CMAKE_AUTOUIC ON)#自动翻译界面文件为cpp文件
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+find_package(Qt5 COMPONENTS Widgets Gui Core REQUIRED)
+
+
+
+
+#yaml
+link_directories(/usr/local/lib)
+include_directories(/usr/local/include/yaml-cpp)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -39,13 +50,20 @@ endif()
 
 add_executable(talker src/publisher_member_function.cpp)
 ament_target_dependencies(talker rclcpp std_msgs)
+target_link_libraries(talker yaml-cpp)
+target_include_directories(talker PUBLIC ${PROJECT_SOURCE_DIR}/include)
+set_target_properties(talker PROPERTIES AUTOMOC TRUE)
+target_link_libraries(talker Qt5::Core Qt5::Widgets Qt5::Gui)
+#target_link_libraries(talker pthread)
+
 add_executable(listener src/subscriber_member_function.cpp)
 ament_target_dependencies(listener rclcpp std_msgs)
 
 
-install(TARGETS
-  talker
-  DESTINATION lib/${PROJECT_NAME})
+install(
+        DIRECTORY config/
+        DESTINATION config
+)
 install(TARGETS
   talker
   listener

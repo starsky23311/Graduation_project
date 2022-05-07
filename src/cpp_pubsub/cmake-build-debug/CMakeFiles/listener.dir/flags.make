@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DDEFAULT_RMW_IMPLEMENTATION=rmw_fastrtps_cpp -DRCUTILS_ENABLE_FAULT_INJECTION -DSPDLOG_COMPILED_LIB
 
-CXX_INCLUDES = -isystem /opt/ros/foxy/include
+CXX_INCLUDES = -I/home/wzf/main_folder/MyProject/Graduation_project/src/cpp_pubsub/cmake-build-debug -I/home/wzf/main_folder/MyProject/Graduation_project/src/cpp_pubsub -I/home/wzf/main_folder/MyProject/Graduation_project/src/cpp_pubsub/cmake-build-debug/listener_autogen/include -I/usr/local/include/yaml-cpp -isystem /opt/ros/foxy/include
 
 CXX_FLAGS = -g -Wall -Wextra -Wpedantic -std=gnu++14
 

@@ -9,3 +9,5 @@
 /home/wzf/main_folder/MyProject/Graduation_project/src/cpp_pubsub/cmake-build-debug/CMakeFiles/list_install_components.dir
 /home/wzf/main_folder/MyProject/Graduation_project/src/cpp_pubsub/cmake-build-debug/CMakeFiles/install.dir
 /home/wzf/main_folder/MyProject/Graduation_project/src/cpp_pubsub/cmake-build-debug/CMakeFiles/install/local.dir
+/home/wzf/main_folder/MyProject/Graduation_project/src/cpp_pubsub/cmake-build-debug/CMakeFiles/talker_autogen.dir
+/home/wzf/main_folder/MyProject/Graduation_project/src/cpp_pubsub/cmake-build-debug/CMakeFiles/listener_autogen.dir

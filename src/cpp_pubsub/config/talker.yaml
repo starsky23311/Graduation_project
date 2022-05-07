@@ -1,0 +1,4 @@
+bool_param: false
+int_param: 2
+double_param: 0.5
+str_param: test

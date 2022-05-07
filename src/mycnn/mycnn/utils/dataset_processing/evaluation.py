@@ -17,6 +17,7 @@ def plot_output(rgb_img, depth_img, grasp_q_img, grasp_angle_img, no_grasps=1, g
     """
     gs = detect_grasps(grasp_q_img, grasp_angle_img, width_img=grasp_width_img, no_grasps=no_grasps)
     if len(gs) > 0:
+        print("Find GS!")
         return gs[0].center[1], gs[0].center[0], gs[0].angle, gs[0].width
     else:
         print("Can not find GS!")
