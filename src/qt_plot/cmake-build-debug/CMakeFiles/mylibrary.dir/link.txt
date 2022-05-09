@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmylibrary.a CMakeFiles/mylibrary.dir/mylibrary_autogen/mocs_compilation.cpp.o
+/usr/bin/ranlib libmylibrary.a
