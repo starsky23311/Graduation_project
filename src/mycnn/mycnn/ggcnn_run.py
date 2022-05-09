@@ -101,7 +101,7 @@ class GraspGenerater(Node):
         dst = self.delete_zero(self.depth_image)
         #根据颜色进行前景提取
         gray = cv2.cvtColor(self.color_image, cv2.COLOR_BGR2GRAY)
-        mask = (gray < 80).astype(np.float)
+        mask = (gray < 75).astype(np.float)
         gray = (gray * mask).astype(np.uint8)
 
         # # mask = (dst < 8.8).astype(np.float)
@@ -122,7 +122,7 @@ class GraspGenerater(Node):
         #
         # # dst = cv2.Canny(dst * 4, 100, 150)#Canny边缘检测
         dst = (dst * mask).astype(np.uint8)
-        cv2.imshow("depth_canny", dst * 4)
+        cv2.imshow("depth_canny", gray)
         # print("font_depth:",self.font_depth)
         # calculate moments of binary image
         M = cv2.moments(gray)

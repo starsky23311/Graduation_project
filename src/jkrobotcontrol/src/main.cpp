@@ -151,7 +151,7 @@ public:
 
                 m_robot.setMode(2);
                 Vector6d okpos;
-                okpos<<90,20,30,40,-90,0;
+                okpos<<90,30,20,40,-90,0;
 
                 m_robot.setJoints(okpos);
                 usleep(10000);
@@ -297,7 +297,7 @@ int main(int argc, char *argv[])
               //发送编码器读取高度
               Vector6d encoder_depth_v;
               m_robot.getEndPos(encoder_depth_v);
-              stringstream ss;ss<<encoder_depth_v[2];
+              stringstream ss;ss<<encoder_depth_v[5];
               encoder_depth_msg.data = ss.str();
               vscommand->publisher_->publish(encoder_depth_msg);
 

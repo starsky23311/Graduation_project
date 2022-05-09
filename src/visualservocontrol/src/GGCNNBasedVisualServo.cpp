@@ -847,73 +847,61 @@ private:
 class NetGraspFeature2D{
 public:
     NetGraspFeature2D(){
-        this->split_size = 4;
+        this->feature_points_num = 21;
         this->range_max = 200;
-        feature_points.resize(split_size * split_size);
-        T.resize(2);
+        this->target_depth = 0.25;
+        feature_points.resize(feature_points_num);
+        T.resize(2,feature_points_num);
         R.resize(2,2);
-        target_feature_points.resize(split_size * split_size);
-        detect_feature_points.resize(split_size * split_size);
-        for(size_t i = 0;i < split_size*split_size;i++){
-            target_feature_points[i].resize(2);
-            detect_feature_points[i].resize(2);
-        }
-        sd.resize(split_size * split_size);s.resize(split_size * split_size);
 
+        sd.resize(feature_points_num);s.resize(feature_points_num);
+        featureModelInit(range_max);
     }
     ~NetGraspFeature2D(){}
     void drawSquares(cv::Mat& img2draw)
     {
-        for( size_t i = 0; i < split_size * split_size; i++ )
+        for( size_t i = 0; i < feature_points_num; i++ )
         {
 
-            circle(img2draw,cv::Point2f(feature_points[i].x,feature_points[i].y),10,cv::Scalar(0,0,255),3);
-//            circle(img2draw,cv::Point2f(sd[i].get_x(),sd[i].get_y()),10,cv::Scalar(0,255,0),3);
-//            float x = sd[i].get_x();float y = sd[i].get_y();
-//            cv::putText(img2draw,to_string(i),cv::Point2f(x,y),cv::FONT_HERSHEY_PLAIN,2,cv::Scalar(255,0,0),2);
-//            project2CameraPlane(x,y,0.25);
-//            sd[i].set_xyZ(x,y,0.25);
-            cv::putText(img2draw,to_string(i),cv::Point2f(feature_points[i].x,feature_points[i].y),cv::FONT_HERSHEY_PLAIN,2,cv::Scalar(255,0,0),2);
-
+            circle(img2draw,cv::Point2f(feature_points[i].x,feature_points[i].y),5,cv::Scalar(0,0,255),3);
+            cv::putText(img2draw,to_string(i),cv::Point2f(feature_points[i].x,feature_points[i].y),cv::FONT_HERSHEY_PLAIN,2,cv::Scalar(255,0,0),1);
         }
-        cv::line(img2draw,cv::Point2f(feature_points[0].x,feature_points[0].y),cv::Point2f(feature_points[split_size-1].x,feature_points[split_size-1].y),cv::Scalar(0,255,0),3);
-        cv::line(img2draw,cv::Point2f(feature_points[split_size-1].x,feature_points[split_size-1].y),cv::Point2f(feature_points[split_size*split_size-1].x,feature_points[split_size*split_size-1].y),cv::Scalar(0,255,0),3);
-        cv::line(img2draw,cv::Point2f(feature_points[split_size*split_size-1].x,feature_points[split_size*split_size-1].y),cv::Point2f(feature_points[split_size*(split_size-1)].x,feature_points[split_size*(split_size-1)].y),cv::Scalar(0,255,0),3);
-        cv::line(img2draw,cv::Point2f(feature_points[split_size*(split_size-1)].x,feature_points[split_size*(split_size-1)].y),cv::Point2f(feature_points[0].x,feature_points[0].y),cv::Scalar(0,255,0),3);
+        cv::line(img2draw,cv::Point2f(feature_points[6].x,feature_points[6].y),cv::Point2f(feature_points[8].x,feature_points[8].y),cv::Scalar(0,255,0),3);
+        cv::line(img2draw,cv::Point2f(feature_points[8].x,feature_points[8].y),cv::Point2f(feature_points[10].x,feature_points[10].y),cv::Scalar(0,255,0),3);
+        cv::line(img2draw,cv::Point2f(feature_points[10].x,feature_points[10].y),cv::Point2f(feature_points[12].x,feature_points[12].y),cv::Scalar(0,255,0),3);
+        cv::line(img2draw,cv::Point2f(feature_points[12].x,feature_points[12].y),cv::Point2f(feature_points[6].x,feature_points[6].y),cv::Scalar(0,255,0),3);
 
     }
     bool getFeaturePoint(Grasp_Data grasp_point_filtered, cv::Mat color_image, cv::Mat depth_image, float font_depth)
     {
         cv::inpaint( depth_image, depth_image == 0, depth_image, 5,cv::INPAINT_NS);
-        T<<-grasp_point_filtered.x,-grasp_point_filtered.y;
-//        R<<cos(grasp_point_filtered.theta - CV_PI/2),sin(grasp_point_filtered.theta - CV_PI/2),
-//                -sin(grasp_point_filtered.theta - CV_PI/2),cos(grasp_point_filtered.theta - CV_PI/2);
-        R<<1,0,
-                0,1;
-        //设置4个
-        float range = this->range_max*(0.25/font_depth);
-        float split_range = range / (split_size-1);
-        float left =  - 0.5 * range;
-        float top  =  - 0.5 * range;
-//        float range = 50;
-        for(int i = 0;i < split_size;i++){
+        for(int i = 0; i<feature_points_num;i++){
+            T(0,i) = -grasp_point_filtered.x;
+            T(1,i) = -grasp_point_filtered.y;
+        }
+        R<<cos(this->feature_angle),sin(this->feature_angle),
+                -sin(this->feature_angle),cos(this->feature_angle);
+//        R<<1,0,
+//                0,1;
+//        R<<cos(CV_PI/6),sin(CV_PI/6),
+//        -sin(CV_PI/6),cos(CV_PI/6);
+        //放缩倍率
+        float factor = target_depth/font_depth;
+        detect_feature_points = factor * R * model_feature_points - T;
 
-            for(int j = 0;j < split_size;j++){
-                detect_feature_points[i * split_size + j][0] = left + j * split_range;
-                detect_feature_points[i * split_size + j][1] = top + i * split_range;
-                target_feature_points[i * split_size + j] = R * detect_feature_points[i * split_size + j] - T;
-                feature_points[i * split_size + j].x = target_feature_points[i * split_size + j][0];
-                feature_points[i * split_size + j].y = target_feature_points[i * split_size + j][1];
-                feature_points[i * split_size + j].z = float(depth_image.at<cv::uint16_t>(ceil(feature_points[i * split_size + j].y),ceil(feature_points[i * split_size + j].x)))*0.001;
-                if(feature_points[i * split_size + j].z == 0)
-                {
-                    cout<<"There is a z = 0!"<<endl;
-                    return false;
-                }
+        for(int i = 0;i < feature_points_num;i++){
+            feature_points[i].x = detect_feature_points(0,i);
+            feature_points[i].y = detect_feature_points(1,i);
+            feature_points[i].z = float(depth_image.at<cv::uint16_t>(ceil(feature_points[i].y),ceil(feature_points[i].x)))*0.001;
+            if(feature_points[i].z == 0)
+            {
+                cout<<"There is a z = 0!"<<endl;
+                return false;
             }
+
         }
 
-        this->font_depth = font_depth;
+        this->font_depth = fontDepthFilter(font_depth);
         drawFeaturePoint(color_image);
         return true;
 
@@ -936,13 +924,8 @@ public:
             x = feature_points[i].x;y = feature_points[i].y;z = feature_points[i].z;
             project2CameraPlane(x,y,z);
             s[i].buildFrom(x, y, z);
-            z = z - this->font_depth + 0.25;
-            float split_range = range_max / (split_size-1);
-            float left = 320 - 0.5 * range_max;
-            float top  = 240 - 0.5 * range_max;
-
-            x = left + split_range * (i % int(split_size));
-            y = top + split_range * (i / int(split_size));
+            z = z - this->font_depth + target_depth;
+            x = model_feature_points(0, i)+320;y = model_feature_points(1, i)+240;
 
             project2CameraPlane(x,y,z);
             sd[i].buildFrom(x, y, z);
@@ -957,13 +940,18 @@ public:
 //        cout<<"L_inverse:"<<L_inverse<<endl;
         v =  - L_inverse * e;
         v[0] *= -200;
-//        v[1] = (v[1] - 0.4 * v[3]) * 20;
+
         v[1] *= -100;
         v[2] *= 100;
-//        v[2] = 1;
-//        v[5] *= 180 / 3.1415926 * 0.5;
-        v[5] = 0;
-//        v[5] = 0;
+
+        v[5] *= 180 / 3.1415926 * 0.3;
+//                v[0] *= 0;
+//
+//        v[1] *= 0;
+//        v[2] *= 0;
+//
+//        v[5] *= 0;
+
 //        for(int i = 0;i < 6;i++){
 //            if(v[i] > 5)
 //                v[i] = 5;
@@ -983,7 +971,59 @@ public:
     float getError(){
         return e.sumSquare();
     }
+    void setFeatureAngle(float feature_angle){
+        if(feature_angle > 0)
+        {
+            this->feature_angle = this->target_angle - feature_angle/180*CV_PI - CV_PI;
+        }
+        if(feature_angle < 0)
+        {
+            this->feature_angle = this->target_angle - feature_angle/180*CV_PI + CV_PI;
+        }
+    }
+    void setTargetAngle(float target_angle){
+
+        if(target_angle > 0)
+        {
+            this->target_angle = target_angle;
+        }
+        if(target_angle < 0)
+        {
+            this->target_angle = target_angle;
+        }
+    }
 private:
+    void featureModelInit(float range_max){
+        model_feature_points.resize(2, feature_points_num);
+        detect_feature_points.resize(2, feature_points_num);
+        model_feature_points(0,0) = 0;model_feature_points(1,0) = 0;
+        float range_split_1_2 = range_max / 2;
+        float range_split_1_4 = range_max / 4;
+        model_feature_points(0,1) = range_max;model_feature_points(1,1) = 0;
+        model_feature_points(0,2) = 0;model_feature_points(1,2) = -range_max;
+        model_feature_points(0,3) = -range_max;model_feature_points(1,3) = 0;
+        model_feature_points(0,4) = 0;model_feature_points(1,4) = range_max;
+
+        model_feature_points(0,5) = range_split_1_2;model_feature_points(1,5) = 0;
+        model_feature_points(0,6) = range_split_1_2;model_feature_points(1,6) = -range_split_1_2;
+        model_feature_points(0,7) = 0;model_feature_points(1,7) = -range_split_1_2;
+        model_feature_points(0,8) = -range_split_1_2;model_feature_points(1,8) = -range_split_1_2;
+        model_feature_points(0,9) = -range_split_1_2;model_feature_points(1,9) = 0;
+        model_feature_points(0,10) = -range_split_1_2;model_feature_points(1,10) = range_split_1_2;
+        model_feature_points(0,11) = 0;model_feature_points(1,11) = range_split_1_2;
+        model_feature_points(0,12) = range_split_1_2;model_feature_points(1,12) = range_split_1_2;
+
+        model_feature_points(0,13) = range_split_1_4;model_feature_points(1,13) = 0;
+        model_feature_points(0,14) = range_split_1_4;model_feature_points(1,14) = -range_split_1_4;
+        model_feature_points(0,15) = 0;model_feature_points(1,15) = -range_split_1_4;
+        model_feature_points(0,16) = -range_split_1_4;model_feature_points(1,16) = -range_split_1_4;
+        model_feature_points(0,17) = -range_split_1_4;model_feature_points(1,17) = 0;
+        model_feature_points(0,18) = -range_split_1_4;model_feature_points(1,18) = range_split_1_4;
+        model_feature_points(0,19) = 0;model_feature_points(1,19) = range_split_1_4;
+        model_feature_points(0,20) = range_split_1_4;model_feature_points(1,20) = range_split_1_4;
+
+
+    }
 
     void project2CameraPlane(float& x,float & y,float z)
     { //focal is like (x - 611.075)/610.372*1.88
@@ -1006,16 +1046,56 @@ private:
         }
 
     }
+    float fontDepthFilter(float font_depth){
+        static bool if_init = false;
+        static float average = 0;
+        float learning_rate = 0.1;
+        if(!if_init){
+            average = font_depth;
+            if_init = true;
+            cout<<"average:"<<average<<endl;
+            return average;
+        }
+
+//            float error_related = fabs(font_depth - last_font_depth)/last_font_depth;
+//            cout<<"error_related:"<<error_related<<endl;
+//            if(error_related > 0.1)
+//            {
+//                return last_font_depth;
+//            }
+//            else
+//            {
+//                last_font_depth = font_depth;
+//                return font_depth;
+//            }
+
+        float error_related = fabs(font_depth - average)/average;
+        cout<<"error_related:"<<error_related<<endl;
+        average = (1 - learning_rate) * average + learning_rate * font_depth;
+        return average;
+//        if(error_related > 0.1)
+//        {
+//            return average;
+//        }
+//        else
+//        {
+//            return font_depth;
+//        }
+    }
 //    特征处理
-    float split_size;
+    int feature_points_num;
     float range_max;
+    float target_depth;
+    float target_angle;
+    float feature_angle;
     vector<cv::Point3f> feature_points;
 //    目标特征点获取
     float average_feature_depth;
-    Eigen::VectorXd T;
+    Eigen::MatrixXd T;
     Eigen::MatrixXd R;
-    vector<Eigen::VectorXd> detect_feature_points;
-    vector<Eigen::VectorXd> target_feature_points;
+
+    Eigen::MatrixXd model_feature_points;
+    Eigen::MatrixXd detect_feature_points;
     float target_feature_depth;
 //    视觉伺服
     float font_depth;
@@ -1178,7 +1258,13 @@ public:
         static int ignore_num = 0;
         //更新抓取点位置
         if(this->running_state.if_refresh_target_point == true){
+            if(ignore_num == 10)
+            {
+                net_grasp_feature.setTargetAngle(grasp_data_handle_tool.grasp_data.theta);
+            }
+            net_grasp_feature.setFeatureAngle(this->encoder_angle);
             grasp_data_handle_tool.handleGraspData(1);
+
         }
         //更新特征
         switch(this->running_state.running_mode)
@@ -1369,6 +1455,7 @@ private:
     NetGraspFeature2D net_grasp_feature;
 //机械臂端
     float encoder_depth;
+    float encoder_angle;
     EncoderDepthHandle encoder_depth_handle_tool;
 //运行
     RunningState running_state;
@@ -1401,6 +1488,7 @@ private:
     void encoderdepth_callback(const std_msgs::msg::String::SharedPtr msg){
         RCLCPP_INFO(this->get_logger(), "I heard EncoderDepth: %s",msg->data.c_str());
         this->encoder_depth = std::atof(msg->data.c_str());
+        this->encoder_angle = std::atof(msg->data.c_str());
     }
 //友元类
     friend class SquareFeature2D;
@@ -1436,3 +1524,188 @@ int main(int argc, char * argv[])
     rclcpp::shutdown();
     return 0;
 }
+
+
+//class NetGraspFeature2D{
+//public:
+//    NetGraspFeature2D(){
+//        this->split_size = 4;
+//        this->range_max = 200;
+//        feature_points.resize(split_size * split_size);
+//        T.resize(2);
+//        R.resize(2,2);
+//        target_feature_points.resize(split_size * split_size);
+//        detect_feature_points.resize(split_size * split_size);
+//        for(size_t i = 0;i < split_size*split_size;i++){
+//            target_feature_points[i].resize(2);
+//            detect_feature_points[i].resize(2);
+//        }
+//        sd.resize(split_size * split_size);s.resize(split_size * split_size);
+//
+//    }
+//    ~NetGraspFeature2D(){}
+//    void drawSquares(cv::Mat& img2draw)
+//    {
+//        for( size_t i = 0; i < split_size * split_size; i++ )
+//        {
+//
+//            circle(img2draw,cv::Point2f(feature_points[i].x,feature_points[i].y),10,cv::Scalar(0,0,255),3);
+////            circle(img2draw,cv::Point2f(sd[i].get_x(),sd[i].get_y()),10,cv::Scalar(0,255,0),3);
+////            float x = sd[i].get_x();float y = sd[i].get_y();
+////            cv::putText(img2draw,to_string(i),cv::Point2f(x,y),cv::FONT_HERSHEY_PLAIN,2,cv::Scalar(255,0,0),2);
+////            project2CameraPlane(x,y,0.25);
+////            sd[i].set_xyZ(x,y,0.25);
+//            cv::putText(img2draw,to_string(i),cv::Point2f(feature_points[i].x,feature_points[i].y),cv::FONT_HERSHEY_PLAIN,2,cv::Scalar(255,0,0),2);
+//
+//        }
+//        cv::line(img2draw,cv::Point2f(feature_points[0].x,feature_points[0].y),cv::Point2f(feature_points[split_size-1].x,feature_points[split_size-1].y),cv::Scalar(0,255,0),3);
+//        cv::line(img2draw,cv::Point2f(feature_points[split_size-1].x,feature_points[split_size-1].y),cv::Point2f(feature_points[split_size*split_size-1].x,feature_points[split_size*split_size-1].y),cv::Scalar(0,255,0),3);
+//        cv::line(img2draw,cv::Point2f(feature_points[split_size*split_size-1].x,feature_points[split_size*split_size-1].y),cv::Point2f(feature_points[split_size*(split_size-1)].x,feature_points[split_size*(split_size-1)].y),cv::Scalar(0,255,0),3);
+//        cv::line(img2draw,cv::Point2f(feature_points[split_size*(split_size-1)].x,feature_points[split_size*(split_size-1)].y),cv::Point2f(feature_points[0].x,feature_points[0].y),cv::Scalar(0,255,0),3);
+//
+//    }
+//    bool getFeaturePoint(Grasp_Data grasp_point_filtered, cv::Mat color_image, cv::Mat depth_image, float font_depth)
+//    {
+//        cv::inpaint( depth_image, depth_image == 0, depth_image, 5,cv::INPAINT_NS);
+//        T<<-grasp_point_filtered.x,-grasp_point_filtered.y;
+////        R<<cos(grasp_point_filtered.theta - CV_PI/2),sin(grasp_point_filtered.theta - CV_PI/2),
+////                -sin(grasp_point_filtered.theta - CV_PI/2),cos(grasp_point_filtered.theta - CV_PI/2);
+//        R<<1,0,
+//                0,1;
+//        //设置4个
+//        float range = this->range_max*(0.25/font_depth);
+//        float split_range = range / (split_size-1);
+//        float left =  - 0.5 * range;
+//        float top  =  - 0.5 * range;
+////        float range = 50;
+//        for(int i = 0;i < split_size;i++){
+//
+//            for(int j = 0;j < split_size;j++){
+//                detect_feature_points[i * split_size + j][0] = left + j * split_range;
+//                detect_feature_points[i * split_size + j][1] = top + i * split_range;
+//                target_feature_points[i * split_size + j] = R * detect_feature_points[i * split_size + j] - T;
+//                feature_points[i * split_size + j].x = target_feature_points[i * split_size + j][0];
+//                feature_points[i * split_size + j].y = target_feature_points[i * split_size + j][1];
+//                feature_points[i * split_size + j].z = float(depth_image.at<cv::uint16_t>(ceil(feature_points[i * split_size + j].y),ceil(feature_points[i * split_size + j].x)))*0.001;
+//                if(feature_points[i * split_size + j].z == 0)
+//                {
+//                    cout<<"There is a z = 0!"<<endl;
+//                    return false;
+//                }
+//            }
+//        }
+//
+//        this->font_depth = font_depth;
+//        drawFeaturePoint(color_image);
+//        return true;
+//
+//    }
+//
+//
+//
+//    void drawFeaturePoint(cv::Mat& img2draw)
+//    {
+//        drawSquares(img2draw);
+//    }
+//    std_msgs::msg::String getSpeedCommand()
+//    {
+//        auto message = std_msgs::msg::String();
+//        vpServo task; // Visual servoing task
+//        float x,y,z;float bias = 0;
+//        float xd,yd,zd;
+//        for(int i = 0;i < sd.size();i++){
+//
+//            x = feature_points[i].x;y = feature_points[i].y;z = feature_points[i].z;
+//            project2CameraPlane(x,y,z);
+//            s[i].buildFrom(x, y, z);
+//            z = z - this->font_depth + 0.25;
+//            float split_range = range_max / (split_size-1);
+//            float left = 320 - 0.5 * range_max;
+//            float top  = 240 - 0.5 * range_max;
+//
+//            x = left + split_range * (i % int(split_size));
+//            y = top + split_range * (i / int(split_size));
+//
+//            project2CameraPlane(x,y,z);
+//            sd[i].buildFrom(x, y, z);
+//            task.addFeature(s[i], sd[i]);
+////            cout<<"sx:"<<s[i].get_x()<<endl;
+////            cout<<"sdx:"<<sd[i].get_x()<<endl;
+//        }
+//        e = task.computeError();
+//        vpMatrix L = task.computeInteractionMatrix();
+//
+//        vpMatrix L_inverse = 1.5 * L.AtA().inverseByLU() * L.transpose();
+////        cout<<"L_inverse:"<<L_inverse<<endl;
+//        v =  - L_inverse * e;
+//        v[0] *= -200;
+////        v[1] = (v[1] - 0.4 * v[3]) * 20;
+//        v[1] *= -100;
+//        v[2] *= 100;
+////        v[2] = 1;
+////        v[5] *= 180 / 3.1415926 * 0.5;
+//        v[5] = 0;
+////        v[5] = 0;
+////        for(int i = 0;i < 6;i++){
+////            if(v[i] > 5)
+////                v[i] = 5;
+////            else if(v[i] < -5)
+////                v[i] = -5;
+////        }
+//        v = dataSmooth(v, 10, 0.05);
+//        message.data = "["+ to_string(v[0]) + ',' + to_string(v[1]) + ','+ to_string(v[2]) + ','+ to_string(v[5]) + ']';;
+//
+//
+////        message.data = "["+ to_string(v) + ',' + to_string(v+1) + ','+ to_string(v+2) + ','+ to_string(v+3) + ']';
+//
+//
+//
+//        return message;
+//    }
+//    float getError(){
+//        return e.sumSquare();
+//    }
+//private:
+//
+//    void project2CameraPlane(float& x,float & y,float z)
+//    { //focal is like (x - 611.075)/610.372*1.88
+//        x = z * (x - 322.86)/610.372;
+//        y = z * (y - 238.664)/611.075;
+//    }
+//    vpColVector dataSmooth(vpColVector input, int average_num, float learning_rate){
+//        static int init_num = 0;
+//        static vpColVector v_filtered(6,0);
+//        if(init_num < average_num)
+//        {
+//            v_filtered += input/float(average_num);
+//            init_num++;
+//            return input;
+//        }
+//        else
+//        {
+//            v_filtered = (1 - learning_rate) * v_filtered + learning_rate * input;
+//            return v_filtered;
+//        }
+//
+//    }
+////    特征处理
+//    float split_size;
+//    float range_max;
+//    vector<cv::Point3f> feature_points;
+////    目标特征点获取
+//    float average_feature_depth;
+//    Eigen::VectorXd T;
+//    Eigen::MatrixXd R;
+//    vector<Eigen::VectorXd> detect_feature_points;
+//    vector<Eigen::VectorXd> target_feature_points;
+//    float target_feature_depth;
+////    视觉伺服
+//    float font_depth;
+//    vpColVector e;
+//    std::vector<vpFeaturePoint> sd; //The desired point feature.
+//    std::vector<vpFeaturePoint> s;
+//    vpColVector v;
+//
+////  友元类
+//    friend class GGCNNBasedVisualServo;
+//};
