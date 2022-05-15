@@ -24,6 +24,12 @@
 \providecommand{\bibdate}[1]{#1}
 \providecommand{\biburl}[1]{\newline\url{#1}}
 
+\bibitem{zh1}
+\bibauthor{孙冬雪}\@.
+  \bibtitle{基于模型预测方法的机器人视觉伺服控制研究}\bibmark{[D]}\@.
+  \bibaddress{长春}\textnormal{: }\bibschool{长春工业大学}\@,
+  \bibyear{2018}\textnormal{: }\bibpages{9\textnormal{-}10}\@.
+
 \bibitem{cnproceed}
 \bibauthor{王重阳\@, 黄药师\@, 欧阳峰, 等}\@.
   \bibtitle{武林高手从入门到精通}\bibmark{[C]}
