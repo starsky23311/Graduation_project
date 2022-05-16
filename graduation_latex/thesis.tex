@@ -158,25 +158,138 @@
 %%%%%%%%%%%%%%%%%%%%%%%%基于图像的视觉伺服理论研究%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter[基于图像的视觉伺服（IBVS）理论研究]{基于图像的视觉伺服（IBVS）理论研究}
 \section{引言}[Content specification]
-绪论中介绍了IBVS相对于PBVS的优势：1.伺服精度不依赖于相机外参，深度鲁棒性强;2.直接得到指令，不需要轨迹规划，更易于实现实时闭环控制。因此认为IBVS更适合于未知位姿、形体的目标的抓取任务。IBVS作为本算法研究的基石之一，尤其需要十分严谨合理的模型建立、公式原理分析、完善的仿真系统和实物环境搭建，这会为之后的工作减少不少麻烦。本章中除了完成上述基础性工作，还在实物上成功运行了简单的基于特征点交互矩阵的IBVS。
+绪论中介绍了IBVS相对于PBVS的优势：1.伺服精度不依赖于相机外参，深度鲁棒性强；2.直接得到指令，不需要轨迹规划，更易于实现实时闭环控制。因此认为IBVS更适合于未知位姿、形体的目标的抓取任务。IBVS作为本算法研究的基石之一，尤其需要十分严谨合理的模型建立、公式原理分析、完善的仿真系统和实物环境搭建，这会为之后的工作减少不少麻烦。本章中除了完成上述基础性工作，还在实物上成功运行了简单的基于特征点交互矩阵的IBVS。
 
 \section{IBVS系统模型建立}[Content specification]
 \subsection{系统坐标系建立}[Content specification]
-对于IBVS系统，最需要关注的点有三个：机械臂末端、相机和目标。为了后续仿真程序实现和问题分析需要，建立系统的坐标系用于表述它们的位置。{\color{red}如图？所示}。
+对于IBVS系统，最需要关注的点有三个：机械臂末端、相机和目标。为了后续仿真程序实现和问题分析需要，建立系统的坐标系用于表述它们的位置。如图\ref{系统坐标系建立}所示：
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.75\textwidth]{chapter2/系统坐标系建立}
+\caption{系统坐标系建立示意图}
+\label{系统坐标系建立}
+\end{figure}
+
+该示意图中，$\lbrace$\textit{O}$\rbrace$、$\lbrace$\textit{E}$\rbrace$和$\lbrace$\textit{C}$\rbrace$分别表示物体坐标系、机器人末端坐标系，eye-to-hand系统中的相机坐标系。为了便于阐述坐标变换公式，用$\lbrace$\textit{B}$\rbrace$、$\lbrace$\textit{I}$\rbrace$和$\lbrace$\textit{CI}$\rbrace$表示机器人基坐标系、图像坐标系和像素坐标系，本研究中所说的基坐标系和世界坐标系是一个意思。将使用以下符号表示各个相对位姿变换：
+$^{B}T_O$表示目标$\lbrace$\textit{O}$\rbrace$相对于基坐标系$\lbrace$\textit{B}$\rbrace$的坐标变换；
+$^{B}T_E$表示机器人末端$\lbrace$\textit{E}$\rbrace$相对于基坐标系$\lbrace$\textit{B}$\rbrace$的变换。对机械臂末端使用的速度指令是在这个变化下进行的；
+$^{C}T_O$表示目标$\lbrace$\textit{O}$\rbrace$相对于相机坐标系$\lbrace$\textit{C}$\rbrace$的坐标变换；
+$^{E}T_C$表示相机$\lbrace$\textit{C}$\rbrace$相对于末端坐标系$\lbrace$\textit{E}$\rbrace$的坐标变换。一般情况下IBVS的伺服结果是相机正对目标，而真正抓取还是要依赖末端位置，所以这个变换是必要的；
+$^{C}T_I$表示图像$\lbrace$\textit{I}$\rbrace$相对于相机坐标系$\lbrace$\textit{C}$\rbrace$的坐标变换。特征初始是在图像中获取的，需要这个变换使特征位置描述变成IBVS需要的形式\cite{zh1}。
 
 
-该示意图中，$\lbrace$\textit{O}$\rbrace$、$\lbrace$\textit{E}$\rbrace$和$\lbrace$\textit{C}$\rbrace$分别表示物体坐标系、机器人末端坐标系，eye-to-hand系统中的相机坐标系。为了便于阐述坐标变换公式，用$\lbrace$\textit{B}$\rbrace$、$\lbrace$\textit{I}$\rbrace$和$\lbrace$\textit{CI}$\rbrace$表示机器人基坐标系、图像坐标系和像素坐标系。{\color{red}各种相对位置}\cite{zh1}。
 \subsection{视觉模型建立}[Content specification]
-不例外地使用针孔模型描述从机器人基坐标系中的物体到像素坐标系的映射。
+IBVS不断地由特征偏差驱动着运行，而对特征的描述需要在$^{C}T_O$下进行。在图像中获取的特征需要经过图\ref{特征变换}所示的坐标系变换才能真正为IBVS所用：
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.60\textwidth]{chapter2/特征变换}
+\caption{特征变换过程图}
+\label{特征变换}
+\end{figure}
+
+
+不例外地使用针孔模型描述从像素坐标系到机器人基坐标系中物体的映射,这张图引自这篇文献\cite{zh1}，这张针孔模型示意图十分典型。
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.60\textwidth]{chapter2/视觉坐标系建立}
+\caption{视觉坐标系建立示意图}
+\label{视觉坐标系建立}
+\end{figure}
+
+
+图\ref{视觉坐标系建立}中用$X_CO_CY_C$描述$\lbrace$\textit{C}$\rbrace$，$xO_Iy$描述$\lbrace$\textit{I}$\rbrace$，P表示$\lbrace$\textit{C}$\rbrace$中的目标点，P'表示成像过程中投影到$\lbrace$\textit{I}$\rbrace$中的目标点。因为深度的存在，成像在二维像素坐标系中的图像所对应的目标可以是无穷多种情况，为了统一坐标变换形式，令目标深度$Z_C$为单位1，在相机坐标系$\lbrace$\textit{C}$\rbrace$和像素坐标系$\lbrace$\textit{CI}$\rbrace$中加上了一个过渡的图像坐标系$\lbrace$\textit{I}$\rbrace$。
+
+
+相机内参由出厂地所给出，它包括相机的焦距$f$，相机放缩因子$f_x$和$f_y$，它们的单位为毫米；偏移量$c_x$和$c_y$，单位为像素，但是是浮点类型。由于Realsense D435i内置去畸变API，就不考虑畸变因素了。使用$\left[ u,v \right] ^T$表示像素坐标系下的目标点位置，$\left[ X_C,Y_C,Z_C \right] ^T$表示相机坐标系下的目标点位置，$Z_C$为相机深度，可以得到它们之间的关系：
+\begin{equation}
+	Z_C\left[ \begin{array}{c}
+	\begin{array}{c}
+	u\\
+	v\\
+\end{array}\\
+	1\\
+\end{array} \right] =\left[ \begin{matrix}
+	f_x&		0&		c_x\\
+	0&		f_y&		c_y\\
+	0&		0&		1\\
+\end{matrix} \right] \left[ \begin{array}{c}
+	X_C\\
+	Y_C\\
+	Z_C\\
+\end{array} \right] 
+\label{像素到相机坐标变换} 
+\end{equation} 
+
+
+在已知相机内参的情况下，IBVS中所需要的特征位置描述就转换为找到特征对应的$\lbrace$\textit{CI}$\rbrace$中的位置$\left[ u,v \right] ^T$和深度相机测得对应点的深度$Z_C$。
 
 \section{IBVS仿真系统实现}[Content specification]
 \subsection{IBVS算法原理}[Content specification]
+在本实验中所说的IBVS是基于特征点交互矩阵实现的\cite{chaumette2006visual}。它的基本思想是将特征点偏差通过交互矩阵（也叫图像雅可比矩阵）映射为末端速度指令。为了表述简洁，符号所代表的意思如下：$s^*=\left[ x^*,y^* \right] ^T$表示$\lbrace$\textit{C}$\rbrace$中对应的期望特征点坐标。$s=\left[ x,y \right] ^T$表示$\lbrace$\textit{C}$\rbrace$中对应的当前特征点坐标。$v_c=\left[ v_x,v_y,v_z,\omega _x,\omega _y,\omega _z \right] ^T$表示$\lbrace$\textit{B}$\rbrace$中相机的速度，其中相机包含质心线速度，和绕三个轴的角速度。由于相机和机械臂末端是固连且位置上接近的，所以它们的速度认为是一致的。使用交互矩阵$L_c$建立当前特征随时间变化率与相机位姿随时间变化率的关系：
+\begin{equation}
+\dot{s}=L_cv_c 
+\label{当前特征变化率与相机位姿变化率的关系1} 
+\end{equation} 
+
+
+一般情况下，期望特征是不随时间改变的，或者变化甚微（在本研究中就是如此，所以进行近似），式\ref{当前特征变化率与相机位姿变化率的关系1}可以如方程组\ref{当前特征变化率与相机位姿变化率的关系2}中第一排表达式改写。另外，认为特征偏差随时间呈指数变化是合理的，因为它收敛快速且平滑\cite{chaumette2006visual}，于是可以得到方程组\ref{当前特征变化率与相机位姿变化率的关系2}：
+\begin{equation}
+\left\{ \begin{array}{c}
+	\left( \dot{s}-\dot{s}^* \right) =\dot{e}=L_cv_c\\
+	L_e=L_c\\
+	\dot{e}=-\lambda e\\
+\end{array} \right.  
+\label{当前特征变化率与相机位姿变化率的关系2} 
+\end{equation} 
+
+
+其中$\dot{e}$为当前特征偏差随时间变化率，$\lambda$为比例系数，$\dot{e}$为当前特征偏差。通过对交互矩阵求广义逆，由方程组\ref{当前特征变化率与相机位姿变化率的关系2}可得到：
+\begin{equation}
+\left\{ \begin{array}{c}
+	v_c=-\lambda L_{e}^{+}e\\
+	L_{e}^{+}=\left( L_{e}^{T}L_e \right) ^{-1}L_{e}^{T}\\
+\end{array} \right. 
+\label{当前特征变化率与相机位姿变化率的关系3} 
+\end{equation} 
+
+
+其中$\lambda L_{e}^{+}$为交互矩阵广义逆。通过方程组\ref{当前特征变化率与相机位姿变化率的关系3}可以借助当前特征偏差求取机器人末端速度了。交互矩阵由特征点在图像中的位置及深度信息得到，每个点对应的交互矩阵如式\ref{交互矩阵}所示，若有多个点，公式中的交互矩阵就是每个点对应的交互矩阵在行方向的叠加。
+ \begin{equation}
+L_e=\left[ \begin{matrix}
+	\frac{-1}{Z_C}&		0&		\frac{X_C}{Z_C}&		X_CY_C&		-\left( 1+X_{C}^{2} \right)&		Y_C\\
+	0&		\frac{-1}{Z_C}&		\frac{Y_C}{Z_C}&		1+Y_{C}^{2}&		-X_CY_C&		-X_C\\
+\end{matrix} \right] 
+\label{交互矩阵} 
+\end{equation} 
 
 \subsection{机器人仿真模型搭建}[Content specification]
-基于为整个系统搭建的坐标系和不同系的坐标转换关系，借助ROS的moveit工具（由于ROS2的moveit2尚未开发成熟，使用moveit代替），为敬科公司提供的JK机器人搭建仿真模型。moveit是一个开发的十分完善的工具包，不仅实现了机械结构的仿真，物理模型、碰撞体积和逆运动学都在包中相应地实现。本研究中，为了能更快地验证提出的算法，减少繁杂的视觉处理，将把物体放到一个平整且颜色单一（在后续的研究中可以发现这些要求都不是必须的）的表面上。{\color{red}仿真效果图如下图所示}。
+基于为整个系统搭建的坐标系和不同系的坐标转换关系，借助ROS的moveit工具（由于ROS2的moveit2尚未开发成熟，使用moveit代替），为敬科公司提供的JK机器人搭建仿真模型。moveit是一个开发的十分完善的工具包，不仅实现了机械结构的仿真，物理模型、碰撞体积和逆运动学都在包中相应地实现。本研究中，为了能更快地验证提出的算法，减少繁杂的处理，将把物体放到一个平整且颜色单一（在后续的研究中可以发现这些要求都不是必须的）的表面上。另外，相机一直保持俯视朝下，在X、Y轴方向的角度保持为0°，因此速度指令中$\omega _x$和$\omega _y$不论结果计算如何都给0。仿真效果图如图\ref{基于moveit机器人仿真模型实现}所示。
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.55\textwidth]{chapter2/基于moveit机器人仿真模型实现}
+\caption{基于moveit机器人仿真模型实现}
+\label{基于moveit机器人仿真模型实现}
+\end{figure}
 
 
-{\color{red}图？}展现了整个系统的控制方框图，{\color{red}加入中期答辩的话}。
+图\ref{IBVS基础控制流程方框图}展现了整个系统最基础的控制方框图，在实验进行过程中会不断被改进，以应对实践中发生的各个问题。
+\begin{figure}[h]
+\centering
+\includegraphics[width = 1.0\textwidth]{chapter2/IBVS基础控制流程方框图}
+\caption{IBVS基础控制流程方框图}
+\label{IBVS基础控制流程方框图}
+\end{figure}
+
+
+深度获取的方式是会根据深度条件切换的，如图\ref{深度传感器切换}所示。之所以加上这个切换，是因为Realsense D435i是基于结构光测量深度的，不可以测量过近距离的目标点。当相机在伺服末期十分靠近目标时，无法获得确切的目标点深度。所以在相机与目标点距离低于20cm时，会通过编码器读取末端下降的距离得到对应特征的深度，这在相机一直俯视向下时是可行的。
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.60\textwidth]{chapter2/深度选择图}
+\caption{深度传感器切换示意图}
+\label{深度传感器切换}
+\end{figure}
 
 
 开启仿真节点后，可以在另一个节点中与该节点建立连接并发送速度指令，仿真节点会因此响应，并进行移动。moveit有自己的限位系统，在机器人进入奇异点或者超出移动范围时给予及时的警告，所以该机器人仿真模型多被用于对机器人是否进入奇异点的判断这样的定性分析，后文中真正的调参还是在实物上进行的。
@@ -184,36 +297,65 @@
 曲线是分析问题非常重要的一环，所以仿真中应当有相应的曲线绘制。IBVS本质是将特征偏差作为控制器输入而映射成速度指令的控制系统，所以研究中最关心的是点在于特征偏差和速度指令，它们将被分别绘制到两张图中。曲线图中时间单位为秒。关于特征偏差图：系统中定义特征偏差是相机坐标系中被检测的特征点在X、Y方向的偏差，单位为米，该单位不被展现在曲线中，因为它的单位并不重要。关于末端速度指令图：为了与JK机器人需要的末端速度指令单位保持一致，所以线速度选取厘米每秒为单位，而角速度单位则为度每秒。
 
 
-直观地展现相机的位移情况也是重要的，因为IBVS往往对机器人末端的运动轨迹十分不友好。如果当前的速度指令使机器人颤振，那么机器人已经进入了一个十分糟糕的姿态，通过分析相机的运动轨迹适当调节控制律参数也是非常好的解决方法。调用VISP库，对设定的参数进行视觉伺服仿真，实现的曲线绘制和相机轨迹绘制效果{\color{red}如图？所示}。
+直观地展现相机的位移情况也是重要的，因为IBVS往往对机器人末端的运动轨迹十分不友好。如果当前的速度指令使机器人颤振，那么机器人已经进入了一个十分糟糕的姿态，通过分析相机的运动轨迹适当调节控制律参数也是非常好的解决方法。调用VISP库，对设定的参数进行视觉伺服仿真，实现的曲线绘制和相机轨迹绘制效果如图\ref{基于VISP视觉伺服仿真}所示。
+\begin{figure}[h]
+\centering
+\includegraphics[width = 1.0\textwidth]{chapter2/基于VISP视觉伺服仿真}
+\caption{基于VISP视觉伺服仿真}
+\label{基于VISP视觉伺服仿真}
+\end{figure}
 
 
-提前在程序中设置好特征的位置，和与之对应的目标特征。将仿真得到的速度指令通过ROS2节点发布订阅机制传输给机器人仿真节点，机器人会相应地运动并使当前特征都到达目标特征处，从而到成到达目标位置处的目的，效果{\color{red}如图？所示}。
+提前在程序中设置好特征的位置，和与之对应的目标特征。将仿真得到的速度指令通过ROS2节点发布订阅机制传输给机器人仿真节点，机器人会相应地运动并使当前特征都到达目标特征处，从而到成到达目标位置处的目的。
 \section{IBVS实际系统实现}[Content specification]
 \subsection{IBVS实物系统平台搭建}[Content specification]
-仿真终归只能用于定性分析。外界干扰、噪声多种多样，仿真中不可能把所有因素考虑进去。事实上，仿真跑出的结果往往十分顺滑，而实物中会反映很多处理不够细节的问题。我认为，IBVS算法在实物上成功运行，研究才算真正的开始。实物运行环境包括JK机器人和装载它并固定它底座的台子;用于承载目标物体的平台和目标;平台上铺盖的一层漫反射效果好且为单一白色的纸;机器人末端装配Realsense D435i深度相机（夹具暂时未装配，在正式夹取的时候会安装在末端）。之所以要铺一层纸，除了保证平面平整且颜色单一以外，还保证了深度相机不要因为丢失反射光导致获取无效数据。最终实物环境图{\color{red}如图？所示}：
-
-
-
-
+仿真终归只能用于定性分析。外界干扰、噪声多种多样，仿真中不可能把所有因素考虑进去。事实上，仿真跑出的结果往往十分顺滑，而实物中会反映很多处理不够细节的问题。我认为，IBVS算法在实物上成功运行，研究才算真正的开始。实物运行环境包括JK机器人和装载它并固定它底座的台子;用于承载目标物体的平台和目标;平台上铺盖的一层漫反射效果好且为单一白色的纸;机器人末端装配Realsense D435i深度相机（夹具暂时未装配，在正式夹取的时候会安装在末端）。之所以要铺一层纸，除了保证平面平整且颜色单一以外，还保证了深度相机不要因为丢失反射光导致获取无效数据。最终实物环境图如图\ref{实物环境搭建展示图}所示：
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.75\textwidth]{chapter2/实物环境搭建展示图}
+\caption{实物环境搭建展示图}
+\label{实物环境搭建展示图}
+\end{figure}
 
 \subsection{IBVS实际运行}[Content specification]
-为了能更快地验证IBVS算法，在平台上贴了一张黑色方框码，经过视觉二值化、边缘获取、多边形拟合等处理。实验进行前会将机械臂末端调到目标位置，此时黑色方框会处于摄像头的中央，记录此时的四个点为目标特征。将机器人末端初始位置调至远离黑色方框的位置，距离目标位置的三维各个方向以及Z轴角度都有一定的偏差{\color{red}（机器人基坐标系中，X方+0.3m,Y方向Z）}。伺服过程中会不断捕获它的四个点作为特征，并计算特征偏差，最后映射成末端速度指令。伺服的成功证实了所实现的IBVS算法的正确性，同时也正式踏入对未知物体视觉伺服抓取的研究领域中。{\color{red}图？}展示了伺服前后机械臂的状态以及对应的曲线、相机轨迹：
-
-\section{本章总结}[Content specification]
+为了能更快地验证IBVS算法，在平台上贴了一张黑色方框码，经过视觉二值化、边缘获取、多边形拟合等处理。实验进行前会将机械臂末端调到目标位置，此时黑色方框会处于摄像头的中央，记录此时的四个点为目标特征。将机器人末端初始位置调至远离黑色方框的位置，距离目标位置的三维各个方向以及Z轴角度都有一定的偏差（$\lbrace$\textit{B}$\rbrace$中，$\varDelta X=0.3m,\varDelta Y=0.3m,\varDelta Z=0.5m$）。伺服过程中会不断捕获它的四个点作为特征，并计算特征偏差，最后映射成末端速度指令。伺服的成功证实了所实现的IBVS算法的正确性，同时也正式踏入对未知物体视觉伺服抓取的研究领域中。\ref{视觉伺服曲线绘制（初始）}展示了伺服过程中机械臂末端速度指令和各特征点的偏差对应的曲线。
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.8\textwidth]{chapter2/视觉伺服曲线绘制（初始）}
+\caption{视觉伺服曲线绘制（初始）}
+\label{视觉伺服曲线绘制（初始）}
+\end{figure}
+\newpage
+\section{本章小结}[Content specification]
 本章讲述了基于特征点交互矩阵的IBVS的原理。在算法实现前建立系统坐标系和视觉坐标系，这会使之后的坐标描述便捷许多。搭建了IBVS的仿真运行环境，便于后续问题分析。搭建了实物运行环境，并成功运行了IBVS算法，这意味着研究真正的开始。
 %%%%%%%%%%%%%%%%%%%%%%%%%%%抓取目标生成算法研究%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter[抓取目标生成算法研究]{抓取点生成算法研究}
+\chapter[伺服目标生成算法研究]{伺服目标自主生成算法研究}
 \section{引言}[Content specification]
+第二章完成了IBVS的模型建立、仿真系统搭建以及在实物上成功运行IBVS算法，这些为后续的研究提供了控制基础。现在机器人知道自己怎么动了，那么它面对未知物体抓取任务时如何知道自己往哪动呢？接下来，在本章中将对本次课题又一基石——伺服目标生成的研究进行展开。主要研究了基于模型的点云识别和抓取点生成网络两种方法，将它们进行比较后，选择了后者作为应对未知物体抓取任务时生成机器人伺服目标的方案。
 
 
+\section{基于模型的点云识别与姿态匹配}[Content specification]
+\subsection{方法陈述}
 
-\section{机器人视觉伺服系统概述}[Content specification]
+\subsection{算法实现}
 
+\subsection{方法小结}
+
+
+\section{抓取点生成网络（GG-CNN）}[Content specification]
+\subsection{方法陈述}
+
+\subsection{算法实现}
+
+\subsection{方法小结}
+
+
+\section{本章小结}[Content specification]
 
 
 
 %%%%%%%%%%%%%%%%%%基于GG-CNN和IBVS的未知物体抓取算法实现%%%%%%%%%%%%%%%%%%%
-\chapter[基于GG-CNN和IBVS的未知物体抓取算法实现]{基于GG-CNN和IBVS的未知物体抓取算法实现}
+\chapter[未知物体抓取算法实现]{未知物体抓取算法实现}
 \section{引言}[Content specification]
 
 

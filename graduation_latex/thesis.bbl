@@ -30,6 +30,12 @@
   \bibaddress{长春}\textnormal{: }\bibschool{长春工业大学}\@,
   \bibyear{2018}\textnormal{: }\bibpages{9\textnormal{-}10}\@.
 
+\bibitem{chaumette2006visual}
+\bibauthor{Chaumette F\@, Hutchinson S}\@. \bibtitle{Visual servo control. I.
+  Basic approaches}\bibmark{[J]}\@. \bibjournal{IEEE Robotics \& Automation
+  Magazine}\@, \bibyear{2006}\@, \bibvolume{13}\bibnumber{(4)}\textnormal{:
+  }\bibpages{82\textnormal{-}90}\@.
+
 \bibitem{cnproceed}
 \bibauthor{王重阳\@, 黄药师\@, 欧阳峰, 等}\@.
   \bibtitle{武林高手从入门到精通}\bibmark{[C]}
