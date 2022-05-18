@@ -36,21 +36,23 @@
   Magazine}\@, \bibyear{2006}\@, \bibvolume{13}\bibnumber{(4)}\textnormal{:
   }\bibpages{82\textnormal{-}90}\@.
 
-\bibitem{cnproceed}
-\bibauthor{王重阳\@, 黄药师\@, 欧阳峰, 等}\@.
-  \bibtitle{武林高手从入门到精通}\bibmark{[C]}
-  //\thinspace{}\bibbooktitle{第~$N$~次华山论剑}\@. \bibyear{2006}\@.
+\bibitem{chetverikov2002trimmed}
+\bibauthor{Chetverikov D\@, Svirko D\@, Stepanov D, et~al}\@. \bibtitle{The
+  trimmed iterative closest point algorithm}\bibmark{[C]}
+  //\thinspace{}\bibbooktitle{Object recognition supported by user interaction
+  for service robots\textnormal{: }Vol~3}\@. \bibyear{2002}\textnormal{:
+  }\bibpages{545\textnormal{-}548}\@.
 
-\bibitem{cnarticle}
-\bibauthor{贾宝玉\@, 林黛玉\@, 薛宝钗, 等}\@.
-  \bibtitle{论刘姥姥食量大如牛之现实意义}\bibmark{[J]}\@.
-  \bibjournal{红楼梦杂谈}\@, \bibyear{1800}\@,
-  \bibvolume{224}\textnormal{: }\bibpages{260\textnormal{-}266}\@.
+\bibitem{morrison2018closing}
+\bibauthor{Morrison D\@, Corke P\@, Leitner J}\@. \bibtitle{Closing the loop
+  for robotic grasping: A real-time, generative grasp synthesis
+  approach}\bibmark{[J]}\@. \bibjournal{arXiv preprint arXiv:1804.05172}\@,
+  \bibyear{2018}\@.
 
-\bibitem{hithesis2017}
-\bibauthor{Chu Y}\@. \bibtitle{Hi!Thesis!,Harbin Institue of
-  Technology}\bibmark{[J]}\@. \bibjournal{Github}\@, \bibyear{2017}\@,
-  \bibvolume{001}\bibnumber{(0001)}\textnormal{:
-  }\bibpages{000\textnormal{-}999}\@.
+\bibitem{haviland2020control}
+\bibauthor{Haviland J\@, Dayoub F\@, Corke P}\@. \bibtitle{Control of the
+  final-phase of closed-loop visual grasping using image-based visual
+  servoing}\bibmark{[J]}\@. \bibjournal{arXiv preprint arXiv:2001.05650}\@,
+  \bibyear{2020}\@.
 
 \end{thebibliography}
