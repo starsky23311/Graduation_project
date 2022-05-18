@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import random
 
 import rclpy
 from rclpy.node import Node
@@ -229,7 +230,7 @@ class GraspGenerater(Node):
 # 发布抓取点信息
     def GGCNNOutputPublish(self, x, y, angle, width):
         msg = String()
-        # msg.data = "["+str(x+self.bias[0])+","+str(y+self.bias[1])+","+str(angle)+","+str(width)+","+str(self.font_depth)+","+str(self.back_depth)+"]"
+        # msg.data = "["+str(x+self.bias[0])+","+str(y+self.bias[1])+","+str(angle*180/math.pi)+","+str(width)+","+str(self.font_depth)+","+str(self.back_depth)+"]"
         msg.data = "["+ str(self.color_x) +","+str(self.color_y)+","+str(angle)+","+str(width)+","+str(self.font_depth)+","+str(self.back_depth)+"]"
 
         self.publisher_.publish(msg)
