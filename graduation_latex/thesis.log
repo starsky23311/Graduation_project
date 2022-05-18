@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.5.15)  18 MAY 2022 16:43
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.5.15)  18 MAY 2022 12:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2518,57 +2518,63 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [9] [10]
 第3章
+File: ./figures//chapter3/实时抓取点生成.png Graphic file (type bmp)
+<./figures//chapter3/实时抓取点生成.png>
 [11
 
 
-]
+] [12]
 File: ./figures//chapter3/基于模型的点云识别实操图.png Graphic file (type bmp)
 <./figures//chapter3/基于模型的点云识别实操图.png>
 File: ./figures//chapter3/基于模型的点云识别效果图.png Graphic file (type bmp)
 <./figures//chapter3/基于模型的点云识别效果图.png>
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[12]
+ [13]
 File: ./figures//chapter3/GG-CNN改进.png Graphic file (type bmp)
 <./figures//chapter3/GG-CNN改进.png>
- [13]
-File: ./figures//chapter3/GG-CNN输出（初始）.png Graphic file (type bmp)
-<./figures//chapter3/GG-CNN输出（初始）.png>
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14] [15] [16] [17]
+File: ./figures//chapter3/GG-CNN输出（初始）.png Graphic file (type bmp)
+<./figures//chapter3/GG-CNN输出（初始）.png>
+[14]
+File: ./figures//chapter3/实时抓取点生成.png Graphic file (type bmp)
+<./figures//chapter3/实时抓取点生成.png>
+ [15]
+File: ./figures//chapter3/神经网络原始输出.png Graphic file (type bmp)
+<./figures//chapter3/神经网络原始输出.png>
+ [16] [17]
+File: ./figures//chapter3/抓取点中心方法替代与角度滤波.png Graphic file (type bmp)
+<./figures//chapter3/抓取点中心方法替代与角度滤波.png>
+ [18]
 第4章
-[18
-
-
-]
-第5章
 [19
 
 
 ]
-第6章
+第5章
 [20
 
 
-] [21] [22]
+]
+第6章
+[21
+
+
+] [22] [23]
 \openout2 = `back/conclusion.aux'.
 
- (./back/conclusion.tex) [23
+ (./back/conclusion.tex) [24
 
 
 
 
-] (./thesis.bbl) [24
+] (./thesis.bbl) [25
 
 
 
 
-] [25
+] [26
 
 
 ]
@@ -2582,7 +2588,7 @@ Requested font "[TeXGyreTermesX-Regular.otf]/OT:script=latn;language=dflt;-ss05
 ;+tnum;+lnum;+smcp;+pcap;mapping=tex-text;" at 12.045pt
  -> c:/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regul
 ar.otf
-) [26
+) [27
 
 
 
@@ -2608,12 +2614,12 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 5D8EFFA7284CB62E2FEBC35038ADB33F;6780.
  ) 
 Here is how much of TeX's memory you used:
- 45536 strings out of 476133
- 974079 string characters out of 5811991
- 1262382 words of memory out of 5000000
- 65434 multiletter control sequences out of 15000+600000
+ 45597 strings out of 476133
+ 975904 string characters out of 5811991
+ 1263526 words of memory out of 5000000
+ 65492 multiletter control sequences out of 15000+600000
  527488 words of font info for 200 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  106i,14n,111p,2554b,866s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on thesis.pdf (33 pages).
+Output written on thesis.pdf (34 pages).

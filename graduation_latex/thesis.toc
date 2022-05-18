@@ -25,25 +25,25 @@
 \contentsline {section}{\numberline {3.2}基于模型的点云识别与配准}{11}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}方法陈述}{11}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}算法实现}{12}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}方法小结}{12}{subsection.3.2.3}%
-\contentsline {section}{\numberline {3.3}抓取点生成网络（GG-CNN）}{13}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}方法陈述}{13}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.2.3}方法小结}{13}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}抓取点生成网络（GG-CNN）}{14}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}方法陈述}{14}{subsection.3.3.1}%
 \contentsline {subsection}{\numberline {3.3.2}算法实现}{14}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}方法小结}{16}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}本章小结}{17}{section.3.4}%
-\contentsline {chapter}{\numberline {第4章}未知物体抓取算法实现}{18}{chapter.4}%
-\contentsline {section}{\numberline {4.1}引言}{18}{section.4.1}%
-\contentsline {section}{\numberline {4.2}机器人视觉伺服系统概述}{18}{section.4.2}%
-\contentsline {chapter}{\numberline {第5章}IBVS控制律优化}{19}{chapter.5}%
-\contentsline {chapter}{\numberline {第6章}实验设计与验证}{20}{chapter.6}%
-\contentsline {section}{\numberline {6.1}引言}{20}{section.6.1}%
-\contentsline {section}{\numberline {6.2}实验设计}{20}{section.6.2}%
-\contentsline {section}{\numberline {6.3}人机交互界面设计}{21}{section.6.3}%
-\contentsline {section}{\numberline {6.4}实验验证}{21}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}抓取成功率测试}{21}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}抓取性能验证}{22}{subsection.6.4.2}%
-\contentsline {section}{\numberline {6.5}本章小结}{22}{section.6.5}%
-\contentsline {chapter}{\heiti 结\hspace {\ccwd }论}{23}{section*.16}%
-\contentsline {chapter}{\heiti 参考文献}{24}{section*.19}%
-\contentsline {chapter}{\heiti 哈尔滨工业大学本科毕业设计（论文）原创性声明}{25}{section*.21}%
-\contentsline {chapter}{\heiti 致\hspace {\ccwd }谢}{26}{section*.23}%
+\contentsline {subsection}{\numberline {3.3.3}方法小结}{18}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}本章小结}{18}{section.3.4}%
+\contentsline {chapter}{\numberline {第4章}未知物体抓取算法实现}{19}{chapter.4}%
+\contentsline {section}{\numberline {4.1}引言}{19}{section.4.1}%
+\contentsline {section}{\numberline {4.2}机器人视觉伺服系统概述}{19}{section.4.2}%
+\contentsline {chapter}{\numberline {第5章}IBVS控制律优化}{20}{chapter.5}%
+\contentsline {chapter}{\numberline {第6章}实验设计与验证}{21}{chapter.6}%
+\contentsline {section}{\numberline {6.1}引言}{21}{section.6.1}%
+\contentsline {section}{\numberline {6.2}实验设计}{21}{section.6.2}%
+\contentsline {section}{\numberline {6.3}人机交互界面设计}{22}{section.6.3}%
+\contentsline {section}{\numberline {6.4}实验验证}{22}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}抓取成功率测试}{22}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}抓取性能验证}{23}{subsection.6.4.2}%
+\contentsline {section}{\numberline {6.5}本章小结}{23}{section.6.5}%
+\contentsline {chapter}{\heiti 结\hspace {\ccwd }论}{24}{section*.16}%
+\contentsline {chapter}{\heiti 参考文献}{25}{section*.19}%
+\contentsline {chapter}{\heiti 哈尔滨工业大学本科毕业设计（论文）原创性声明}{26}{section*.21}%
+\contentsline {chapter}{\heiti 致\hspace {\ccwd }谢}{27}{section*.23}%
