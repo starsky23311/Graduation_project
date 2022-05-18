@@ -81,6 +81,7 @@ class GraspGenerater(Node):
         self.back_depth = 0
         self.color_x = 0
         self.color_y = 0
+        self.last_gs = np.zeros(3)
 
         self.publisher_ = self.create_publisher(String, 'GGCNNOutput', 5)
         self.subscription_color = self.create_subscription(
@@ -197,9 +198,14 @@ class GraspGenerater(Node):
             q_img, ang_img, width_img = post_process_output(pos_output, cos_output,
                                                             sin_output, width_output)
             # if vis:
-            x, y, angle, width = evaluation.plot_output(self.color_after_crop,
+            x, y, angle, width  = evaluation.plot_output(self.color_after_crop,
                                        self.ggcnn_input, q_img,
-                                       ang_img, 1, grasp_width_img=width_img)
+                                       ang_img, 1, grasp_width_img=width_img, last_gs=self.last_gs)
+            if x!=-1 and y!=-1:
+                self.last_gs[2] = 1
+                self.last_gs[0] = x
+                self.last_gs[1] = y
+
             cv2.circle(self.color_after_crop, (x, y), 5, [255, 0, 0], 4)
             # m = math.sqrt(5) * width
             # self.color_after_crop = cv2.rectangle(self.color_after_crop, (math.ceil(x+0.5*m*math.cos(angle)), math.ceil(y-0.5*m*math.sin(angle))),

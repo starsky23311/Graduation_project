@@ -1,10 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+import math
 from .grasp import GraspRectangles, detect_grasps
 
 
-def plot_output(rgb_img, depth_img, grasp_q_img, grasp_angle_img, no_grasps=1, grasp_width_img=None):
+def plot_output(rgb_img, depth_img, grasp_q_img, grasp_angle_img, no_grasps=1, grasp_width_img=None, last_gs=None):
     """
     Plot the output of a GG-CNN
     :param rgb_img: RGB Image
@@ -16,12 +16,25 @@ def plot_output(rgb_img, depth_img, grasp_q_img, grasp_angle_img, no_grasps=1, g
     :return:
     """
     gs = detect_grasps(grasp_q_img, grasp_angle_img, width_img=grasp_width_img, no_grasps=no_grasps)
-    if len(gs) > 0:
+    if len(gs) > 0 and last_gs[2] == 0:
         print("Find GS!")
         return gs[0].center[1], gs[0].center[0], gs[0].angle, gs[0].width
+    elif len(gs) > 0 and last_gs[2] == 1:
+        min_dist = math.sqrt(math.pow(gs[0].center[1] - last_gs[0], 2)+math.pow(gs[0].center[0] - last_gs[1], 2))
+        min_num = 0
+        for i in range(len(gs)):
+            if i == 0:
+                continue
+            d = math.sqrt(math.pow(gs[i].center[1] - last_gs[0], 2)+math.pow(gs[i].center[0] - last_gs[1], 2))
+            if(d < min_dist):
+                min_num = i
+                min_dist = d
+        # print("min_dist:", min_dist)
+        return gs[min_num].center[1], gs[min_num].center[0], gs[min_num].angle, gs[min_num].width
     else:
         print("Can not find GS!")
         return -1, -1, -1, -1
+
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(2, 2, 1)
     ax.imshow(rgb_img)
