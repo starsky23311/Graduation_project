@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \providecommand{\bibauthor}[1]{#1}
 \providecommand{\bibeditor}[1]{#1}
 \providecommand{\bibtranslator}[1]{#1}
@@ -24,17 +24,110 @@
 \providecommand{\bibdate}[1]{#1}
 \providecommand{\biburl}[1]{\newline\url{#1}}
 
+\bibitem{徐鑫莉2015工业机器人视觉伺服控制系统设计}
+\bibauthor{徐鑫莉\@, 韩啸\@, 刑玉龙, et~al}\@.
+  \bibtitle{工业机器人视觉伺服控制系统设计}\bibmark{[J]}\@.
+  \bibjournal{伺服控制}\@, \bibyear{2015}\bibnumber{(8)}\textnormal{:
+  }\bibpages{79\textnormal{-}81}\@.
+
+\bibitem{陶波2016机器人无标定视觉伺服控制研究进展}
+\bibauthor{陶波\@, 龚泽宇\@, 丁汉}\@.
+  \bibtitle{机器人无标定视觉伺服控制研究进展}\bibmark{[J]}\@.
+  \bibjournal{力学学报}\@, \bibyear{2016}\@,
+  \bibvolume{48}\bibnumber{(4)}\textnormal{:
+  }\bibpages{767\textnormal{-}783}\@.
+
+\bibitem{tsuchida2021characteristics}
+\bibauthor{Tsuchida S\@, Lu H\@, Kamiya T, et~al}\@. \bibtitle{Characteristics
+  based visual servo for 6DOF robot arm control}\bibmark{[J]}\@.
+  \bibjournal{Cognitive Robotics}\@, \bibyear{2021}\@,
+  \bibvolume{1}\textnormal{: }\bibpages{76\textnormal{-}82}\@.
+
 \bibitem{zh1}
 \bibauthor{孙冬雪}\@.
   \bibtitle{基于模型预测方法的机器人视觉伺服控制研究}\bibmark{[D]}\@.
   \bibaddress{长春}\textnormal{: }\bibschool{长春工业大学}\@,
   \bibyear{2018}\textnormal{: }\bibpages{9\textnormal{-}10}\@.
 
+\bibitem{机器人视觉伺服研究进展}
+\bibauthor{贾丙西，刘山，张凯祥，等}\@.
+  \bibtitle{机器人视觉伺服研究进展:视觉系统与控制策略}\bibmark{[J]}\@.
+  \bibjournal{自动化学报}\@, \bibyear{2015}\@,
+  \bibvolume{41}\bibnumber{(5)}\textnormal{:
+  }\bibpages{861\textnormal{-}873}\@.
+
+\bibitem{外文1}
+\bibauthor{Breedveld P\@, Stassen H\@, Meijer D, et~al}\@.
+  \bibtitle{Theoretical background and conceptual solution for depth perception
+  and eye-hand coordination problems in laparoscopic surgery}\bibmark{[J]}\@.
+  \bibjournal{Minimally invasive therapy \& allied technologies}\@,
+  \bibyear{1999}\@, \bibvolume{8}\bibnumber{(4)}\textnormal{:
+  }\bibpages{227\textnormal{-}234}\@.
+
+\bibitem{外文2}
+\bibauthor{Eisenberg D\@, Vidovszky T~J\@, Lau J, et~al}\@.
+  \bibtitle{Comparison of robotic and laparoendoscopic single-site surgery
+  systems in a suturing and knot tying task}\bibmark{[J]}\@.
+  \bibjournal{Surgical endoscopy}\@, \bibyear{2013}\@,
+  \bibvolume{27}\bibnumber{(9)}\textnormal{:
+  }\bibpages{3182\textnormal{-}3186}\@.
+
+\bibitem{卢钰2016基于双目磁锚定手术机器人无标定视觉伺服控制研究}
+\bibauthor{卢钰}\@.
+  \bibtitle{基于双目磁锚定手术机器人无标定视觉伺服控制研究}\bibmark{[D]}\@.
+  \bibaddress{哈尔滨}\textnormal{: }\bibschool{哈尔滨工业大学}\@,
+  \bibyear{2016}\@.
+
 \bibitem{chaumette2006visual}
 \bibauthor{Chaumette F\@, Hutchinson S}\@. \bibtitle{Visual servo control. I.
   Basic approaches}\bibmark{[J]}\@. \bibjournal{IEEE Robotics \& Automation
   Magazine}\@, \bibyear{2006}\@, \bibvolume{13}\bibnumber{(4)}\textnormal{:
   }\bibpages{82\textnormal{-}90}\@.
+
+\bibitem{chaumette2007visual}
+\bibauthor{Chaumette F\@, Hutchinson S}\@. \bibtitle{Visual servo control. II.
+  Advanced approaches [Tutorial]}\bibmark{[J]}\@. \bibjournal{IEEE Robotics \&
+  Automation Magazine}\@, \bibyear{2007}\@,
+  \bibvolume{14}\bibnumber{(1)}\textnormal{:
+  }\bibpages{109\textnormal{-}118}\@.
+
+\bibitem{chaumette2004image}
+\bibauthor{Chaumette F}\@. \bibtitle{Image moments: a general and useful set of
+  features for visual servoing}\bibmark{[J]}\@. \bibjournal{IEEE Transactions
+  on Robotics}\@, \bibyear{2004}\@, \bibvolume{20}\bibnumber{(4)}\textnormal{:
+  }\bibpages{713\textnormal{-}723}\@.
+
+\bibitem{liu2017set}
+\bibauthor{Liu C\@, Chen R\@, Xu J, et~al}\@. \bibtitle{Set space visual
+  servoing of a 6-dof manipulator}\bibmark{[C]}
+  //\thinspace{}\bibbooktitle{2017 IEEE International Conference on Robotics
+  and Automation (ICRA)}\@. \bibyear{2017}\textnormal{:
+  }\bibpages{4422\textnormal{-}4428}\@.
+
+\bibitem{tokuda2021convolutional}
+\bibauthor{Tokuda F\@, Arai S\@, Kosuge K}\@. \bibtitle{Convolutional neural
+  network-based visual servoing for eye-to-hand manipulator}\bibmark{[J]}\@.
+  \bibjournal{IEEE Access}\@, \bibyear{2021}\@, \bibvolume{9}\textnormal{:
+  }\bibpages{91820\textnormal{-}91835}\@.
+
+\bibitem{varley2015generating}
+\bibauthor{Varley J\@, Weisz J\@, Weiss J, et~al}\@. \bibtitle{Generating
+  multi-fingered robotic grasps via deep learning}\bibmark{[C]}
+  //\thinspace{}\bibbooktitle{2015 IEEE/RSJ international conference on
+  intelligent robots and systems (IROS)}\@. \bibyear{2015}\textnormal{:
+  }\bibpages{4415\textnormal{-}4420}\@.
+
+\bibitem{adrian2022dfbvs}
+\bibauthor{Adrian N\@, Do V-T\@, Pham Q-C}\@. \bibtitle{DFBVS: Deep
+  Feature-Based Visual Servo}\bibmark{[J]}\@. \bibjournal{arXiv preprint
+  arXiv:2201.08046}\@, \bibyear{2022}\@.
+
+\bibitem{rauch2019learning}
+\bibauthor{Rauch C\@, Ivan V\@, Hospedales T, et~al}\@.
+  \bibtitle{Learning-driven coarse-to-fine articulated robot
+  tracking}\bibmark{[C]} //\thinspace{}\bibbooktitle{2019 International
+  Conference on Robotics and Automation (ICRA)}\@. \bibyear{2019}\textnormal{:
+  }\bibpages{6604\textnormal{-}6610}\@.
 
 \bibitem{chetverikov2002trimmed}
 \bibauthor{Chetverikov D\@, Svirko D\@, Stepanov D, et~al}\@. \bibtitle{The
@@ -48,6 +141,12 @@
   for robotic grasping: A real-time, generative grasp synthesis
   approach}\bibmark{[J]}\@. \bibjournal{arXiv preprint arXiv:1804.05172}\@,
   \bibyear{2018}\@.
+
+\bibitem{telea2004image}
+\bibauthor{Telea A}\@. \bibtitle{An image inpainting technique based on the
+  fast marching method}\bibmark{[J]}\@. \bibjournal{Journal of graphics
+  tools}\@, \bibyear{2004}\@, \bibvolume{9}\bibnumber{(1)}\textnormal{:
+  }\bibpages{23\textnormal{-}34}\@.
 
 \bibitem{haviland2020control}
 \bibauthor{Haviland J\@, Dayoub F\@, Corke P}\@. \bibtitle{Control of the

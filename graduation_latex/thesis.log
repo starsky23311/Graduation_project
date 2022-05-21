@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.5.15)  18 MAY 2022 12:59
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.5.15)  21 MAY 2022 15:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2244,12 +2244,6 @@ Requested font "[FandolSong-Regular.otf]/OT:language=dflt;" at 12.045pt
  -> c:/texlive/2022/texmf-dist/fonts/opentype/public/fandol/FandolSong-Regular.
 otf
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 105.
-Requested font "[TeXGyreTermesX-Regular.otf]/OT:script=latn;language=dflt;-ss05
-;+tnum;+lnum;mapping=tex-text;" at 8.0pt
- -> c:/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regul
-ar.otf
-LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
 (Font)              scaled to size 9.03374pt on input line 105.
 Requested font "[TeXGyreTermesX-Regular.otf]/OT:script=latn;language=dflt;-ss05
 ;+tnum;+lnum;mapping=tex-text;" at 9.03374pt
@@ -2266,118 +2260,15 @@ otf
 
 
 
-] (./front/denotation.tex [2
-
-
 ]
-LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 10.53937pt on input line 3.
-Requested font "[TeXGyreTermesX-Regular.otf]/OT:script=latn;language=dflt;-ss05
-;+tnum;+lnum;mapping=tex-text;" at 10.53937pt
- -> c:/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regul
-ar.otf
-Requested font "[FandolSong-Regular.otf]/OT:language=dflt;" at 10.53937pt
- -> c:/texlive/2022/texmf-dist/fonts/opentype/public/fandol/FandolSong-Regular.
-otf
-Requested font "ntx-Regular-tlf-ot1" at 10.53937pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1.tfm
-Requested font "ntx-Regular-tlf-ot1" at 7.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1.tfm
-Requested font "ntx-Regular-tlf-ot1" at 5.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1.tfm
-Requested font "ntxmi" at 10.53937pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxmi.tfm
-Requested font "ntxmi7" at 7.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxmi7.tfm
-Requested font "ntxmi5" at 5.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxmi5.tfm
-Requested font "ntxsy" at 10.53937pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxsy.tfm
-Requested font "ntxsy7" at 7.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxsy7.tfm
-Requested font "ntxsy5" at 5.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxsy5.tfm
-Requested font "ntxexx" at 10.53937pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
-Requested font "ntxexx" at 7.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
-Requested font "ntxexx" at 5.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
-Requested font "msam10" at 10.53937pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
-Requested font "msam7" at 7.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
-Requested font "msam5" at 5.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
-Requested font "msbm10" at 10.53937pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
-Requested font "msbm7" at 7.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-Requested font "msbm5" at 5.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
-Requested font "ntxmia" at 10.53937pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
-Requested font "ntxmia" at 7.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
-Requested font "ntxmia" at 5.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxmia.tfm
-Requested font "ntxsym" at 10.53937pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm
-Requested font "ntxsym" at 7.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm
-Requested font "ntxsym" at 5.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxsym.tfm
-Requested font "ntxsyc" at 10.53937pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
-Requested font "ntxsyc" at 7.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
-Requested font "ntxsyc" at 5.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxsyc.tfm
-Requested font "ntxexa" at 10.53937pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
-Requested font "ntxexa" at 7.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
-Requested font "ntxexa" at 5.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxexa.tfm
-Requested font "ntx-Bold-tlf-ot1" at 10.53937pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-ot1.tfm
-Requested font "ntx-Bold-tlf-ot1" at 7.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-ot1.tfm
-Requested font "ntx-Bold-tlf-ot1" at 5.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-ot1.tfm
-Requested font "ntxbmi" at 10.53937pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxbmi.tfm
-Requested font "ntxbmi7" at 7.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxbmi7.tfm
-Requested font "ntxbmi5" at 5.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxbmi5.tfm
-Requested font "ntxbsy" at 10.53937pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxbsy.tfm
-Requested font "ntxbsy7" at 7.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxbsy7.tfm
-Requested font "ntxbsy5" at 5.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxbsy5.tfm
-Requested font "ntxbexx" at 10.53937pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxbexx.tfm
-Requested font "ntxbexx" at 7.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxbexx.tfm
-Requested font "ntxbexx" at 5.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntxbexx.tfm
+Missing character: There is no ​ (U+200B) in font [TeXGyreTermesX-Regular.otf]/
+OT:script=latn;language=dflt;-ss05;+tnum;+lnum;mapping=tex-text;!
+Missing character: There is no ​ (U+200B) in font [TeXGyreTermesX-Regular.otf]/
+OT:script=latn;language=dflt;-ss05;+tnum;+lnum;mapping=tex-text;!
+[2
 
 
-LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.53937> not available
-(Font)              size <10.95> substituted on input line 5.
-
-Requested font "rsfs10" at 10.95pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
-Requested font "rsfs7" at 7.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/rsfs/rsfs7.tfm
-Requested font "rsfs5" at 5.0pt
- -> c:/texlive/2022/texmf-dist/fonts/tfm/public/rsfs/rsfs5.tfm
-) [3
-
-
-] (./thesis.toc
+] [3] (./thesis.toc
 LaTeX Font Info:    Font shape `TU/FandolHei-Regular(0)/b/n' will be
 (Font)              scaled to size 12.045pt on input line 1.
 Requested font "[FandolHei-Bold.otf]/OT:language=dflt;-ss05;mapping=tex-text;" 
@@ -2392,32 +2283,6 @@ at 12.045pt
 
  [5]
 第1章
-[1
-
-
-
-] [2]
-第2章
-LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 14.05249pt on input line 155.
-Requested font "[TeXGyreTermesX-Regular.otf]/OT:script=latn;language=dflt;-ss05
-;+tnum;+lnum;mapping=tex-text;" at 14.05249pt
- -> c:/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regul
-ar.otf
-LaTeX Font Info:    Font shape `TU/FandolHei-Regular(0)/m/n' will be
-(Font)              scaled to size 14.05249pt on input line 155.
-Requested font "[FandolHei-Regular.otf]/OT:language=dflt;-ss05;mapping=tex-text
-;" at 14.05249pt
- -> c:/texlive/2022/texmf-dist/fonts/opentype/public/fandol/FandolHei-Regular.o
-tf
-File: ./figures//chapter2/系统坐标系建立.png Graphic file (type bmp)
-<./figures//chapter2/系统坐标系建立.png>
-LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/it' will be
-(Font)              scaled to size 12.045pt on input line 164.
-Requested font "[TeXGyreTermesX-Italic.otf]/OT:script=latn;language=dflt;-ss05;
-+tnum;+lnum;mapping=tex-text;" at 12.045pt
- -> c:/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Itali
-c.otf
 
 Package fontspec Info: Font family 'TeXGyreTermesX(1)' created for font
 (fontspec)             'TeXGyreTermesX' with options [Ligatures = TeX,Scale =
@@ -2474,12 +2339,60 @@ language=dflt;-ss05;+tnum;+lnum;+sups;+smcp;+pcap;mapping=tex-text;"
 ;language=dflt;-ss05;+tnum;+lnum;+sups;+smcp;+pcap;mapping=tex-text;"
 
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(1)/m/n' will be
-(Font)              scaled to size 12.045pt on input line 169.
+(Font)              scaled to size 12.045pt on input line 126.
 Requested font "[TeXGyreTermesX-Regular.otf]/OT:script=latn;language=dflt;-ss05
 ;+tnum;+lnum;+sups;mapping=tex-text;" at 12.045pt
  -> c:/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regul
 ar.otf
-[3
+File: ./figures//chapter1/工业机器人.png Graphic file (type bmp)
+<./figures//chapter1/工业机器人.png>
+LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
+(Font)              scaled to size 10.53937pt on input line 135.
+Requested font "[TeXGyreTermesX-Regular.otf]/OT:script=latn;language=dflt;-ss05
+;+tnum;+lnum;mapping=tex-text;" at 10.53937pt
+ -> c:/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regul
+ar.otf
+Requested font "[FandolSong-Regular.otf]/OT:language=dflt;" at 10.53937pt
+ -> c:/texlive/2022/texmf-dist/fonts/opentype/public/fandol/FandolSong-Regular.
+otf
+File: ./figures//chapter1/医用机器人.png Graphic file (type bmp)
+<./figures//chapter1/医用机器人.png>
+[1
+
+
+
+] [2]
+File: ./figures//chapter1/IBVS基础成果复现.png Graphic file (type bmp)
+<./figures//chapter1/IBVS基础成果复现.png>
+ [3]
+LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
+(Font)              scaled to size 14.05249pt on input line 183.
+Requested font "[TeXGyreTermesX-Regular.otf]/OT:script=latn;language=dflt;-ss05
+;+tnum;+lnum;mapping=tex-text;" at 14.05249pt
+ -> c:/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regul
+ar.otf
+LaTeX Font Info:    Font shape `TU/FandolHei-Regular(0)/m/n' will be
+(Font)              scaled to size 14.05249pt on input line 183.
+Requested font "[FandolHei-Regular.otf]/OT:language=dflt;-ss05;mapping=tex-text
+;" at 14.05249pt
+ -> c:/texlive/2022/texmf-dist/fonts/opentype/public/fandol/FandolHei-Regular.o
+tf
+File: ./figures//chapter1/语义分割IBVS.png Graphic file (type bmp)
+<./figures//chapter1/语义分割IBVS.png>
+ [4] [5]
+File: ./figures//chapter1/章节流程图.png Graphic file (type bmp)
+<./figures//chapter1/章节流程图.png>
+ [6]
+第2章
+File: ./figures//chapter2/系统坐标系建立.png Graphic file (type bmp)
+<./figures//chapter2/系统坐标系建立.png>
+LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/it' will be
+(Font)              scaled to size 12.045pt on input line 245.
+Requested font "[TeXGyreTermesX-Italic.otf]/OT:script=latn;language=dflt;-ss05;
++tnum;+lnum;mapping=tex-text;" at 12.045pt
+ -> c:/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Itali
+c.otf
+[7
 
 
 ]
@@ -2487,48 +2400,48 @@ File: ./figures//chapter2/特征变换.png Graphic file (type bmp)
 <./figures//chapter2/特征变换.png>
 File: ./figures//chapter2/视觉坐标系建立.png Graphic file (type bmp)
 <./figures//chapter2/视觉坐标系建立.png>
- [4]
+ [8]
 Package hyperref Info: bookmark level for unknown equation defaults to 0 on inp
-ut line 212.
- [5]
+ut line 293.
+ [9]
 File: ./figures//chapter2/基于moveit机器人仿真模型实现.png Graphic file (type bmp)
 <./figures//chapter2/基于moveit机器人仿真模型实现.png>
 File: ./figures//chapter2/IBVS基础控制流程方框图.png Graphic file (type bmp)
 <./figures//chapter2/IBVS基础控制流程方框图.png>
- [6]
+ [10]
 File: ./figures//chapter2/深度选择图.png Graphic file (type bmp)
 <./figures//chapter2/深度选择图.png>
 
-Underfull \hbox (badness 1248) in paragraph at lines 288--289
+Underfull \hbox (badness 1248) in paragraph at lines 369--370
 []\TU/FandolSong-Regular(0)/m/n/12.045 曲 线 是 分 析 问 题 非 常 重 要 的 一 环，|  所 以 仿 真 中
  应 当 有 相 应 的 曲 线 绘 制。|
  []
 
-[7]
+[11]
 File: ./figures//chapter2/基于VISP视觉伺服仿真.png Graphic file (type bmp)
 <./figures//chapter2/基于VISP视觉伺服仿真.png>
 File: ./figures//chapter2/实物环境搭建展示图.jpg Graphic file (type bmp)
 <./figures//chapter2/实物环境搭建展示图.jpg>
- [8]
+ [12]
 File: ./figures//chapter2/视觉伺服曲线绘制（初始）.png Graphic file (type bmp)
 <./figures//chapter2/视觉伺服曲线绘制（初始）.png>
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9] [10]
+[13] [14]
 第3章
 File: ./figures//chapter3/实时抓取点生成.png Graphic file (type bmp)
 <./figures//chapter3/实时抓取点生成.png>
-[11
+[15
 
 
-] [12]
+] [16]
 File: ./figures//chapter3/基于模型的点云识别实操图.png Graphic file (type bmp)
 <./figures//chapter3/基于模型的点云识别实操图.png>
 File: ./figures//chapter3/基于模型的点云识别效果图.png Graphic file (type bmp)
 <./figures//chapter3/基于模型的点云识别效果图.png>
- [13]
+ [17]
 File: ./figures//chapter3/GG-CNN改进.png Graphic file (type bmp)
 <./figures//chapter3/GG-CNN改进.png>
 
@@ -2537,44 +2450,47 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 File: ./figures//chapter3/GG-CNN输出（初始）.png Graphic file (type bmp)
 <./figures//chapter3/GG-CNN输出（初始）.png>
-[14]
+[18]
 File: ./figures//chapter3/实时抓取点生成.png Graphic file (type bmp)
 <./figures//chapter3/实时抓取点生成.png>
- [15]
+ [19]
 File: ./figures//chapter3/神经网络原始输出.png Graphic file (type bmp)
 <./figures//chapter3/神经网络原始输出.png>
- [16] [17]
+ [20] [21]
 File: ./figures//chapter3/抓取点中心方法替代与角度滤波.png Graphic file (type bmp)
 <./figures//chapter3/抓取点中心方法替代与角度滤波.png>
- [18]
+ [22]
 第4章
-[19
+[23
 
 
 ]
+File: ./figures//chapter4/俯视相机成图.png Graphic file (type bmp)
+<./figures//chapter4/俯视相机成图.png>
+ [24] [25] [26] [27] [28]
 第5章
-[20
+[29
 
 
 ]
 第6章
-[21
+[30
 
 
-] [22] [23]
+] [31] [32]
 \openout2 = `back/conclusion.aux'.
 
- (./back/conclusion.tex) [24
+ (./back/conclusion.tex) [33
 
 
 
 
-] (./thesis.bbl) [25
+] (./thesis.bbl [34
 
 
 
 
-] [26
+]) [35] [36
 
 
 ]
@@ -2582,13 +2498,19 @@ File: ./figures//chapter3/抓取点中心方法替代与角度滤波.png Graphic
 
 
 (./back/acknowledgements.tex
+LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 7.
+Requested font "[TeXGyreTermesX-Regular.otf]/OT:script=latn;language=dflt;-ss05
+;+tnum;+lnum;mapping=tex-text;" at 8.0pt
+ -> c:/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regul
+ar.otf
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/sc' will be
 (Font)              scaled to size 12.045pt on input line 7.
 Requested font "[TeXGyreTermesX-Regular.otf]/OT:script=latn;language=dflt;-ss05
 ;+tnum;+lnum;+smcp;+pcap;mapping=tex-text;" at 12.045pt
  -> c:/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regul
 ar.otf
-) [27
+) [37
 
 
 
@@ -2611,15 +2533,15 @@ LaTeX Font Warning: Size substitutions with differences
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 5D8EFFA7284CB62E2FEBC35038ADB33F;6780.
+(rerunfilecheck)             Checksum: B70BBAD4FFACB723C131EB2A07BFC44B;8351.
  ) 
 Here is how much of TeX's memory you used:
- 45597 strings out of 476133
- 975904 string characters out of 5811991
- 1263526 words of memory out of 5000000
- 65492 multiletter control sequences out of 15000+600000
- 527488 words of font info for 200 fonts, out of 8000000 for 9000
+ 45705 strings out of 476133
+ 978077 string characters out of 5811991
+ 1266860 words of memory out of 5000000
+ 65591 multiletter control sequences out of 15000+600000
+ 506584 words of font info for 155 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 106i,14n,111p,2554b,866s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 106i,14n,111p,2554b,1083s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on thesis.pdf (34 pages).
+Output written on thesis.pdf (44 pages).

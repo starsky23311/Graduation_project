@@ -59,38 +59,52 @@
   estudenttype={Master of Art},
   %
   % 关键词用“英文逗号”分割
-  ckeywords={\TeX, \LaTeX, CJK, 嗨！, thesis},
-  ekeywords={\TeX, \LaTeX, CJK, template, thesis},
+  ckeywords={机器人, 视觉伺服, 生成抓取合成, 目标抓取},
+  ekeywords={Robot, Visual servo, Generative Grasp Synthesis, Target grap},
 }
 
 \begin{cabstract}
+在工业、服务业智能化发展的大背景下，视觉伺服几乎已是现在自动化工厂不可缺少的部分。由于产品寿命短，生产线经常变动，工业机器人不可避免的要从固定模式的运动控制到更为灵活的行为模式中去。
 
-摘要的字数（以汉字计），硕士学位论文一般为500 $\sim$ 1000字，博士学位论文为1000 $\sim$ 2000字，
-均以能将规定内容阐述清楚为原则，文字要精练，段落衔接要流畅。摘要页不需写出论文题目。
-英文摘要与中文摘要的内容应完全一致，在语法、用词上应准确无误，语言简练通顺。
-留学生的英文版博士学位论文中应有不少于3000字的“详细中文摘要”。
 
-  关键词是为了文献标引工作、用以表示全文主要内容信息的单词或术语。关键词不超过 5
-  个，每个关键词中间用分号分隔。（模板作者注：关键词分隔符不用考虑，模板会自动处
-  理。英文关键词同理。）
+本文将针对未知物体的IBVS抓取算法中涉及到的抓取点自主生成、图像特征的稳定提取与匹配、IBVS伺服性能提升等关键问题进行深入研究。
+
+
+主要研究内容包括以下几个方面：
+
+
+首先，建立了IBVS系统模型，其中包括系统坐标系和视觉坐标系的建立，推导了各坐标系之间的变换关系以及IBVS要求的特征点位置获取的公式。研究了基于特征点交互矩阵的IBVS的原理，并搭建仿真环境。搭建了实物运行环境，成功运行IBVS算法。
+
+
+其次，针对伺服目标如何自主生成的问题研究了基于模型的点云识别和配准以及抓取点生成网络两种方式的原理和生成效果。根据它们的实时性、可靠性确定了抓取点生成网络和一阶图像矩搭配的方式作为伺服目标自主生成的方案。优化了抓取点生成网络提升了网络预测正确率。使用卡尔曼滤波算法让网络预测的角度输出变得稳定。
+
+
+再次，结合前面研究的内容对未知形状、位姿随机的目标的抓取展开研究。结合ORB特征的提取与匹配，提出了一种基于抓取点的IBVS，根据不断失败的经验，又提出了基于抓取点的自定义特征。该方法解决了速度指令波动大和关于特征点匹配的可靠性、顺序一致性等问题。面对当前伺服性能差的问题，对当前特征偏差进行时域、频域分析，优化了IBVS控制律。对于出现的特征偏差对末端速度指令关联的不对称性问题和噪声问题提出一种自适应的算法进行解决。
+
+
+最后，设计实验，通过多样的物体、多样的位姿的抓取实验验证提出的未知物体抓取算法的有效性。与相关工作进行比较，证明当前算法的高自适应能力和高伺服性能。
+
+
 \end{cabstract}
 
 \begin{eabstract}
-   An abstract of a dissertation is a summary and extraction of research work
-   and contributions. Included in an abstract should be description of research
-   topic and research objective, brief introduction to methodology and research
-   process, and summarization of conclusion and contributions of the
-   research. An abstract should be characterized by independence and clarity and
-   carry identical information with the dissertation. It should be such that the
-   general idea and major contributions of the dissertation are conveyed without
-   reading the dissertation.
+   In the context of the intelligent development of industry and service industries, visual servoing has almost become an indispensable part of automated factories. Due to the short product life and frequent changes of production lines, it is inevitable for industrial robots to move from a fixed mode of motion control to a more flexible behavioral mode.
+   
+   
+   This paper will conduct in-depth research on the key issues involved in the IBVS grasping algorithm of unknown objects, such as the autonomous generation of grasping points, the stable extraction and matching of image features, and the improvement of IBVS servo performance.
+   
+   
+   The main research contents include the following aspects:
+   
+   
+   First, the IBVS system model is established, including the establishment of the system coordinate system and the visual coordinate system, and the transformation relationship between the coordinate systems and the formula for obtaining the position of the feature points required by IBVS are deduced. The principle of IBVS based on feature point interaction matrix is ​​studied, and the simulation environment is built. A physical operating environment was built, and the IBVS algorithm was successfully run.
+   
+   
+   Secondly, the principle and generation effect of two methods of model-based point cloud recognition and registration and grasp point generation network are studied for the problem of how to generate servo targets autonomously. According to their real-time and reliability, the method of generating network of grab points and first-order image moments is determined as the scheme for autonomous generation of servo targets. Optimized the grab point generation network to improve the accuracy of network prediction. The Kalman filter algorithm is used to stabilize the angle output predicted by the network.
+   
+   
+   Thirdly, combined with the content of the previous research, the grasp of the unknown shape and random pose is studied. Combined with the extraction and matching of ORB features, an IBVS based on grasp points is proposed. According to the experience of continuous failure, a custom feature based on grasp points is proposed. This method solves the problems of large fluctuation of speed command, reliability and order consistency of feature point matching. Facing the problem of poor current servo performance, the current characteristic deviation was analyzed in time domain and frequency domain, and the IBVS control law was optimized. An adaptive algorithm is proposed to solve the asymmetry and noise problems associated with the terminal speed command due to the characteristic deviation.
 
-   An abstract should be concise and to the point. It is a misunderstanding to
-   make an abstract an outline of the dissertation and words ``the first
-   chapter'', ``the second chapter'' and the like should be avoided in the
-   abstract.
 
-   Key words are terms used in a dissertation for indexing, reflecting core
-   information of the dissertation. An abstract may contain a maximum of 5 key
-   words, with semi-colons used in between to separate one another.
+	Finally, experiments are designed to verify the effectiveness of the proposed unknown object grasping algorithm through grasping experiments of various objects and various poses. The comparison with related work demonstrates the high adaptive ability and high servo performance of the current algorithm.
 \end{eabstract}
