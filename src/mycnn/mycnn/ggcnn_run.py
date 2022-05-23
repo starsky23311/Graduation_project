@@ -68,6 +68,8 @@ class GraspGenerater(Node):
 
         # 网络初始化
         self.net = torch.load("/home/wzf/main_folder/MyProject/Graduation_project/src/mycnn/mycnn/epoch_45_iou_0.76")
+        # self.net = torch.load("/home/wzf/main_folder/MyProject/Graduation_project/src/mycnn/mycnn/ggcnn_epoch_23_cornell")
+
         self.device = torch.device("cuda:0")
         # self.color_image = np.zeros([480, 640, 3], np.uint8)
         # self.depth_image = np.zeros([480, 640], np.uint16)
@@ -98,36 +100,77 @@ class GraspGenerater(Node):
     # output_size = 300,shape = [640, 480]
 # 以下函数用于图像裁剪
     def get_crop_center(self):
+    # 第一套方法
+        # # dst = self.delete_zero(self.depth_image)
+        # # dst = self.depth_image / 64
         # dst = self.delete_zero(self.depth_image)
-        # dst = self.depth_image / 64
-        dst = self.delete_zero(self.depth_image)
-        #根据颜色进行前景提取
-        gray = cv2.cvtColor(self.color_image, cv2.COLOR_BGR2GRAY)
-        mask = (gray < 75).astype(np.float)
-        gray = (gray * mask).astype(np.uint8)
-
-        # # mask = (dst < 8.8).astype(np.float)
-        # #计算背景平均距离
-        self.back_depth = (dst * (1-mask)).sum()/(640*480-mask.sum())/1000
-        # #计算前景平均距离
-        self.font_depth = (dst * mask).sum()/mask.sum()/1000
-        # dst = dst * mask
-        mask = ((dst != 0)&(dst <= (self.font_depth)*1000)).astype(np.float)
+        # #根据颜色进行前景提取
+        # gray = cv2.cvtColor(self.color_image, cv2.COLOR_BGR2GRAY)
+        # mask = (gray < 75).astype(np.float)
+        # gray = (gray * mask).astype(np.uint8)
+        #
+        # # # mask = (dst < 8.8).astype(np.float)
+        # # #计算背景平均距离
+        # self.back_depth = (dst * (1-mask)).sum()/(640*480-mask.sum())/1000
+        # # #计算前景平均距离
+        # self.font_depth = (dst * mask).sum()/mask.sum()/1000
+        # # dst = dst * mask
+        # mask = ((dst != 0)&(dst <= (self.font_depth)*1000)).astype(np.float)
+        # # print("mask_sum:", mask.sum())
+        # self.font_depth = (dst * mask).sum()/mask.sum()/1000
+        #
+        # mask = ((dst != 0)&(dst <= (self.font_depth)*1000)).astype(np.float)
         # print("mask_sum:", mask.sum())
+        # self.font_depth = (dst * mask).sum()/mask.sum()/1000
+        # #
+        # # # dst = cv2.cvtColor(dst, cv2.GR)#将图像转化为灰度图像
+        # #
+        # # # dst = cv2.Canny(dst * 4, 100, 150)#Canny边缘检测
+        # dst = (dst * mask).astype(np.uint8)
+        # cv2.imshow("depth_canny", gray)
+        # # print("font_depth:",self.font_depth)
+        # # calculate moments of binary image
+    # 第二套方法
+        dst = self.depth_image
+        # dst = self.delete_zero(self.depth_image)
+        color_threshold = 100
+        gray = cv2.cvtColor(self.color_image, cv2.COLOR_BGR2GRAY)
+        white_mask = (gray > color_threshold).astype(np.float)
+        font_img = (gray * (1-white_mask)).astype(np.uint8)
+        back_img = (gray * white_mask).astype(np.uint8)
+        # 迭代法计算背景
+        self.back_depth = (dst * (white_mask)).sum()/white_mask.sum()/1000
+        white_mask = ((white_mask == 1) & (dst <= (self.back_depth)*1000)).astype(np.float)
+
+        self.back_depth = (dst * (white_mask)).sum()/white_mask.sum()/1000
+        # back_img = (gray * white_mask).astype(np.uint8)
+        # cv2.imshow("platform(white pixel)", back_img)
+        white_mask = ((dst > (self.back_depth+0.001)*1000) | (dst == 0)).astype(np.float)
+
+        self.depth_image = (dst * (1 - white_mask) + self.back_depth * white_mask*1000).astype(np.uint16)
+        gray = (gray * (1 - white_mask) + 255 * white_mask).astype(np.uint8)
+        # cv2.imshow("set backgroud white", gray)
+        # cv2.imshow("set backgroud depth as platform depth", self.depth_image*32)
+        gray = gray * (gray < color_threshold).astype(np.float).astype(np.uint8)
+        kernel1 = np.ones((3, 3), np.uint8)
+        # 迭代法计算前景
+
+        font_img = cv2.erode(gray, kernel1)
+        cv2.imshow("font1_img", gray)
+        black_mask = (font_img != 0).astype(np.float)
+        self.font_depth = (dst * black_mask).sum()/black_mask.sum()/1000
+        mask = ((dst != 0)&(dst <= (self.font_depth)*1000)).astype(np.float)
+        # # print("mask_sum:", mask.sum())
         self.font_depth = (dst * mask).sum()/mask.sum()/1000
 
-        mask = ((dst != 0)&(dst <= (self.font_depth)*1000)).astype(np.float)
-        print("mask_sum:", mask.sum())
-        self.font_depth = (dst * mask).sum()/mask.sum()/1000
-        #
-        # # dst = cv2.cvtColor(dst, cv2.GR)#将图像转化为灰度图像
-        #
-        # # dst = cv2.Canny(dst * 4, 100, 150)#Canny边缘检测
-        dst = (dst * mask).astype(np.uint8)
-        cv2.imshow("depth_canny", gray)
-        # print("font_depth:",self.font_depth)
-        # calculate moments of binary image
-        M = cv2.moments(gray)
+        # mask = ((dst != 0)&(dst <= (self.font_depth)*1000)).astype(np.float)
+        # font_img = (font_img * mask).astype(np.uint8)
+
+        color_img = cv2.cvtColor(self.color_image, cv2.COLOR_BGR2RGB)
+        cv2.imshow("color_img", color_img)
+        cv2.imshow("font2_img", font_img)
+
+        M = cv2.moments(font_img)
         # calculate x,y coordinate of center
         cX = int(M["m10"] / M["m00"])
         cY = int(M["m01"] / M["m00"])
@@ -156,6 +199,7 @@ class GraspGenerater(Node):
 
     def delete_zero(self, img):
         dst = cv2.inpaint(img, (img==0).astype(np.uint8), 3, cv2.INPAINT_NS)
+        # dst = img
         return dst
 
 
@@ -202,7 +246,7 @@ class GraspGenerater(Node):
             x, y, angle, width  = evaluation.plot_output(self.color_after_crop,
                                        self.ggcnn_input, q_img,
                                        ang_img, 1, grasp_width_img=width_img, last_gs=self.last_gs)
-            if x!=-1 and y!=-1:
+            if x != -1 and y != -1:
                 self.last_gs[2] = 1
                 self.last_gs[0] = x
                 self.last_gs[1] = y
@@ -246,6 +290,7 @@ class GraspGenerater(Node):
         bridge = CvBridge()
         self.get_logger().info('I heard ALIGN: "%s"' % msg.data[500])
         self.depth_image = bridge.imgmsg_to_cv2(msg, desired_encoding="16UC1")
+        # print("shape:", self.depth_image.shape)
         picture_ready.set_align_ok(True)
         # cv_bridge.getCvType()
 

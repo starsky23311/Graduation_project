@@ -572,7 +572,7 @@ public:
             cout<<"target_feature_x"<<target_feature_output[i].x<<"\ntarget_feature_y"<<target_feature_output[i].y<<endl;
             cv::circle(img2draw, target_feature_output[i], 5, cv::Scalar(255,0,0),2);
         }
-//        cv::imshow("SquareTargetPoints", img2draw);
+        cv::imshow("SquareTargetPoints", img2draw);
 //        cv::waitKey(1);
     }
     std_msgs::msg::String getSpeedCommand()
@@ -727,6 +727,7 @@ public:
         }
         this->font_depth = font_depth;
         drawFeaturePoint(color_image);
+//        cv::waitKey(1);
         return true;
 
     }
@@ -1354,7 +1355,7 @@ public:
                                 this->keypoints2.push_back(this->keypoints1[matches[i].queryIdx]);
                                 good_matches.push_back(this->matches[i]);
                             }
-                            else if(this->matches[i].distance > max(2*min_dist, 30.0) && this->keypoints2.size() < 4)
+                            else if(this->matches[i].distance > max(2*min_dist, 30.0) && this->keypoints2.size() < 20)
                             {
                                 this->keypoints2.push_back(this->keypoints1[matches[i].queryIdx]);
                                 good_matches.push_back(this->matches[i]);
@@ -1514,7 +1515,7 @@ int main(int argc, char * argv[])
             visualready.refreshOK();
             if(!VisualServoTool->getColorImage().empty()) {
                 VisualServoTool->run_net_plus();
-//                VisualServoTool->Feature2DRefresh(GGCNNBasedVisualServo::NORMAL_METHOD,false);
+//                VisualServoTool->ORBFeature2DRefresh(GGCNNBasedVisualServo::NORMAL_METHOD,true);
                 VisualServoTool->drawGraspData();
                 cv::waitKey(1);
             }
