@@ -35,26 +35,25 @@
 \contentsline {chapter}{\numberline {第4章}未知物体抓取算法实现}{23}{chapter.4}%
 \contentsline {section}{\numberline {4.1}引言}{23}{section.4.1}%
 \contentsline {section}{\numberline {4.2}图像处理抑制边界环境干扰}{23}{section.4.2}%
-\contentsline {section}{\numberline {4.3}初步思路}{24}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}ORB特征的提取与匹配}{24}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}基于抓取点的IBVS}{24}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}总结与思考}{26}{subsection.4.3.3}%
-\contentsline {section}{\numberline {4.4}一种基于抓取点的自定义特征}{26}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}方法概述}{26}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}目标表面计算}{27}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}优化特征分布与IBVS试验}{27}{subsection.4.4.3}%
-\contentsline {section}{\numberline {4.5}本章小结}{28}{section.4.5}%
-\contentsline {chapter}{\numberline {第5章}IBVS控制律优化}{29}{chapter.5}%
-\contentsline {section}{\numberline {5.1}引言}{29}{section.5.1}%
-\contentsline {chapter}{\numberline {第6章}实验设计与验证}{30}{chapter.6}%
-\contentsline {section}{\numberline {6.1}引言}{30}{section.6.1}%
-\contentsline {section}{\numberline {6.2}实验设计}{30}{section.6.2}%
-\contentsline {section}{\numberline {6.3}人机交互界面设计}{31}{section.6.3}%
-\contentsline {section}{\numberline {6.4}实验验证}{31}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}抓取成功率测试}{31}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}抓取性能验证}{32}{subsection.6.4.2}%
-\contentsline {section}{\numberline {6.5}本章小结}{32}{section.6.5}%
-\contentsline {chapter}{\heiti 结\hspace {\ccwd }论}{33}{section*.14}%
-\contentsline {chapter}{\heiti 参考文献}{34}{section*.17}%
-\contentsline {chapter}{\heiti 哈尔滨工业大学本科毕业设计（论文）原创性声明}{36}{section*.19}%
-\contentsline {chapter}{\heiti 致\hspace {\ccwd }谢}{37}{section*.21}%
+\contentsline {section}{\numberline {4.3}初步思路}{25}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}ORB特征的提取与匹配}{25}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}基于抓取点的IBVS}{27}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}总结与思考}{29}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}一种基于抓取点的自定义特征}{29}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}方法概述}{29}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}目标表面计算}{30}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}优化特征分布与IBVS试验}{32}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}本章小结}{33}{section.4.5}%
+\contentsline {chapter}{\numberline {第5章}IBVS控制律优化}{34}{chapter.5}%
+\contentsline {section}{\numberline {5.1}引言}{34}{section.5.1}%
+\contentsline {chapter}{\numberline {第6章}实验设计与验证}{35}{chapter.6}%
+\contentsline {section}{\numberline {6.1}引言}{35}{section.6.1}%
+\contentsline {section}{\numberline {6.2}实验设计}{35}{section.6.2}%
+\contentsline {section}{\numberline {6.3}实验验证}{36}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}抓取成功率测试}{36}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}抓取性能验证}{37}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}本章小结}{37}{section.6.4}%
+\contentsline {chapter}{\heiti 结\hspace {\ccwd }论}{39}{section*.14}%
+\contentsline {chapter}{\heiti 参考文献}{40}{section*.17}%
+\contentsline {chapter}{哈尔滨工业大学本科毕业设计（论文）原创性声明}{42}{section*.19}%
+\contentsline {chapter}{\heiti 致\hspace {\ccwd }谢}{43}{section*.20}%
