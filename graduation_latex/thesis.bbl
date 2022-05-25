@@ -148,6 +148,32 @@
   tools}\@, \bibyear{2004}\@, \bibvolume{9}\bibnumber{(1)}\textnormal{:
   }\bibpages{23\textnormal{-}34}\@.
 
+\bibitem{mansard2007task}
+\bibauthor{Mansard N\@, Chaumette F}\@. \bibtitle{Task sequencing for
+  high-level sensor-based control}\bibmark{[J]}\@. \bibjournal{IEEE
+  Transactions on Robotics}\@, \bibyear{2007}\@,
+  \bibvolume{23}\bibnumber{(1)}\textnormal{: }\bibpages{60\textnormal{-}72}\@.
+
+\bibitem{yuksel2015ibvs}
+\bibauthor{Y{\"u}ksel T}\@. \bibtitle{IBVS with fuzzy sliding mode for robot
+  manipulators}\bibmark{[C]} //\thinspace{}\bibbooktitle{2015 International
+  Workshop on Recent Advances in Sliding Modes (RASM)}\@.
+  \bibyear{2015}\textnormal{: }\bibpages{1\textnormal{-}6}\@.
+
+\bibitem{parsapour2013position}
+\bibauthor{Parsapour M\@, RayatDoost S\@, Taghirad H}\@. \bibtitle{Position
+  based sliding mode control for visual servoing system}\bibmark{[C]}
+  //\thinspace{}\bibbooktitle{2013 First RSI/ISM International Conference on
+  Robotics and Mechatronics (ICRoM)}\@. \bibyear{2013}\textnormal{:
+  }\bibpages{337\textnormal{-}342}\@.
+
+\bibitem{li2018enhanced}
+\bibauthor{Li S\@, Ghasemi A\@, Xie W, et~al}\@. \bibtitle{An enhanced IBVS
+  controller of a 6DOF manipulator using hybrid PD-SMC method}\bibmark{[J]}\@.
+  \bibjournal{International Journal of Control, Automation and Systems}\@,
+  \bibyear{2018}\@, \bibvolume{16}\bibnumber{(2)}\textnormal{:
+  }\bibpages{844\textnormal{-}855}\@.
+
 \bibitem{haviland2020control}
 \bibauthor{Haviland J\@, Dayoub F\@, Corke P}\@. \bibtitle{Control of the
   final-phase of closed-loop visual grasping using image-based visual

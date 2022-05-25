@@ -46,20 +46,21 @@
 \contentsline {section}{\numberline {4.5}本章小结}{33}{section.4.5}%
 \contentsline {chapter}{\numberline {第5章}IBVS控制律优化}{34}{chapter.5}%
 \contentsline {section}{\numberline {5.1}引言}{34}{section.5.1}%
-\contentsline {section}{\numberline {5.2}控制模型建立}{34}{section.5.2}%
-\contentsline {section}{\numberline {5.3}PD控制器与惯性环节}{34}{section.5.3}%
-\contentsline {section}{\numberline {5.4}滑模控制器}{34}{section.5.4}%
-\contentsline {section}{\numberline {5.5}系统稳定性}{34}{section.5.5}%
-\contentsline {section}{\numberline {5.6}特征偏差关联速度不一致性}{34}{section.5.6}%
-\contentsline {section}{\numberline {5.7}本章小结}{34}{section.5.7}%
-\contentsline {chapter}{\numberline {第6章}实验设计与验证}{35}{chapter.6}%
-\contentsline {section}{\numberline {6.1}引言}{35}{section.6.1}%
-\contentsline {section}{\numberline {6.2}实验设计}{35}{section.6.2}%
-\contentsline {section}{\numberline {6.3}实验验证}{36}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}抓取成功率测试}{36}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}抓取性能验证}{37}{subsection.6.3.2}%
-\contentsline {section}{\numberline {6.4}本章小结}{37}{section.6.4}%
-\contentsline {chapter}{\heiti 结\hspace {\ccwd }论}{39}{section*.14}%
-\contentsline {chapter}{\heiti 参考文献}{41}{section*.17}%
-\contentsline {chapter}{哈尔滨工业大学本科毕业设计（论文）原创性声明}{43}{section*.19}%
-\contentsline {chapter}{\heiti 致\hspace {\ccwd }谢}{44}{section*.20}%
+\contentsline {section}{\numberline {5.2}PD控制器与自适应IBVS}{34}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}PD控制器设计}{35}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}自适应IBVS}{36}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}滑模控制器}{36}{section.5.3}%
+\contentsline {section}{\numberline {5.4}系统稳定性}{37}{section.5.4}%
+\contentsline {section}{\numberline {5.5}特征偏差收敛速度不一致性}{37}{section.5.5}%
+\contentsline {section}{\numberline {5.6}本章小结}{37}{section.5.6}%
+\contentsline {chapter}{\numberline {第6章}实验设计与验证}{39}{chapter.6}%
+\contentsline {section}{\numberline {6.1}引言}{39}{section.6.1}%
+\contentsline {section}{\numberline {6.2}实验设计}{39}{section.6.2}%
+\contentsline {section}{\numberline {6.3}实验验证}{40}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}抓取成功率测试}{40}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}抓取性能验证}{41}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}本章小结}{41}{section.6.4}%
+\contentsline {chapter}{\heiti 结\hspace {\ccwd }论}{43}{section*.14}%
+\contentsline {chapter}{\heiti 参考文献}{45}{section*.17}%
+\contentsline {chapter}{哈尔滨工业大学本科毕业设计（论文）原创性声明}{47}{section*.19}%
+\contentsline {chapter}{\heiti 致\hspace {\ccwd }谢}{48}{section*.20}%

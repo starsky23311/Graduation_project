@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2022)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: thesis.aux
 A level-1 auxiliary file: back/conclusion.aux
@@ -8,44 +8,44 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: reference.bib
-You've used 20 entries,
+You've used 24 entries,
             3107 wiz_defined-function locations,
-            831 strings with 9612 characters,
-and the built_in function-call counts, 36018 in all, are:
-= -- 3984
-> -- 68
-< -- 156
-+ -- 3190
-- -- 240
-* -- 938
-:= -- 4010
+            852 strings with 10318 characters,
+and the built_in function-call counts, 42906 in all, are:
+= -- 4729
+> -- 81
+< -- 186
++ -- 3777
+- -- 288
+* -- 1129
+:= -- 4757
 add.period$ -- 0
-call.type$ -- 20
+call.type$ -- 24
 change.case$ -- 0
 chr.to.int$ -- 0
-cite$ -- 20
-duplicate$ -- 5124
-empty$ -- 1383
-format.name$ -- 192
-if$ -- 9652
+cite$ -- 24
+duplicate$ -- 6109
+empty$ -- 1668
+format.name$ -- 228
+if$ -- 11493
 int.to.chr$ -- 0
-int.to.str$ -- 20
+int.to.str$ -- 24
 missing$ -- 0
-newline$ -- 87
-num.names$ -- 20
-pop$ -- 520
+newline$ -- 99
+num.names$ -- 24
+pop$ -- 635
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 318
+skip$ -- 380
 stack$ -- 0
-substring$ -- 4318
-swap$ -- 963
+substring$ -- 5129
+swap$ -- 1167
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 480
-width$ -- 22
-write$ -- 292
+while$ -- 582
+width$ -- 26
+write$ -- 346
