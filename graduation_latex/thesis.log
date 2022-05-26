@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.5.15)  25 MAY 2022 22:19
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.5.15)  26 MAY 2022 21:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1760,16 +1760,7 @@ LaTeX Warning: Label `卡尔曼滤波的增益' multiply defined.
 
 LaTeX Warning: Label `优化自定义目标特征' multiply defined.
 
-
-LaTeX Warning: Label `绘制曲线选取特征点' multiply defined.
-
-
-LaTeX Warning: Label `sub@绘制曲线选取特征点' multiply defined.
-
-
-LaTeX Warning: Label `table1' multiply defined.
-
-(./back/conclusion.aux) (./back/acknowledgements.aux))
+(./back/conclusion.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 103.
@@ -2304,12 +2295,7 @@ otf
 
 
 
-]
-Missing character: There is no ​ (U+200B) in font [TeXGyreTermesX-Regular.otf]/
-OT:script=latn;language=dflt;-ss05;+tnum;+lnum;mapping=tex-text;!
-Missing character: There is no ​ (U+200B) in font [TeXGyreTermesX-Regular.otf]/
-OT:script=latn;language=dflt;-ss05;+tnum;+lnum;mapping=tex-text;!
-[2
+] [2
 
 
 ] [3] (./thesis.toc
@@ -2423,20 +2409,26 @@ Requested font "[FandolHei-Regular.otf]/OT:language=dflt;-ss05;mapping=tex-text
 tf
 File: ./figures//chapter1/语义分割IBVS.png Graphic file (type bmp)
 <./figures//chapter1/语义分割IBVS.png>
- [4] [5]
+
+
+LaTeX Warning: Reference `GG-CNN' on page 4 undefined on input line 193.
+
+File: ./figures//chapter1/GG-CNN实物伺服效果.png Graphic file (type bmp)
+<./figures//chapter1/GG-CNN实物伺服效果.png>
+[4] [5] [6]
 File: ./figures//chapter1/章节流程图.png Graphic file (type bmp)
 <./figures//chapter1/章节流程图.png>
- [6]
+ [7]
 第2章
 File: ./figures//chapter2/系统坐标系建立.png Graphic file (type bmp)
 <./figures//chapter2/系统坐标系建立.png>
 LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/it' will be
-(Font)              scaled to size 12.045pt on input line 246.
+(Font)              scaled to size 12.045pt on input line 252.
 Requested font "[TeXGyreTermesX-Italic.otf]/OT:script=latn;language=dflt;-ss05;
 +tnum;+lnum;mapping=tex-text;" at 12.045pt
  -> c:/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Itali
 c.otf
-[7
+[8
 
 
 ]
@@ -2444,48 +2436,42 @@ File: ./figures//chapter2/特征变换.png Graphic file (type bmp)
 <./figures//chapter2/特征变换.png>
 File: ./figures//chapter2/视觉坐标系建立.png Graphic file (type bmp)
 <./figures//chapter2/视觉坐标系建立.png>
- [8]
-Package hyperref Info: bookmark level for unknown equation defaults to 0 on inp
-ut line 294.
  [9]
+Package hyperref Info: bookmark level for unknown equation defaults to 0 on inp
+ut line 300.
+ [10]
 File: ./figures//chapter2/基于moveit机器人仿真模型实现.png Graphic file (type bmp)
 <./figures//chapter2/基于moveit机器人仿真模型实现.png>
 File: ./figures//chapter2/IBVS基础控制流程方框图.png Graphic file (type bmp)
 <./figures//chapter2/IBVS基础控制流程方框图.png>
- [10]
+ [11]
 File: ./figures//chapter2/深度选择图.png Graphic file (type bmp)
 <./figures//chapter2/深度选择图.png>
-
-Underfull \hbox (badness 1248) in paragraph at lines 370--371
-[]\TU/FandolSong-Regular(0)/m/n/12.045 曲 线 是 分 析 问 题 非 常 重 要 的 一 环，|  所 以 仿 真 中
- 应 当 有 相 应 的 曲 线 绘 制。|
- []
-
-[11]
+ [12]
 File: ./figures//chapter2/基于VISP视觉伺服仿真.png Graphic file (type bmp)
 <./figures//chapter2/基于VISP视觉伺服仿真.png>
 File: ./figures//chapter2/实物环境搭建展示图.jpg Graphic file (type bmp)
 <./figures//chapter2/实物环境搭建展示图.jpg>
- [12]
+ [13]
 File: ./figures//chapter2/视觉伺服曲线绘制（初始）.png Graphic file (type bmp)
 <./figures//chapter2/视觉伺服曲线绘制（初始）.png>
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[13] [14]
+[14] [15]
 第3章
 File: ./figures//chapter3/实时抓取点生成.png Graphic file (type bmp)
 <./figures//chapter3/实时抓取点生成.png>
-[15
+[16
 
 
-] [16]
+] [17]
 File: ./figures//chapter3/基于模型的点云识别实操图.png Graphic file (type bmp)
 <./figures//chapter3/基于模型的点云识别实操图.png>
 File: ./figures//chapter3/基于模型的点云识别效果图.png Graphic file (type bmp)
 <./figures//chapter3/基于模型的点云识别效果图.png>
- [17]
+ [18]
 File: ./figures//chapter3/GG-CNN改进.png Graphic file (type bmp)
 <./figures//chapter3/GG-CNN改进.png>
 
@@ -2494,25 +2480,25 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 File: ./figures//chapter3/GG-CNN输出（初始）.png Graphic file (type bmp)
 <./figures//chapter3/GG-CNN输出（初始）.png>
-[18]
+[19]
 File: ./figures//chapter3/实时抓取点生成.png Graphic file (type bmp)
 <./figures//chapter3/实时抓取点生成.png>
- [19]
+ [20]
 File: ./figures//chapter3/神经网络原始输出.png Graphic file (type bmp)
 <./figures//chapter3/神经网络原始输出.png>
- [20] [21]
+ [21] [22]
 File: ./figures//chapter3/抓取点中心方法替代与角度滤波.png Graphic file (type bmp)
 <./figures//chapter3/抓取点中心方法替代与角度滤波.png>
- [22]
+ [23]
 第4章
 File: ./figures//chapter4/深度突变导致抓取点预测错误.png Graphic file (type bmp)
 <./figures//chapter4/深度突变导致抓取点预测错误.png>
 File: ./figures//chapter4/深度图修复前后对比.png Graphic file (type bmp)
 <./figures//chapter4/深度图修复前后对比.png>
-[23
+[24
 
 
-] [24]
+] [25]
 File: ./figures//chapter4/图像处理抑制边缘干扰a.png Graphic file (type bmp)
 <./figures//chapter4/图像处理抑制边缘干扰a.png>
 File: ./figures//chapter4/图像处理抑制边缘干扰b.png Graphic file (type bmp)
@@ -2531,22 +2517,22 @@ File: ./figures//chapter4/ORB特征点提取候选点.png Graphic file (type bmp
 <./figures//chapter4/ORB特征点提取候选点.png>
 File: ./figures//chapter4/ORB特征点匹配点聚集现象.png Graphic file (type bmp)
 <./figures//chapter4/ORB特征点匹配点聚集现象.png>
-[25] [26]
+[26] [27]
 File: ./figures//chapter4/俯视相机成图.png Graphic file (type bmp)
 <./figures//chapter4/俯视相机成图.png>
- [27]
+ [28]
 File: ./figures//chapter4/目标特征生成.png Graphic file (type bmp)
 <./figures//chapter4/目标特征生成.png>
 
 
-LaTeX Warning: Reference `指令发散' on page 28 undefined on input line 762.
+LaTeX Warning: Reference `指令发散' on page 29 undefined on input line 769.
 
 File: ./figures//chapter4/指令发散.png Graphic file (type bmp)
 <./figures//chapter4/指令发散.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[28]
+[29]
 File: ./figures//chapter4/44自定义当前特征.png Graphic file (type bmp)
 <./figures//chapter4/44自定义当前特征.png>
 File: ./figures//chapter4/44自定义目标特征.png Graphic file (type bmp)
@@ -2555,7 +2541,7 @@ File: ./figures//chapter4/44自定义目标特征.png Graphic file (type bmp)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[29]
+[30]
 File: ./figures//chapter4/迭代示意图.png Graphic file (type bmp)
 <./figures//chapter4/迭代示意图.png>
 
@@ -2564,32 +2550,71 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 File: ./figures//chapter4/迭代求前景前后对比.png Graphic file (type bmp)
 <./figures//chapter4/迭代求前景前后对比.png>
-[30]
+[31]
 
-LaTeX Warning: Reference `速度指令接近0的情况' on page 31 undefined on input line 829.
+LaTeX Warning: Reference `速度指令接近0的情况' on page 32 undefined on input line 836.
 
 File: ./figures//chapter4/Z轴速度接近0的情况.png Graphic file (type bmp)
 <./figures//chapter4/Z轴速度接近0的情况.png>
 File: ./figures//chapter4/优化自定义目标特征.png Graphic file (type bmp)
 <./figures//chapter4/优化自定义目标特征.png>
-[31]
+[32]
 File: ./figures//chapter4/优化自定义效果a.png Graphic file (type bmp)
 <./figures//chapter4/优化自定义效果a.png>
 File: ./figures//chapter4/优化自定义效果b.png Graphic file (type bmp)
 <./figures//chapter4/优化自定义效果b.png>
- [32] [33]
+ [33] [34]
 第5章
-[34
+[35
 
 
 ]
+File: ./figures//chapter5/笔袋初始位姿.png Graphic file (type bmp)
+<./figures//chapter5/笔袋初始位姿.png>
 File: ./figures//chapter5/绘制曲线选取特征点.png Graphic file (type bmp)
 <./figures//chapter5/绘制曲线选取特征点.png>
+File: ./figures//chapter5/替身.png Graphic file (type bmp)
+<./figures//chapter5/替身.png>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[36]
+File: ./figures//chapter5/替身.png Graphic file (type bmp)
+<./figures//chapter5/替身.png>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[37]
+File: ./figures//chapter5/替身.png Graphic file (type bmp)
+<./figures//chapter5/替身.png>
 File: ./figures//chapter5/绘制曲线选取特征点.png Graphic file (type bmp)
 <./figures//chapter5/绘制曲线选取特征点.png>
- [35] [36] [37] [38]
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[38]
+File: ./figures//chapter5/替身.png Graphic file (type bmp)
+<./figures//chapter5/替身.png>
+ [39]
+File: ./figures//chapter5/替身.png Graphic file (type bmp)
+<./figures//chapter5/替身.png>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: ./figures//chapter5/替身.png Graphic file (type bmp)
+<./figures//chapter5/替身.png>
+[40]
+File: ./figures//chapter5/控制示意框图.png Graphic file (type bmp)
+<./figures//chapter5/控制示意框图.png>
+ [41] [42]
 第6章
-[39
+File: ./figures//chapter6/替身.png Graphic file (type bmp)
+<./figures//chapter6/替身.png>
+[43
 
 
 ]
@@ -2680,7 +2705,7 @@ Requested font "ntxbexx" at 5.0pt
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.53937> not available
-(Font)              size <10.95> substituted on input line 1026.
+(Font)              size <10.95> substituted on input line 1099.
 
 Requested font "rsfs10" at 10.95pt
  -> c:/texlive/2022/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
@@ -2694,44 +2719,49 @@ Requested font "tcrm0700" at 7.0pt
  -> c:/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/tcrm0700.tfm
 Requested font "tcrm0500" at 5.0pt
  -> c:/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/tcrm0500.tfm
-[40] [41] [42]
+[44]
+Requested font "[TeXGyreTermesX-Regular.otf]/OT" at 10.53934pt
+ -> c:/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regul
+ar.otf
+Requested font "[TeXGyreTermesX-Regular.otf]/OT:script=latn;language=dflt;" at 
+10.5394pt
+ -> c:/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regul
+ar.otf
+LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(1)/m/n' will be
+(Font)              scaled to size 10.53937pt on input line 1158.
+Requested font "[TeXGyreTermesX-Regular.otf]/OT:script=latn;language=dflt;-ss05
+;+tnum;+lnum;+sups;mapping=tex-text;" at 10.53937pt
+ -> c:/texlive/2022/texmf-dist/fonts/opentype/public/newtx/TeXGyreTermesX-Regul
+ar.otf
+File: ./figures//chapter6/对比工作伺服效果.png Graphic file (type bmp)
+<./figures//chapter6/对比工作伺服效果.png>
+ [45]
+File: ./figures//chapter6/替身.png Graphic file (type bmp)
+<./figures//chapter6/替身.png>
+File: ./figures//chapter6/替身.png Graphic file (type bmp)
+<./figures//chapter6/替身.png>
+File: ./figures//chapter6/替身.png Graphic file (type bmp)
+<./figures//chapter6/替身.png>
+File: ./figures//chapter6/替身.png Graphic file (type bmp)
+<./figures//chapter6/替身.png>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[46] [47]
 \openout2 = `back/conclusion.aux'.
 
- (./back/conclusion.tex [43
+ (./back/conclusion.tex [48
 
 
 
 
-]) [44] (./thesis.bbl [45
+]) [49] (./thesis.bbl [50
 
 
 
 
-])
-File: scan.pdf Graphic file (type pdf)
-<use scan.pdf>
-File: scan.pdf Graphic file (type pdf)
-<use scan.pdf>
-File: scan.pdf Graphic file (type pdf)
-<use scan.pdf, page 1>
-File: scan.pdf Graphic file (type pdf)
-<use scan.pdf, page 1>
- [46]
-File: scan.pdf Graphic file (type pdf)
-<use scan.pdf, page 1>
-File: scan.pdf Graphic file (type pdf)
-<use scan.pdf, page 1>
-File: scan.pdf Graphic file (type pdf)
-<use scan.pdf, page 1>
-
-[47]
-\openout2 = `back/acknowledgements.aux'.
-
- (./back/acknowledgements.tex) [48
-
-
-
-]
+] [51])
 \tf@thm=\write9
 \openout9 = `thesis.thm'.
 
@@ -2741,7 +2771,7 @@ Package glossaries Warning: No \printglossary or \printglossaries found.
 (Remove \makeglossaries if you don't want any glossaries.) 
 This document will not have a glossary.
 
-(./thesis.aux (./back/conclusion.aux) (./back/acknowledgements.aux))
+[52] (./thesis.aux (./back/conclusion.aux))
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.65625pt have occurred.
@@ -2756,15 +2786,15 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 883F08B98438E786BCFE62C08EA434F1;9177.
+(rerunfilecheck)             Checksum: 88596DEF40A3D60F892EE5CC8423DB62;8672.
  ) 
 Here is how much of TeX's memory you used:
- 46215 strings out of 476133
- 987104 string characters out of 5811991
- 1271326 words of memory out of 5000000
- 66062 multiletter control sequences out of 15000+600000
- 530173 words of font info for 206 fonts, out of 8000000 for 9000
+ 46300 strings out of 476133
+ 986501 string characters out of 5811991
+ 1270666 words of memory out of 5000000
+ 66143 multiletter control sequences out of 15000+600000
+ 530197 words of font info for 209 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 106i,17n,111p,2554b,1083s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 106i,14n,111p,2554b,1135s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on thesis.pdf (56 pages).
+Output written on thesis.pdf (60 pages).

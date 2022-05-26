@@ -67,44 +67,44 @@
 在工业、服务业智能化发展的大背景下，视觉伺服几乎已是现在自动化工厂不可缺少的部分。由于产品寿命短，生产线经常变动，工业机器人不可避免的要从固定模式的运动控制到更为灵活的行为模式中去。
 
 
-本文将针对未知物体的IBVS抓取算法中涉及到的抓取点自主生成、图像特征的稳定提取与匹配、IBVS伺服性能提升等关键问题进行深入研究。
+本文将针对未知物体的IBVS抓取算法中涉及到的抓取点自主生成、图像特征的稳定提取与匹配、IBVS伺服性能优化等关键问题进行深入研究。
 
 
 主要研究内容包括以下几个方面：
 
 
-首先，建立了IBVS系统模型，其中包括系统坐标系和视觉坐标系的建立，推导了各坐标系之间的变换关系以及IBVS要求的特征点位置获取的公式。研究了基于特征点交互矩阵的IBVS的原理，并搭建仿真环境。搭建了实物运行环境，成功运行IBVS算法。
+首先，建立了IBVS系统模型，其中包括系统坐标系和视觉坐标系的建立，推导了各坐标系之间的变换关系以及IBVS算法所需要的的特征点位置信息的获取公式。研究了基于特征点交互矩阵的IBVS的原理，并搭建仿真环境。随后搭建了实物运行环境，成功运行IBVS算法。
 
 
-其次，针对伺服目标如何自主生成的问题研究了基于模型的点云识别和配准以及抓取点生成网络两种方式的原理和生成效果。根据它们的实时性、可靠性确定了抓取点生成网络和一阶图像矩搭配的方式作为伺服目标自主生成的方案。优化了抓取点生成网络提升了网络预测正确率。使用卡尔曼滤波算法让网络预测的角度输出变得稳定。
+其次，针对伺服目标如何自主生成的问题研究了基于模型的点云识别和配准以及抓取点生成网络两种方式的原理和生成效果。根据它们的实时性、可靠性确定了抓取点生成网络和一阶图像矩搭配的方式作为伺服目标自主生成的方案。优化了抓取点生成网络，提升了网络预测正确率。然后使用卡尔曼滤波算法让网络预测的角度输出变得稳定，抓取点生成此时也变得十分可靠，可以用于实时视觉伺服。
 
 
-再次，结合前面研究的内容对未知形状、位姿随机的目标的抓取展开研究。结合ORB特征的提取与匹配，提出了一种基于抓取点的IBVS，根据不断失败的经验，又提出了基于抓取点的自定义特征。该方法解决了速度指令波动大和关于特征点匹配的可靠性、顺序一致性等问题。面对当前伺服性能差的问题，对当前特征偏差曲线进行分析，优化了IBVS控制律。对于出现的特征偏差对末端速度指令关联的不对称性问题和噪声问题提出一种自适应的算法进行解决。
+再次，结合前面研究的内容对未知形状、位姿随机的目标的抓取展开研究。结合ORB特征的提取与匹配，提出了一种基于抓取点的IBVS，根据不断失败的经验，又提出了基于抓取点的自定义特征。该方法解决了速度指令波动大和关于特征点匹配的可靠性差、顺序不确定等问题。面对当前伺服性能差的问题，对当前特征偏差曲线进行分析，通过PD控制器和自适应算法优化了系统伺服性能。设计滑模控制器抑制了物体表面深度估计不确定性带来的系统模型摄动的问题所造成的指令波动。注意到出现的特征偏差收敛速度不一致问题，提出了一种自适应的算法，再次提升了系统的伺服性能。
 
 
-最后，设计实验，通过多样的物体、多样的位姿的抓取实验验证提出的未知物体抓取算法的有效性。与相关工作进行比较，证明当前算法的高自适应能力和高伺服性能。
+最后，设计了抓取实验，通过多样的物体、多样的位姿的抓取实验结果验证提出的未知物体抓取算法的有效性。与相关工作的抓取成功率和伺服效果进行比较，证明当前算法的高自适应能力和高伺服性能。
 
 
 \end{cabstract}
 
 \begin{eabstract}
-   In the context of the intelligent development of industry and service industries, visual servoing has almost become an indispensable part of automated factories. Due to the short product life and frequent changes of production lines, it is inevitable for industrial robots to move from a fixed mode of motion control to a more flexible behavioral mode.
-   
-   
-   This paper will conduct in-depth research on the key issues involved in the IBVS grasping algorithm of unknown objects, such as the autonomous generation of grasping points, the stable extraction and matching of image features, and the improvement of IBVS servo performance.
-   
-   
-   The main research contents include the following aspects:
-   
-   
-   First, the IBVS system model is established, including the establishment of the system coordinate system and the visual coordinate system, and the transformation relationship between the coordinate systems and the formula for obtaining the position of the feature points required by IBVS are deduced. The principle of IBVS based on feature point interaction matrix is ​​studied, and the simulation environment is built. A physical operating environment was built, and the IBVS algorithm was successfully run.
-   
-   
-   Secondly, the principle and generation effect of two methods of model-based point cloud recognition and registration and grasp point generation network are studied for the problem of how to generate servo targets autonomously. According to their real-time and reliability, the method of generating network of grab points and first-order image moments is determined as the scheme for autonomous generation of servo targets. Optimized the grab point generation network to improve the accuracy of network prediction. The Kalman filter algorithm is used to stabilize the angle output predicted by the network.
-   
-   
-   Thirdly, combined with the content of the previous research, the grasp of the unknown shape and random pose is studied. Combined with the extraction and matching of ORB features, an IBVS based on grasp points is proposed. According to the experience of continuous failure, a custom feature based on grasp points is proposed. This method solves the problems of large fluctuation of speed command, reliability and order consistency of feature point matching. Facing the problem of poor current servo performance, the current characteristic deviation was analyzed in time domain and frequency domain, and the IBVS control law was optimized. An adaptive algorithm is proposed to solve the asymmetry and noise problems associated with the terminal speed command due to the characteristic deviation.
+   In the highly developed blockbusters of industry and services, automation is now almost impossible due to the longevity of the products. flexible behavior patterns.
 
 
-	Finally, experiments are designed to verify the effectiveness of the proposed unknown object grasping algorithm through grasping experiments of various objects and various poses. The comparison with related work demonstrates the high adaptive ability and high servo performance of the current algorithm.
+This paper will conduct in-depth research on key image issues such as stable generation of acquisition points, feature extraction and matching, and IBVS server performance involved in the IBVS grabbing algorithm for target brightness.
+
+
+The main research contents include the following aspects:
+
+
+First, the IBVS system model is established, including the establishment of the system coordinate system and the vision system, which promotes the transformation of the relationship between the coordinate systems and the acquisition formula of the feature point information required by the IBVS algorithm. IB example and successfully run the IB example.
+
+
+Secondly, the principle and generation effect of two methods of model-based point cloud recognition and registration and grasp point generation network are studied for the problem of how to generate servo targets autonomously. According to their real-time and reliability, the method of generating network of grab points and first-order image moments is determined as the scheme for autonomous generation of servo targets. Optimized the grab point generation network and improved the accuracy of network prediction. Then, the Kalman filtering algorithm is used to stabilize the angle output predicted by the network, and the generation of grasping points becomes very reliable at this time, which can be used for real-time visual servoing.
+
+
+Thirdly, combined with the content of the previous research, the grasp of the unknown shape and random pose is studied. Combined with the extraction and matching of ORB features, an IBVS based on grasp points is proposed. According to the experience of continuous failure, a custom feature based on grasp points is proposed. This method solves the problems of large fluctuation of speed command, poor reliability of feature point matching, and uncertainty of sequence. Faced with the problem of poor current servo performance, the current characteristic deviation curve is analyzed, and the system servo performance is optimized through PD controller and adaptive algorithm. The sliding mode controller is designed to suppress the command fluctuation caused by the perturbation of the system model caused by the uncertainty of the depth estimation of the object surface. Noticing the inconsistency of feature deviation convergence speed, an adaptive algorithm is proposed, which improves the servo performance of the system again.
+
+
+Finally, a grasping experiment is designed, and the effectiveness of the proposed unknown object grasping algorithm is verified by the grasping experiment results of various objects and various poses. Comparing with the grasping success rate and servo effect of related work, it proves the high adaptive ability and high servo performance of the current algorithm.
 \end{eabstract}

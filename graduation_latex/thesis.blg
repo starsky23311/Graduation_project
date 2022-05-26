@@ -3,49 +3,48 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: thesis.aux
 A level-1 auxiliary file: back/conclusion.aux
 The style file: hithesis.bst
-A level-1 auxiliary file: back/acknowledgements.aux
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: reference.bib
-You've used 24 entries,
+You've used 30 entries,
             3107 wiz_defined-function locations,
-            852 strings with 10318 characters,
-and the built_in function-call counts, 42906 in all, are:
-= -- 4729
-> -- 81
-< -- 186
-+ -- 3777
-- -- 288
-* -- 1129
-:= -- 4757
+            885 strings with 11722 characters,
+and the built_in function-call counts, 55150 in all, are:
+= -- 6103
+> -- 104
+< -- 238
++ -- 4868
+- -- 371
+* -- 1424
+:= -- 6123
 add.period$ -- 0
-call.type$ -- 24
+call.type$ -- 30
 change.case$ -- 0
 chr.to.int$ -- 0
-cite$ -- 24
-duplicate$ -- 6109
-empty$ -- 1668
-format.name$ -- 228
-if$ -- 11493
+cite$ -- 30
+duplicate$ -- 7881
+empty$ -- 2140
+format.name$ -- 296
+if$ -- 14792
 int.to.chr$ -- 0
-int.to.str$ -- 24
+int.to.str$ -- 30
 missing$ -- 0
-newline$ -- 99
-num.names$ -- 24
-pop$ -- 635
+newline$ -- 117
+num.names$ -- 30
+pop$ -- 811
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 380
+skip$ -- 483
 stack$ -- 0
-substring$ -- 5129
-swap$ -- 1167
+substring$ -- 6623
+swap$ -- 1456
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 582
-width$ -- 26
-write$ -- 346
+while$ -- 745
+width$ -- 32
+write$ -- 422

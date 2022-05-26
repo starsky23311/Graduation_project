@@ -129,6 +129,39 @@
   Conference on Robotics and Automation (ICRA)}\@. \bibyear{2019}\textnormal{:
   }\bibpages{6604\textnormal{-}6610}\@.
 
+\bibitem{lenz2015deep}
+\bibauthor{Lenz I\@, Lee H\@, Saxena A}\@. \bibtitle{Deep learning for
+  detecting robotic grasps}\bibmark{[J]}\@. \bibjournal{The International
+  Journal of Robotics Research}\@, \bibyear{2015}\@,
+  \bibvolume{34}\bibnumber{(4-5)}\textnormal{:
+  }\bibpages{705\textnormal{-}724}\@.
+
+\bibitem{pinto2016supersizing}
+\bibauthor{Pinto L\@, Gupta A}\@. \bibtitle{Supersizing self-supervision:
+  Learning to grasp from 50k tries and 700 robot hours}\bibmark{[C]}
+  //\thinspace{}\bibbooktitle{2016 IEEE international conference on robotics
+  and automation (ICRA)}\@. \bibyear{2016}\textnormal{:
+  }\bibpages{3406\textnormal{-}3413}\@.
+
+\bibitem{johns2016deep}
+\bibauthor{Johns E\@, Leutenegger S\@, Davison A~J}\@. \bibtitle{Deep learning
+  a grasp function for grasping under gripper pose uncertainty}\bibmark{[C]}
+  //\thinspace{}\bibbooktitle{2016 IEEE/RSJ International Conference on
+  Intelligent Robots and Systems (IROS)}\@. \bibyear{2016}\textnormal{:
+  }\bibpages{4461\textnormal{-}4468}\@.
+
+\bibitem{haviland2020control}
+\bibauthor{Haviland J\@, Dayoub F\@, Corke P}\@. \bibtitle{Control of the
+  final-phase of closed-loop visual grasping using image-based visual
+  servoing}\bibmark{[J]}\@. \bibjournal{arXiv preprint arXiv:2001.05650}\@,
+  \bibyear{2020}\@.
+
+\bibitem{viereck2017learning}
+\bibauthor{Viereck U\@, Pas A\@, Saenko K, et~al}\@. \bibtitle{Learning a
+  visuomotor controller for real world robotic grasping using simulated depth
+  images}\bibmark{[C]} //\thinspace{}\bibbooktitle{Conference on Robot
+  Learning}\@. \bibyear{2017}\textnormal{: }\bibpages{291\textnormal{-}300}\@.
+
 \bibitem{chetverikov2002trimmed}
 \bibauthor{Chetverikov D\@, Svirko D\@, Stepanov D, et~al}\@. \bibtitle{The
   trimmed iterative closest point algorithm}\bibmark{[C]}
@@ -174,10 +207,18 @@
   \bibyear{2018}\@, \bibvolume{16}\bibnumber{(2)}\textnormal{:
   }\bibpages{844\textnormal{-}855}\@.
 
-\bibitem{haviland2020control}
-\bibauthor{Haviland J\@, Dayoub F\@, Corke P}\@. \bibtitle{Control of the
-  final-phase of closed-loop visual grasping using image-based visual
-  servoing}\bibmark{[J]}\@. \bibjournal{arXiv preprint arXiv:2001.05650}\@,
-  \bibyear{2020}\@.
+\bibitem{mahler2017dex}
+\bibauthor{Mahler J\@, Liang J\@, Niyaz S, et~al}\@. \bibtitle{Dex-net 2.0:
+  Deep learning to plan robust grasps with synthetic point clouds and analytic
+  grasp metrics}\bibmark{[J]}\@. \bibjournal{arXiv preprint
+  arXiv:1703.09312}\@, \bibyear{2017}\@.
+
+\bibitem{levine2018learning}
+\bibauthor{Levine S\@, Pastor P\@, Krizhevsky A, et~al}\@. \bibtitle{Learning
+  hand-eye coordination for robotic grasping with deep learning and large-scale
+  data collection}\bibmark{[J]}\@. \bibjournal{The International journal of
+  robotics research}\@, \bibyear{2018}\@,
+  \bibvolume{37}\bibnumber{(4-5)}\textnormal{:
+  }\bibpages{421\textnormal{-}436}\@.
 
 \end{thebibliography}
