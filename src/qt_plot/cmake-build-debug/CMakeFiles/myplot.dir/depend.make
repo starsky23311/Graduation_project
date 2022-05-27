@@ -1943,7 +1943,6 @@ CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-1
 CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtPrintSupport/qtprintsupport-config.h
 CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtPrintSupport/qtprintsupportglobal.h
 CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtPrintSupport/qtprintsupportversion.h
-CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QAction
 CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QApplication
 CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QCommonStyle
 CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QGridLayout
@@ -1951,11 +1950,11 @@ CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-1
 CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QHBoxLayout
 CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QLayout
 CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QMainWindow
-CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QMenu
 CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QMenuBar
 CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QPushButton
 CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QScrollerProperties
 CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QStatusBar
+CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QVBoxLayout
 CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QWidget
 CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QtWidgets
 CMakeFiles/myplot.dir/src/mainwindow.cpp.o: /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QtWidgetsDepends

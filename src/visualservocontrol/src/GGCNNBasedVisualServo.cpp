@@ -847,6 +847,8 @@ private:
 };
 class NetGraspFeature2D{
 public:
+
+
     NetGraspFeature2D(){
         this->feature_points_num = 21;
         this->range_max = 200;
@@ -857,6 +859,8 @@ public:
 
         sd.resize(feature_points_num);s.resize(feature_points_num);
         featureModelInit(range_max);
+        this->point_selected.resize(8);
+        this->point_selected = {0,1,2,3,4,6,8,10};
     }
     ~NetGraspFeature2D(){}
     void drawSquares(cv::Mat& img2draw)
@@ -961,13 +965,22 @@ public:
 //        }
         v = dataSmooth(v, 10, 0.05);
         message.data = "["+ to_string(v[0]) + ',' + to_string(v[1]) + ','+ to_string(v[2]) + ','+ to_string(v[5]) + ']';;
+        message_error_xy.data = "[";
+        for(int i = 0;i < 8;i++){
+            message_error_xy.data += (to_string(e[point_selected[i]*2]) + ',' + to_string(e[point_selected[i]*2+1]) + ',');
+        }
 
+        message_error_xy.data += (to_string(e.sumSquare()) + ']');
 
 //        message.data = "["+ to_string(v) + ',' + to_string(v+1) + ','+ to_string(v+2) + ','+ to_string(v+3) + ']';
 
 
 
         return message;
+    }
+    std_msgs::msg::String getErrorXY()
+    {
+        return message_error_xy;
     }
     float getError(){
         return e.sumSquare();
@@ -1104,6 +1117,9 @@ private:
     std::vector<vpFeaturePoint> sd; //The desired point feature.
     std::vector<vpFeaturePoint> s;
     vpColVector v;
+//  曲线绘制
+    std_msgs::msg::String message_error_xy;
+    vector<int> point_selected;
 
 //  友元类
     friend class GGCNNBasedVisualServo;
@@ -1132,6 +1148,7 @@ public:
         this->subscription_encoderdepth = this->create_subscription<std_msgs::msg::String>(
                 "EncoderDepth", 5, std::bind(&GGCNNBasedVisualServo::encoderdepth_callback, this, std::placeholders::_1));
         this->publisher_speedcommand = this->create_publisher<std_msgs::msg::String>("SpeedCommand", 5);
+        this->publisher_errorxy = this->create_publisher<std_msgs::msg::String>("ErrorXY", 5);
         this->encoder_depth = 0;this->target_depth = 0;
     }
 
@@ -1290,6 +1307,7 @@ public:
             switch (this->running_state.running_mode) {
                 case RunningState::RunningMode::Tracking:
                     this->publisher_speedcommand->publish(net_grasp_feature.getSpeedCommand());
+                    this->publisher_errorxy->publish(net_grasp_feature.getErrorXY());
                     break;
                 case RunningState::RunningMode::Grasp:
 
@@ -1298,6 +1316,7 @@ public:
                     auto message = std_msgs::msg::String();
                     message.data = "[0,0,0,0]";
                     this->publisher_speedcommand->publish(message);
+                    this->publisher_errorxy->publish(net_grasp_feature.getErrorXY());
                     break;
             }//f
         }
@@ -1466,6 +1485,7 @@ private:
     rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_grasp;
     rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_encoderdepth;
     rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_speedcommand;
+    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_errorxy;
     //subscriber callback
     void aligndepth_callback(const sensor_msgs::msg::Image::SharedPtr msg)
     {

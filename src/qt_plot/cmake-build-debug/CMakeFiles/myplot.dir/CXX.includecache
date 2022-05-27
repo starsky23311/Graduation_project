@@ -3726,10 +3726,6 @@ QtPrintSupport/qtprintsupport-config.h
 
 /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtPrintSupport/qtprintsupportversion.h
 
-/home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QAction
-qaction.h
-/home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/qaction.h
-
 /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QApplication
 qapplication.h
 /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/qapplication.h
@@ -3758,10 +3754,6 @@ qlayout.h
 qmainwindow.h
 /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/qmainwindow.h
 
-/home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QMenu
-qmenu.h
-/home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/qmenu.h
-
 /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QMenuBar
 qmenubar.h
 /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/qmenubar.h
@@ -3777,6 +3769,10 @@ qscrollerproperties.h
 /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QStatusBar
 qstatusbar.h
 /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/qstatusbar.h
+
+/home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QVBoxLayout
+qboxlayout.h
+/home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/qboxlayout.h
 
 /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QWidget
 qwidget.h
@@ -9151,8 +9147,6 @@ tracetools/visibility_control.hpp
 myplot_autogen/include/ui_mainwindow.h
 QtCore/QVariant
 -
-QtWidgets/QAction
--
 QtWidgets/QApplication
 -
 QtWidgets/QGridLayout
@@ -9163,13 +9157,13 @@ QtWidgets/QHBoxLayout
 -
 QtWidgets/QMainWindow
 -
-QtWidgets/QMenu
--
 QtWidgets/QMenuBar
 -
 QtWidgets/QPushButton
 -
 QtWidgets/QStatusBar
+-
+QtWidgets/QVBoxLayout
 -
 QtWidgets/QWidget
 -

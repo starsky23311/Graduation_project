@@ -3,7 +3,7 @@
 /home/wzf/main_folder/MyProject/Graduation_project/src/qt_plot/src/qcustomplot.cpp
 /home/wzf/main_folder/MyProject/Graduation_project/src/qt_plot/src/mainwindow.cpp
  uic:./ui_mainwindow.h
-/home/wzf/main_folder/MyProject/Graduation_project/src/qt_plot/include/qt_plot/mainwindow.h
- mmc:Q_OBJECT
 /home/wzf/main_folder/MyProject/Graduation_project/src/qt_plot/include/qt_plot/qcustomplot.h
+ mmc:Q_OBJECT
+/home/wzf/main_folder/MyProject/Graduation_project/src/qt_plot/include/qt_plot/mainwindow.h
  mmc:Q_OBJECT

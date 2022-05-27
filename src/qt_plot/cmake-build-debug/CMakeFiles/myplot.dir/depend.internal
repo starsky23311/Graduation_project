@@ -1944,7 +1944,6 @@ CMakeFiles/myplot.dir/src/mainwindow.cpp.o
  /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtPrintSupport/qtprintsupport-config.h
  /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtPrintSupport/qtprintsupportglobal.h
  /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtPrintSupport/qtprintsupportversion.h
- /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QAction
  /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QApplication
  /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QCommonStyle
  /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QGridLayout
@@ -1952,11 +1951,11 @@ CMakeFiles/myplot.dir/src/mainwindow.cpp.o
  /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QHBoxLayout
  /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QLayout
  /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QMainWindow
- /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QMenu
  /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QMenuBar
  /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QPushButton
  /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QScrollerProperties
  /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QStatusBar
+ /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QVBoxLayout
  /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QWidget
  /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QtWidgets
  /home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets/QtWidgetsDepends

@@ -25,19 +25,41 @@ public:
 
         this->subscription_speedcommand = this->create_subscription<std_msgs::msg::String>(
                 "SpeedCommand", 5, std::bind(&DataReceiver::speedcommand_callback, this, std::placeholders::_1));
+        this->subscription_error_xy = this->create_subscription<std_msgs::msg::String>(
+                "ErrorXY", 5, std::bind(&DataReceiver::error_xy_callback, this, std::placeholders::_1));
+
         this->v.resize(6);
-        flag = false;
+        this->error_x.resize(8);
+        this->error_y.resize(8);
+        flag1 = false;
+        flag2 = false;
     }
     vector<float> getSpeedCommand()
     {
         return this->v;
     }
-    bool flag;
+    vector<float> getErrorX()
+    {
+        return this->error_x;
+    }
+    vector<float> getErrorY()
+    {
+        return this->error_y;
+    }
+    float getErrorSquMean()
+    {
+        return error_squmean;
+    }
+    bool flag1;
+    bool flag2;
 private:
 //速度指令
     vector<float> v;
-
+    vector<float> error_x;
+    vector<float> error_y;
+    float error_squmean;
     rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_speedcommand;
+    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_error_xy;
 
     void setSpeedCommand(const string& msg){
         if(*msg.begin() == '[' && *(msg.end()-1) == ']') {
@@ -51,16 +73,44 @@ private:
             }
         }
         else{
-            cout <<"Error MSG Of Grasp!"<<endl;
+            cout <<"Error MSG Of Speed!"<<endl;
             return ;
         }
     }
+    void setErrorXY(const string& msg){
+        if(*msg.begin() == '[' && *(msg.end()-1) == ']') {
+            string s1(msg.begin()+1,msg.end()-1),s2;
+            stringstream ss(s1);int num = 0;
+            while(getline(ss, s2, ',')) {
 
+                if(num % 2 == 0 && num != 16)
+                    this->error_x[num] = std::atof(s2.c_str());
+                else if(num % 2 == 1 && num != 16)
+                    this->error_y[num] = std::atof(s2.c_str());
+                else
+                    error_squmean = std::atof(s2.c_str());
+
+                num++;
+
+            }
+        }
+        else{
+            cout <<"Error MSG Of ErrorXY!"<<endl;
+            return ;
+        }
+    }
     void speedcommand_callback(const std_msgs::msg::String::SharedPtr msg)
     {
-        RCLCPP_INFO(this->get_logger(), "I heard EncoderDepth: %s",msg->data.c_str());
+        RCLCPP_INFO(this->get_logger(), "I heard SpeedCommand: %s",msg->data.c_str());
         this->setSpeedCommand(msg->data.c_str());
-        flag = true;
+        flag1 = true;
+//        this->encoder_depth = std::atof(msg->data.c_str());
+    }
+    void error_xy_callback(const std_msgs::msg::String::SharedPtr msg)
+    {
+        RCLCPP_INFO(this->get_logger(), "I heard ErrorXY: %s",msg->data.c_str());
+        this->setErrorXY(msg->data.c_str());
+        flag2 = true;
 //        this->encoder_depth = std::atof(msg->data.c_str());
     }
 };
@@ -72,7 +122,7 @@ public:
     ROS2_QT5(QWidget *parent = nullptr){
 
         qRegisterMetaType<vector<float>>("vector<float>");
-
+        qRegisterMetaType<float>("float");
 
     }
     ~ROS2_QT5(){}
@@ -81,7 +131,7 @@ public:
 //private slots:
 //    void realtimeDataSlot();
 signals:
-    void sendSpeedCommand(vector<float> speed_command);
+    void sendMessage2Plot(vector<float> speed_command,vector<float> error_x,vector<float> error_y,float error_squmean);
 public slots:
     void ros2_run(){
         char **argv=NULL;
@@ -90,9 +140,10 @@ public slots:
 //        rclcpp::WallRate loop_rate(10);
     while(rclcpp::ok){
         rclcpp::spin_some(DataReceiverTool);
-        if(DataReceiverTool->flag) {
-            DataReceiverTool->flag = false;
-            emit sendSpeedCommand(DataReceiverTool->getSpeedCommand());
+        if(DataReceiverTool->flag1 && DataReceiverTool->flag2) {
+            DataReceiverTool->flag1 = false;
+            DataReceiverTool->flag2 = false;
+            emit sendMessage2Plot(DataReceiverTool->getSpeedCommand(),DataReceiverTool->getErrorX(),DataReceiverTool->getErrorY(),DataReceiverTool->getErrorSquMean());
         }
 //        loop_rate.sleep();
     }
@@ -123,14 +174,19 @@ signals:
 
 private slots:
     void realtimeDataSlot();
-    void addQCustomPlotData(vector<float> y_data);
+    void addQCustomPlotData(vector<float> speed_command,vector<float> error_x,vector<float> error_y,float error_squmean);
+    void saveCurseData();
     void saveCurseImage();
     void clearPlotData();
+
 private:
     Ui::MainWindow *ui;
     QTime time;
     bool clear_flag = true;
     QCustomPlot* customPlot;
+    QCustomPlot* customPlot0;
+    QCustomPlot* customPlot1;
+    QCustomPlot* customPlot2;
     QTimer dataTimer;
     ROS2_QT5* ROS2_QT5_Tool;
     QThread* ROS2_QT5_thread;

@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ROS2_QT5_t {
-    QByteArrayData data[6];
-    char stringdata0[64];
+    QByteArrayData data[9];
+    char stringdata0[94];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,15 +32,19 @@ struct qt_meta_stringdata_ROS2_QT5_t {
 static const qt_meta_stringdata_ROS2_QT5_t qt_meta_stringdata_ROS2_QT5 = {
     {
 QT_MOC_LITERAL(0, 0, 8), // "ROS2_QT5"
-QT_MOC_LITERAL(1, 9, 16), // "sendSpeedCommand"
+QT_MOC_LITERAL(1, 9, 16), // "sendMessage2Plot"
 QT_MOC_LITERAL(2, 26, 0), // ""
 QT_MOC_LITERAL(3, 27, 13), // "vector<float>"
 QT_MOC_LITERAL(4, 41, 13), // "speed_command"
-QT_MOC_LITERAL(5, 55, 8) // "ros2_run"
+QT_MOC_LITERAL(5, 55, 7), // "error_x"
+QT_MOC_LITERAL(6, 63, 7), // "error_y"
+QT_MOC_LITERAL(7, 71, 13), // "error_squmean"
+QT_MOC_LITERAL(8, 85, 8) // "ros2_run"
 
     },
-    "ROS2_QT5\0sendSpeedCommand\0\0vector<float>\0"
-    "speed_command\0ros2_run"
+    "ROS2_QT5\0sendMessage2Plot\0\0vector<float>\0"
+    "speed_command\0error_x\0error_y\0"
+    "error_squmean\0ros2_run"
 };
 #undef QT_MOC_LITERAL
 
@@ -58,13 +62,13 @@ static const uint qt_meta_data_ROS2_QT5[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   24,    2, 0x06 /* Public */,
+       1,    4,   24,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,   27,    2, 0x0a /* Public */,
+       8,    0,   33,    2, 0x0a /* Public */,
 
  // signals: parameters
-    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3, 0x80000000 | 3, QMetaType::Float,    4,    5,    6,    7,
 
  // slots: parameters
     QMetaType::Void,
@@ -78,15 +82,15 @@ void ROS2_QT5::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         auto *_t = static_cast<ROS2_QT5 *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->sendSpeedCommand((*reinterpret_cast< vector<float>(*)>(_a[1]))); break;
+        case 0: _t->sendMessage2Plot((*reinterpret_cast< vector<float>(*)>(_a[1])),(*reinterpret_cast< vector<float>(*)>(_a[2])),(*reinterpret_cast< vector<float>(*)>(_a[3])),(*reinterpret_cast< float(*)>(_a[4]))); break;
         case 1: _t->ros2_run(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (ROS2_QT5::*)(vector<float> );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ROS2_QT5::sendSpeedCommand)) {
+            using _t = void (ROS2_QT5::*)(vector<float> , vector<float> , vector<float> , float );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ROS2_QT5::sendMessage2Plot)) {
                 *result = 0;
                 return;
             }
@@ -135,14 +139,14 @@ int ROS2_QT5::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void ROS2_QT5::sendSpeedCommand(vector<float> _t1)
+void ROS2_QT5::sendMessage2Plot(vector<float> _t1, vector<float> _t2, vector<float> _t3, float _t4)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[9];
-    char stringdata0[114];
+    QByteArrayData data[13];
+    char stringdata0[165];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -157,15 +161,20 @@ QT_MOC_LITERAL(2, 27, 0), // ""
 QT_MOC_LITERAL(3, 28, 16), // "realtimeDataSlot"
 QT_MOC_LITERAL(4, 45, 18), // "addQCustomPlotData"
 QT_MOC_LITERAL(5, 64, 13), // "vector<float>"
-QT_MOC_LITERAL(6, 78, 6), // "y_data"
-QT_MOC_LITERAL(7, 85, 14), // "saveCurseImage"
-QT_MOC_LITERAL(8, 100, 13) // "clearPlotData"
+QT_MOC_LITERAL(6, 78, 13), // "speed_command"
+QT_MOC_LITERAL(7, 92, 7), // "error_x"
+QT_MOC_LITERAL(8, 100, 7), // "error_y"
+QT_MOC_LITERAL(9, 108, 13), // "error_squmean"
+QT_MOC_LITERAL(10, 122, 13), // "saveCurseData"
+QT_MOC_LITERAL(11, 136, 14), // "saveCurseImage"
+QT_MOC_LITERAL(12, 151, 13) // "clearPlotData"
 
     },
     "MainWindow\0ros2_run_signal\0\0"
     "realtimeDataSlot\0addQCustomPlotData\0"
-    "vector<float>\0y_data\0saveCurseImage\0"
-    "clearPlotData"
+    "vector<float>\0speed_command\0error_x\0"
+    "error_y\0error_squmean\0saveCurseData\0"
+    "saveCurseImage\0clearPlotData"
 };
 #undef QT_MOC_LITERAL
 
@@ -175,7 +184,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -183,20 +192,22 @@ static const uint qt_meta_data_MainWindow[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   39,    2, 0x06 /* Public */,
+       1,    0,   44,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   40,    2, 0x08 /* Private */,
-       4,    1,   41,    2, 0x08 /* Private */,
-       7,    0,   44,    2, 0x08 /* Private */,
-       8,    0,   45,    2, 0x08 /* Private */,
+       3,    0,   45,    2, 0x08 /* Private */,
+       4,    4,   46,    2, 0x08 /* Private */,
+      10,    0,   55,    2, 0x08 /* Private */,
+      11,    0,   56,    2, 0x08 /* Private */,
+      12,    0,   57,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 5,    6,
+    QMetaType::Void, 0x80000000 | 5, 0x80000000 | 5, 0x80000000 | 5, QMetaType::Float,    6,    7,    8,    9,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -211,9 +222,10 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->ros2_run_signal(); break;
         case 1: _t->realtimeDataSlot(); break;
-        case 2: _t->addQCustomPlotData((*reinterpret_cast< vector<float>(*)>(_a[1]))); break;
-        case 3: _t->saveCurseImage(); break;
-        case 4: _t->clearPlotData(); break;
+        case 2: _t->addQCustomPlotData((*reinterpret_cast< vector<float>(*)>(_a[1])),(*reinterpret_cast< vector<float>(*)>(_a[2])),(*reinterpret_cast< vector<float>(*)>(_a[3])),(*reinterpret_cast< float(*)>(_a[4]))); break;
+        case 3: _t->saveCurseData(); break;
+        case 4: _t->saveCurseImage(); break;
+        case 5: _t->clearPlotData(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -257,13 +269,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 6)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }
