@@ -38,6 +38,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtWidgets"
   "/home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtOpenGL"
   "/home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtXml"
+  "/usr/include/opencv4"
   "/opt/ros/foxy/include"
   "/home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/include/QtPrintSupport"
   )

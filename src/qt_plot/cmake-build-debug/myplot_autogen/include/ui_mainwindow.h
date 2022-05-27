@@ -14,6 +14,7 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -48,6 +49,8 @@ public:
     QCustomPlot *customPlot1;
     QCustomPlot *customPlot2;
     QVBoxLayout *verticalLayout_5;
+    QLabel *color_image;
+    QLabel *depth_image;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -169,6 +172,16 @@ public:
 
         verticalLayout_5 = new QVBoxLayout();
         verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
+        color_image = new QLabel(centralwidget);
+        color_image->setObjectName(QString::fromUtf8("color_image"));
+
+        verticalLayout_5->addWidget(color_image);
+
+        depth_image = new QLabel(centralwidget);
+        depth_image->setObjectName(QString::fromUtf8("depth_image"));
+
+        verticalLayout_5->addWidget(depth_image);
+
 
         horizontalLayout->addLayout(verticalLayout_5);
 
@@ -201,6 +214,8 @@ public:
 #ifndef QT_NO_WHATSTHIS
         widget->setWhatsThis(QString());
 #endif // QT_NO_WHATSTHIS
+        color_image->setText(QString());
+        depth_image->setText(QString());
     } // retranslateUi
 
 };

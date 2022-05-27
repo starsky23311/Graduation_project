@@ -267,6 +267,9 @@ OPENSSL_INCLUDE_DIR:PATH=/usr/include
 //Path to a library.
 OPENSSL_SSL_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libssl.so
 
+//The directory containing a CMake configuration file for OpenCV.
+OpenCV_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/opencv4
+
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 
@@ -303,11 +306,17 @@ Qt5Xml_DIR:PATH=/home/wzf/MyLibrary/QT_5_12_9/qt-5-12-9-run/5.12.9/gcc_64/lib/cm
 //Name of the computer/site where compile is being run
 SITE:STRING=wzf-ROG-Strix-G733ZW-G733ZW
 
+//Path to a file.
+TINYXML2_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a library.
+TINYXML2_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libtinyxml2.so
+
 //The directory containing a CMake configuration file for TinyXML2.
 TinyXML2_DIR:PATH=TinyXML2_DIR-NOTFOUND
 
 //Path to a library.
-_lib:FILEPATH=/opt/ros/foxy/lib/librosgraph_msgs__rosidl_typesupport_fastrtps_cpp.so
+_lib:FILEPATH=/opt/ros/foxy/lib/libclass_loader.so
 
 //The directory containing a CMake configuration file for ament_cmake.
 ament_cmake_DIR:PATH=/opt/ros/foxy/share/ament_cmake/cmake
@@ -387,6 +396,12 @@ ament_cppcheck_BIN:FILEPATH=/opt/ros/foxy/bin/ament_cppcheck
 //Path to a program.
 ament_cpplint_BIN:FILEPATH=/opt/ros/foxy/bin/ament_cpplint
 
+//Path to a program.
+ament_flake8_BIN:FILEPATH=/opt/ros/foxy/bin/ament_flake8
+
+//The directory containing a CMake configuration file for ament_index_cpp.
+ament_index_cpp_DIR:PATH=/opt/ros/foxy/share/ament_index_cpp/cmake
+
 //The directory containing a CMake configuration file for ament_lint_auto.
 ament_lint_auto_DIR:PATH=/opt/ros/foxy/share/ament_lint_auto/cmake
 
@@ -397,6 +412,9 @@ ament_lint_cmake_BIN:FILEPATH=/opt/ros/foxy/bin/ament_lint_cmake
 ament_lint_common_DIR:PATH=/opt/ros/foxy/share/ament_lint_common/cmake
 
 //Path to a program.
+ament_pep257_BIN:FILEPATH=/opt/ros/foxy/bin/ament_pep257
+
+//Path to a program.
 ament_uncrustify_BIN:FILEPATH=/opt/ros/foxy/bin/ament_uncrustify
 
 //Path to a program.
@@ -404,6 +422,15 @@ ament_xmllint_BIN:FILEPATH=/opt/ros/foxy/bin/ament_xmllint
 
 //The directory containing a CMake configuration file for builtin_interfaces.
 builtin_interfaces_DIR:PATH=/opt/ros/foxy/share/builtin_interfaces/cmake
+
+//The directory containing a CMake configuration file for class_loader.
+class_loader_DIR:PATH=/opt/ros/foxy/share/class_loader/cmake
+
+//The directory containing a CMake configuration file for console_bridge.
+console_bridge_DIR:PATH=/opt/ros/foxy/lib/x86_64-linux-gnu/console_bridge/cmake
+
+//The directory containing a CMake configuration file for cv_bridge.
+cv_bridge_DIR:PATH=/opt/ros/foxy/share/cv_bridge/cmake
 
 //The directory containing a CMake configuration file for fastcdr.
 fastcdr_DIR:PATH=/opt/ros/foxy/lib/cmake/fastcdr
@@ -417,17 +444,29 @@ fastrtps_cmake_module_DIR:PATH=/opt/ros/foxy/share/fastrtps_cmake_module/cmake
 //The directory containing a CMake configuration file for foonathan_memory.
 foonathan_memory_DIR:PATH=/opt/ros/foxy/lib/foonathan_memory/cmake
 
+//The directory containing a CMake configuration file for geometry_msgs.
+geometry_msgs_DIR:PATH=/opt/ros/foxy/share/geometry_msgs/cmake
+
+//The directory containing a CMake configuration file for image_transport.
+image_transport_DIR:PATH=/opt/ros/foxy/share/image_transport/cmake
+
 //The directory containing a CMake configuration file for libstatistics_collector.
 libstatistics_collector_DIR:PATH=/opt/ros/foxy/share/libstatistics_collector/cmake
 
 //The directory containing a CMake configuration file for libyaml_vendor.
 libyaml_vendor_DIR:PATH=/opt/ros/foxy/share/libyaml_vendor/cmake
 
+//The directory containing a CMake configuration file for message_filters.
+message_filters_DIR:PATH=/opt/ros/foxy/share/message_filters/cmake
+
 //Path to a library.
 pkgcfg_lib__OPENSSL_crypto:FILEPATH=/usr/lib/x86_64-linux-gnu/libcrypto.so
 
 //Path to a library.
 pkgcfg_lib__OPENSSL_ssl:FILEPATH=/usr/lib/x86_64-linux-gnu/libssl.so
+
+//The directory containing a CMake configuration file for pluginlib.
+pluginlib_DIR:PATH=/opt/ros/foxy/share/pluginlib/cmake
 
 //Value Computed by CMake
 qt_plot_BINARY_DIR:STATIC=/home/wzf/main_folder/MyProject/Graduation_project/src/qt_plot/cmake-build-debug
@@ -510,6 +549,9 @@ rosidl_typesupport_introspection_c_DIR:PATH=/opt/ros/foxy/share/rosidl_typesuppo
 //The directory containing a CMake configuration file for rosidl_typesupport_introspection_cpp.
 rosidl_typesupport_introspection_cpp_DIR:PATH=/opt/ros/foxy/share/rosidl_typesupport_introspection_cpp/cmake
 
+//The directory containing a CMake configuration file for sensor_msgs.
+sensor_msgs_DIR:PATH=/opt/ros/foxy/share/sensor_msgs/cmake
+
 //The directory containing a CMake configuration file for spdlog.
 spdlog_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/spdlog
 
@@ -521,6 +563,9 @@ statistics_msgs_DIR:PATH=/opt/ros/foxy/share/statistics_msgs/cmake
 
 //The directory containing a CMake configuration file for std_msgs.
 std_msgs_DIR:PATH=/opt/ros/foxy/share/std_msgs/cmake
+
+//The directory containing a CMake configuration file for tinyxml2_vendor.
+tinyxml2_vendor_DIR:PATH=/opt/ros/foxy/share/tinyxml2_vendor/cmake
 
 //The directory containing a CMake configuration file for tracetools.
 tracetools_DIR:PATH=/opt/ros/foxy/share/tracetools/cmake
@@ -697,6 +742,8 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding FastRTPS
 FIND_PACKAGE_MESSAGE_DETAILS_FastRTPS:INTERNAL=[/opt/ros/foxy/include][/opt/ros/foxy/lib/libfastrtps.so;/opt/ros/foxy/lib/libfastcdr.so][v()]
+//Details about finding OpenCV
+FIND_PACKAGE_MESSAGE_DETAILS_OpenCV:INTERNAL=[/usr][v4.2.0()]
 //Details about finding OpenSSL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libcrypto.so][/usr/include][c ][v1.1.1f()]
 //Details about finding PythonInterp
@@ -717,6 +764,10 @@ PYTHON_EXECUTABLE-ADVANCED:INTERNAL=1
 ProcessorCount_cmd_nproc-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ProcessorCount_cmd_sysctl
 ProcessorCount_cmd_sysctl-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: TINYXML2_INCLUDE_DIR
+TINYXML2_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: TINYXML2_LIBRARY
+TINYXML2_LIBRARY-ADVANCED:INTERNAL=1
 _OPENSSL_CFLAGS:INTERNAL=
 _OPENSSL_CFLAGS_I:INTERNAL=
 _OPENSSL_CFLAGS_OTHER:INTERNAL=

@@ -31,6 +31,9 @@ message(STATUS "${SRC_LIST}")
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(cv_bridge REQUIRED)
+find_package(image_transport REQUIRED)
 # 寻找Qt库
 find_package(Qt5Core)
 find_package(Qt5Widgets)
@@ -39,7 +42,9 @@ find_package(Qt5OpenGL)
 find_package(Qt5Xml)
 find_package(Qt5PrintSupport REQUIRED)
 include_directories(${Qt5Core_INCLUDE_DIRS} ${Qt5Gui_INCLUDE_DIRS} ${Qt5Widgets_INCLUDE_DIRS} ${Qt5OpenGL_INCLUDE_DIRS} ${Qt5Xml_INCLUDE_DIRS})
-
+#寻找opencv库
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
 #qt5_wrap_ui(ui_FILES mainwindow.ui)
 #qt5_add_resources(qrc_FILES drawable.qrc)
 #add_executable(${PROJECT_NAME} ${SRC_LIST} ${ui_FILES} ${qrc_FILES})
@@ -52,7 +57,7 @@ add_executable(myplot ${SRC_LIST}
         ${PROJECT_SOURCE_DIR}/include/qt_plot/qcustomplot.h
         ${PROJECT_SOURCE_DIR}/include/qt_plot/mainwindow.h
         ${PROJECT_SOURCE_DIR}/src/mainwindow.ui)
-ament_target_dependencies(myplot rclcpp std_msgs)
+ament_target_dependencies(myplot rclcpp std_msgs sensor_msgs cv_bridge image_transport)
 
 
 #包含路径
@@ -63,7 +68,7 @@ target_include_directories(myplot PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
 qt5_use_modules(myplot Core Widgets OpenGL Xml Gui PrintSupport) # Qt
-
+target_link_libraries(myplot ${OpenCV_LIBS})
 #安装库
 install(
         DIRECTORY include/

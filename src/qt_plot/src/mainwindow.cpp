@@ -69,12 +69,20 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::ros2_run_signal,ROS2_QT5_Tool,&ROS2_QT5::ros2_run);
 //  绘制速度指令曲线
     connect(ROS2_QT5_Tool, &ROS2_QT5::sendMessage2Plot,this,&MainWindow::addQCustomPlotData);
+//  获取视频流
+    connect(ROS2_QT5_Tool, &ROS2_QT5::sendMessageImage,this,&MainWindow::importFrame);
 
     ROS2_QT5_thread->start();
     this->customPlotConfig();
 
     emit ros2_run_signal();
 }
+
+
+
+
+
+
 
 void MainWindow::customPlotConfig(){
 //绘制速度指令曲线
@@ -256,6 +264,21 @@ void MainWindow::customPlotConfig(){
 ////    //定时器连接槽函数realtimeDataSlot，测试程序
 ////    connect(&dataTimer, SIGNAL(timeout()), this, SLOT(realtimeDataSlot()));
 ////    dataTimer.start(0); // 间隔时间 0ms表示尽可能快的触发
+}
+
+void MainWindow::importFrame(cv::Mat color_image,cv::Mat depth_image)
+{
+
+    cvtColor(color_image, color_image, CV_BGR2RGB);//only RGB of Qt
+    QImage srcQImage1 = QImage((uchar*)(color_image.data), color_image.cols, color_image.rows, QImage::Format_RGB888);
+    ui->color_image->setPixmap(QPixmap::fromImage(srcQImage1));
+    ui->color_image->resize(srcQImage1.size());
+    ui->color_image->show();
+
+    QImage srcQImage2 = QImage((uchar*)(depth_image.data), depth_image.cols, depth_image.rows, QImage::Format_Indexed8);
+    ui->depth_image->setPixmap(QPixmap::fromImage(srcQImage2));
+    ui->depth_image->resize(srcQImage2.size());
+    ui->depth_image->show();
 }
 
 void MainWindow::addQCustomPlotData(vector<float> speed_command,vector<float> error_x,vector<float> error_y,float error_squmean)

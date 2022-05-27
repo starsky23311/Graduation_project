@@ -10,7 +10,10 @@
 //ROS
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
-
+#include <image_transport/image_transport.hpp>
+#include <cv_bridge/cv_bridge.h>
+//OPENCV
+#include <opencv2/core/core.hpp>
 using namespace std;
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,12 +30,17 @@ public:
                 "SpeedCommand", 5, std::bind(&DataReceiver::speedcommand_callback, this, std::placeholders::_1));
         this->subscription_error_xy = this->create_subscription<std_msgs::msg::String>(
                 "ErrorXY", 5, std::bind(&DataReceiver::error_xy_callback, this, std::placeholders::_1));
-
+        this->subscription_align = this->create_subscription<sensor_msgs::msg::Image>(
+                "/camera/aligned_depth_to_color/image_raw", 5, std::bind(&DataReceiver::aligndepth_callback, this, std::placeholders::_1));
+        this->subscription_color = this->create_subscription<sensor_msgs::msg::Image>(
+                "/camera/color/image_raw", 5, std::bind(&DataReceiver::color_callback, this, std::placeholders::_1));
         this->v.resize(6);
         this->error_x.resize(8);
         this->error_y.resize(8);
         flag1 = false;
         flag2 = false;
+        color_flag = false;
+        depth_flag = false;
     }
     vector<float> getSpeedCommand()
     {
@@ -50,17 +58,30 @@ public:
     {
         return error_squmean;
     }
+    cv::Mat getColorImage()
+    {
+        return color_image;
+    }
+    cv::Mat getDepthImage()
+    {
+        return depth_image;
+    }
     bool flag1;
     bool flag2;
+    bool color_flag;
+    bool depth_flag;
 private:
 //速度指令
     vector<float> v;
     vector<float> error_x;
     vector<float> error_y;
     float error_squmean;
+    cv::Mat color_image;
+    cv::Mat depth_image;
     rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_speedcommand;
     rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_error_xy;
-
+    rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr subscription_color;
+    rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr subscription_align;
     void setSpeedCommand(const string& msg){
         if(*msg.begin() == '[' && *(msg.end()-1) == ']') {
             string s1(msg.begin()+1,msg.end()-1),s2;
@@ -113,6 +134,20 @@ private:
         flag2 = true;
 //        this->encoder_depth = std::atof(msg->data.c_str());
     }
+    void aligndepth_callback(const sensor_msgs::msg::Image::SharedPtr msg)
+    {
+        RCLCPP_INFO(this->get_logger(), "I heard ALIGN: %d",msg->data[500]);
+        depth_image = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::TYPE_16UC1)->image;
+
+        depth_flag = true;
+    }
+    void color_callback(const sensor_msgs::msg::Image::SharedPtr msg)
+    {
+        RCLCPP_INFO(this->get_logger(), "I heard COLOR: %s",msg->encoding.c_str());
+        color_image = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8)->image;
+        color_flag = true;
+    }
+
 };
 
 class ROS2_QT5 : public QObject
@@ -123,7 +158,7 @@ public:
 
         qRegisterMetaType<vector<float>>("vector<float>");
         qRegisterMetaType<float>("float");
-
+        qRegisterMetaType<cv::Mat>("cv::Mat");
     }
     ~ROS2_QT5(){}
 //    void addQCustomPlotData(vector<float> y_data);
@@ -132,6 +167,7 @@ public:
 //    void realtimeDataSlot();
 signals:
     void sendMessage2Plot(vector<float> speed_command,vector<float> error_x,vector<float> error_y,float error_squmean);
+    void sendMessageImage(cv::Mat color_image, cv::Mat depth_image);
 public slots:
     void ros2_run(){
         char **argv=NULL;
@@ -145,6 +181,11 @@ public slots:
             DataReceiverTool->flag2 = false;
             emit sendMessage2Plot(DataReceiverTool->getSpeedCommand(),DataReceiverTool->getErrorX(),DataReceiverTool->getErrorY(),DataReceiverTool->getErrorSquMean());
         }
+        if(DataReceiverTool->color_flag && DataReceiverTool->depth_flag) {
+            DataReceiverTool->color_flag = false;
+            DataReceiverTool->depth_flag = false;
+            emit sendMessageImage(DataReceiverTool->getColorImage(),DataReceiverTool->getDepthImage());
+        }
 //        loop_rate.sleep();
     }
 
@@ -152,6 +193,7 @@ public slots:
     }
 private:
     std::shared_ptr<DataReceiver> DataReceiverTool;
+
 //    Ui::MainWindow *ui;
 //    QCustomPlot* customPlot;
 //    QTimer dataTimer;
@@ -178,6 +220,7 @@ private slots:
     void saveCurseData();
     void saveCurseImage();
     void clearPlotData();
+    void importFrame(cv::Mat color_image, cv::Mat depth_image);
 
 private:
     Ui::MainWindow *ui;
