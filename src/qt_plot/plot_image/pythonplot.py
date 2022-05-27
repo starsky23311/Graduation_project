@@ -49,7 +49,7 @@
 #
 # plt.show()
 
-############################################ 条形图折线图绘制 ############################################
+############################################ 折线图绘制 ############################################
 # import numpy as np
 # import matplotlib.pyplot as plt
 # x1=[20,33,51,79,101,121,132,145,162,182,203,219,232,243,256,270,287,310,325]
@@ -69,25 +69,32 @@
 # plt.legend()
 # plt.show()
 
-############################################ 曲线图折线图绘制 ############################################
+############################################ 曲线图绘制 ############################################
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-
-#这里导入你自己的数据
-#......
-#......
-#x_axix，train_pn_dis这些都是长度相同的list()
-
-#开始画图
-sub_axix = filter(lambda x:x%200 == 0, x_axix)
-plt.title('Result Analysis')
-plt.plot(x_axix, train_acys, color='green', label='training accuracy')
-plt.plot(sub_axix, test_acys, color='red', label='testing accuracy')
-plt.plot(x_axix, train_pn_dis,  color='skyblue', label='PN distance')
-plt.plot(x_axix, thresholds, color='blue', label='threshold')
+key = []
+value = []
+i = int(0)
+with open('/home/wzf/main_folder/MyProject/Graduation_project/src/qt_plot/plot_image/数据.txt') as f:
+    for line in f.readlines():
+        temp = line.split()
+        if i % 2 == 0:
+            key.append(np.float_(temp))
+        elif i % 2 == 1:
+            value.append(np.float_(temp))
+        i = i + 1
+#关闭文件
+f.close()
+# print(len(value))
+# 设置刻度字体大小
+plt.xticks(fontsize=13)
+plt.yticks(fontsize=13)
+# # 设置坐标标签字体大小
+ax = plt.subplot(111)
+ax.set_xlabel("iteration times", fontsize=15)
+ax.set_ylabel("success rate", fontsize=15)
+plt.plot(key[0], value[0], color='green', label='training accuracy')
+plt.plot(key[0], value[0]+0.001, color='blue', label='threshold')
 plt.legend() # 显示图例
-
-plt.xlabel('iteration times')
-plt.ylabel('rate')
 plt.show()

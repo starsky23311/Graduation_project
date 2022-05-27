@@ -332,8 +332,14 @@ void MainWindow::saveCurseData(){
     }else{
         for(auto iter = customPlot0->graph(0)->data()->begin();iter != customPlot0->graph(0)->data()->end();iter++)
         {
-            ss += std::to_string(iter->key);
-            ss += " " + std::to_string(iter->value) + " ";
+            ss += std::to_string(iter->key) + " ";
+//            ss += " " + std::to_string(iter->value) + " ";
+        }
+        ss += '\n';
+        for(auto iter = customPlot0->graph(0)->data()->begin();iter != customPlot0->graph(0)->data()->end();iter++)
+        {
+//            ss += std::to_string(iter->key);
+            ss +=std::to_string(iter->value) + " ";
         }
         f.write(ss.c_str());
 
