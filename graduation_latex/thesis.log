@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2022.5.5)  27 MAY 2022 15:21
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2022.5.5)  28 MAY 2022 09:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2013,11 +2013,11 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 ] [3] (./thesis.toc [4
 
 
-])
+] [5])
 \tf@toc=\write8
 \openout8 = `thesis.toc'.
 
- [5]
+ [6]
 第1章
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 8.0pt on input line 127.
@@ -2217,19 +2217,19 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [38]
 File: ./figures/chapter5/替身.png Graphic file (type bmp)
 <./figures/chapter5/替身.png>
-File: ./figures/chapter5/替身.png Graphic file (type bmp)
-<./figures/chapter5/替身.png>
  [39]
 File: ./figures/chapter5/替身.png Graphic file (type bmp)
 <./figures/chapter5/替身.png>
  [40]
+File: ./figures/chapter5/替身.png Graphic file (type bmp)
+<./figures/chapter5/替身.png>
 File: ./figures/chapter5/控制示意框图.png Graphic file (type bmp)
 <./figures/chapter5/控制示意框图.png>
- [41]
+ [41] [42]
 第6章
 File: ./figures/chapter6/替身.png Graphic file (type bmp)
 <./figures/chapter6/替身.png>
-[42
+[43
 
 
 ]
@@ -2268,12 +2268,12 @@ LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
 (Font)              scaled to size 7.0pt on input line 1099.
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
 (Font)              scaled to size 5.0pt on input line 1099.
-[43]
+[44]
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 7.0pt on input line 1155.
 File: ./figures/chapter6/对比工作伺服效果.png Graphic file (type bmp)
 <./figures/chapter6/对比工作伺服效果.png>
- [44]
+ [45]
 File: ./figures/chapter6/替身.png Graphic file (type bmp)
 <./figures/chapter6/替身.png>
 File: ./figures/chapter6/替身.png Graphic file (type bmp)
@@ -2286,19 +2286,19 @@ File: ./figures/chapter6/替身.png Graphic file (type bmp)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[45] [46]
+[46] [47]
 \openout2 = `back/conclusion.aux'.
 
- (./back/conclusion.tex [47
+ (./back/conclusion.tex [48
 
 
 
 
-]) [48] (./thesis.bbl [49
+]) [49] (./thesis.bbl [50
 
 
 
-] [50])
+] [51])
 \tf@thm=\write9
 \openout9 = `thesis.thm'.
 
@@ -2308,7 +2308,7 @@ Package glossaries Warning: No \printglossary or \printglossaries found.
 (Remove \makeglossaries if you don't want any glossaries.) 
 This document will not have a glossary.
 
-[51]
+[52]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1254.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 1254.
  (./thesis.aux (./back/conclusion.aux))
@@ -2316,7 +2316,7 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1254.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1254.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 869150C44F3DE5B8523B071142A5B60A;8554.
+(rerunfilecheck)             Checksum: 88596DEF40A3D60F892EE5CC8423DB62;8672.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -2330,12 +2330,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 42433 strings out of 479819
- 854013 string characters out of 5895847
- 1162222 words of memory out of 5000000
- 58638 multiletter control sequences out of 15000+600000
+ 42435 strings out of 479819
+ 854033 string characters out of 5895847
+ 1162423 words of memory out of 5000000
+ 58640 multiletter control sequences out of 15000+600000
  653991 words of font info for 208 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  68i,14n,76p,2554b,1110s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on thesis.pdf (58 pages).
+Output written on thesis.pdf (60 pages).

@@ -1,4 +1,4 @@
-############################################ 条形图绘制（超调为例）############################################
+############################################ 条形图绘制（超调为例8）############################################
 # import matplotlib.pyplot as plt
 # import matplotlib
 # # 设置中文字体和负号正常显示
@@ -48,7 +48,111 @@
 #     plt.text(rect.get_x() + rect.get_width() / 2, height+0.02, str(height), ha="center", va="bottom", size=13)
 #
 # plt.show()
+############################################ 条形图绘制（超调为例4）############################################
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib
+# 设置中文字体和负号正常显示
+# matplotlib.rcParams['font.sans-serif'] = ['SimHei']
+# matplotlib.rcParams['axes.unicode_minus'] = False
 
+label_list = ['PD Add Slip', 'Add Adaptive', 'Add Consistence']    # 横坐标刻度显示值
+num_list1 = [0.05, 0.05, 0.017]      # 纵坐标值1
+num_list2 = [0.10, 0.05, 0.05]      # 纵坐标值2
+x = np.arange(len(num_list1))
+# 字体调整
+ax = plt.subplot(111)
+# 设置刻度字体大小
+plt.xticks(fontsize=13)
+plt.yticks(fontsize=13)
+# # 设置坐标标签字体大小
+ax.set_xlabel("Method", fontsize=15)
+ax.set_ylabel("Overshoot(m)", fontsize=15)
+# # 设置图例字体大小
+# ax.legend(..., fontsize=20)
+
+"""
+绘制条形图
+left:长条形中点横坐标
+height:长条形高度
+width:长条形宽度，默认值0.8
+label:为后面设置legend准备
+"""
+rects1 = plt.bar(x=x-0.15, height=num_list1, width=0.3, alpha=0.8, color='red', label=chr(916)+"x")
+rects2 = plt.bar(x=x+0.15, height=num_list2, width=0.3, alpha=0.8, color='blue', label=chr(916)+"y")
+plt.ylim(0, 0.2)     # y轴取值范围
+# plt.ylabel("Overshoot(m)")
+"""
+设置x轴刻度显示值
+参数一：中点坐标
+参数二：显示值
+"""
+# plt.xticks([index + 0.2 for index in x], label_list)
+plt.xticks([index for index in x], label_list)
+# plt.xlabel("position")
+# plt.title("4")
+plt.legend()     # 设置题注
+# 编辑文本
+# for rect in rects1:
+#     height = rect.get_height()
+#     plt.text(rect.get_x() + rect.get_width() / 2, height+1, str(height), ha="center", va="bottom")
+for rect in rects1:
+    height = rect.get_height()
+    plt.text(rect.get_x() + rect.get_width() / 2, height+0.005, str(height), ha="center", va="bottom", size=13)
+for rect in rects2:
+    height = rect.get_height()
+    plt.text(rect.get_x() + rect.get_width() / 2, height+0.005, str(height), ha="center", va="bottom", size=13)
+plt.show()
+############################################ 条形图绘制（调节时间4）############################################
+# import matplotlib.pyplot as plt
+# import matplotlib
+# # 设置中文字体和负号正常显示
+# # matplotlib.rcParams['font.sans-serif'] = ['SimHei']
+# # matplotlib.rcParams['axes.unicode_minus'] = False
+#
+# label_list = ['PD', 'Add Slip', 'Add Adaptive', 'Add Consistence']    # 横坐标刻度显示值
+# num_list1 = [14, 9.2, 7.9, 7.75]      # 纵坐标值1
+# x = range(len(num_list1))
+# # 字体调整
+# ax = plt.subplot(111)
+# # 设置刻度字体大小
+# plt.xticks(fontsize=13)
+# plt.yticks(fontsize=13)
+# # # 设置坐标标签字体大小
+# ax.set_xlabel("Method", fontsize=15)
+# ax.set_ylabel("Adjustment Time(s)", fontsize=15)
+# # # 设置图例字体大小
+# # ax.legend(..., fontsize=20)
+#
+# """
+# 绘制条形图
+# left:长条形中点横坐标
+# height:长条形高度
+# width:长条形宽度，默认值0.8
+# label:为后面设置legend准备
+# """
+# rects1 = plt.bar(x=x, height=num_list1, width=0.4, alpha=0.8, color='blue', label="1")
+# plt.ylim(0, 17)     # y轴取值范围
+# # plt.ylabel("overshoot")
+# """
+# 设置x轴刻度显示值
+# 参数一：中点坐标
+# 参数二：显示值
+# """
+# # plt.xticks([index + 0.2 for index in x], label_list)
+# plt.xticks([index for index in x], label_list)
+# # plt.xlabel("position")
+# # plt.title("4")
+# # plt.legend()     # 设置题注
+# # 编辑文本
+# # for rect in rects1:
+# #     height = rect.get_height()
+# #     plt.text(rect.get_x() + rect.get_width() / 2, height+1, str(height), ha="center", va="bottom")
+# for rect in rects1:
+#     height = rect.get_height()
+#     plt.text(rect.get_x() + rect.get_width() / 2, height+0.2, str(height), ha="center", va="bottom", size=13)
+#
+# plt.show()
 ############################################ 折线图绘制 ############################################
 # import numpy as np
 # import matplotlib.pyplot as plt
@@ -70,31 +174,31 @@
 # plt.show()
 
 ############################################ 曲线图绘制 ############################################
-import numpy as np
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-key = []
-value = []
-i = int(0)
-with open('/home/wzf/main_folder/MyProject/Graduation_project/src/qt_plot/plot_image/数据.txt') as f:
-    for line in f.readlines():
-        temp = line.split()
-        if i % 2 == 0:
-            key.append(np.float_(temp))
-        elif i % 2 == 1:
-            value.append(np.float_(temp))
-        i = i + 1
-#关闭文件
-f.close()
-# print(len(value))
-# 设置刻度字体大小
-plt.xticks(fontsize=13)
-plt.yticks(fontsize=13)
-# # 设置坐标标签字体大小
-ax = plt.subplot(111)
-ax.set_xlabel("iteration times", fontsize=15)
-ax.set_ylabel("success rate", fontsize=15)
-plt.plot(key[0], value[0], color='green', label='training accuracy')
-plt.plot(key[0], value[0]+0.001, color='blue', label='threshold')
-plt.legend() # 显示图例
-plt.show()
+# import numpy as np
+# import matplotlib as mpl
+# import matplotlib.pyplot as plt
+# key = []
+# value = []
+# i = int(0)
+# with open('/home/wzf/main_folder/MyProject/Graduation_project/src/qt_plot/plot_image/数据.txt') as f:
+#     for line in f.readlines():
+#         temp = line.split()
+#         if i % 2 == 0:
+#             key.append(np.float_(temp))
+#         elif i % 2 == 1:
+#             value.append(np.float_(temp))
+#         i = i + 1
+# #关闭文件
+# f.close()
+# # print(len(value))
+# # 设置刻度字体大小
+# plt.xticks(fontsize=13)
+# plt.yticks(fontsize=13)
+# # # 设置坐标标签字体大小
+# ax = plt.subplot(111)
+# ax.set_xlabel("iteration times", fontsize=15)
+# ax.set_ylabel("success rate", fontsize=15)
+# plt.plot(key[0], value[0], color='green', label='training accuracy')
+# plt.plot(key[0], value[0]+0.001, color='blue', label='threshold')
+# plt.legend() # 显示图例
+# plt.show()

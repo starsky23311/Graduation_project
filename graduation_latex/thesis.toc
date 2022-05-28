@@ -49,14 +49,15 @@
 \contentsline {subsection}{\numberline {5.2.1}PD控制器设计}{36}{subsection.5.2.1}%
 \contentsline {subsection}{\numberline {5.2.2}自适应IBVS}{37}{subsection.5.2.2}%
 \contentsline {section}{\numberline {5.3}滑模控制器}{38}{section.5.3}%
-\contentsline {section}{\numberline {5.4}特征偏差收敛速度不一致性}{40}{section.5.4}%
-\contentsline {section}{\numberline {5.5}本章小结}{41}{section.5.5}%
-\contentsline {chapter}{\numberline {第6章}实验设计与验证}{42}{chapter.6}%
-\contentsline {section}{\numberline {6.1}引言}{42}{section.6.1}%
-\contentsline {section}{\numberline {6.2}实验设计}{42}{section.6.2}%
-\contentsline {section}{\numberline {6.3}实验验证}{44}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}抓取成功率测试}{44}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}抓取性能验证}{44}{subsection.6.3.2}%
-\contentsline {section}{\numberline {6.4}本章小结}{46}{section.6.4}%
-\contentsline {chapter}{\heiti 结\hspace {\ccwd }论}{47}{section*.14}%
-\contentsline {chapter}{\heiti 参考文献}{49}{section*.17}%
+\contentsline {section}{\numberline {5.4}系统稳定性}{40}{section.5.4}%
+\contentsline {section}{\numberline {5.5}特征偏差收敛速度不一致性}{40}{section.5.5}%
+\contentsline {section}{\numberline {5.6}本章小结}{41}{section.5.6}%
+\contentsline {chapter}{\numberline {第6章}实验设计与验证}{43}{chapter.6}%
+\contentsline {section}{\numberline {6.1}引言}{43}{section.6.1}%
+\contentsline {section}{\numberline {6.2}实验设计}{43}{section.6.2}%
+\contentsline {section}{\numberline {6.3}实验验证}{45}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}抓取成功率测试}{45}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}抓取性能验证}{45}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}本章小结}{47}{section.6.4}%
+\contentsline {chapter}{\heiti 结\hspace {\ccwd }论}{48}{section*.14}%
+\contentsline {chapter}{\heiti 参考文献}{50}{section*.17}%

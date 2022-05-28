@@ -275,10 +275,10 @@ void MainWindow::importFrame(cv::Mat color_image,cv::Mat depth_image)
     ui->color_image->resize(srcQImage1.size());
     ui->color_image->show();
 
-    QImage srcQImage2 = QImage((uchar*)(depth_image.data), depth_image.cols, depth_image.rows, QImage::Format_Indexed8);
-    ui->depth_image->setPixmap(QPixmap::fromImage(srcQImage2));
-    ui->depth_image->resize(srcQImage2.size());
-    ui->depth_image->show();
+//    QImage srcQImage2 = QImage((uchar*)(depth_image.data), depth_image.cols, depth_image.rows, QImage::Format_Indexed8);
+//    ui->depth_image->setPixmap(QPixmap::fromImage(srcQImage2));
+//    ui->depth_image->resize(srcQImage2.size());
+//    ui->depth_image->show();
 }
 
 void MainWindow::addQCustomPlotData(vector<float> speed_command,vector<float> error_x,vector<float> error_y,float error_squmean)

@@ -85,6 +85,8 @@ class GraspGenerater(Node):
         self.color_x = 0
         self.color_y = 0
         self.last_gs = np.zeros(3)
+        self.last_CX = 0
+        self.last_CY = 0
 
         self.publisher_ = self.create_publisher(String, 'GGCNNOutput', 5)
         self.subscription_color = self.create_subscription(
@@ -135,28 +137,36 @@ class GraspGenerater(Node):
         # dst = self.delete_zero(self.depth_image)
         color_threshold = 100
         gray = cv2.cvtColor(self.color_image, cv2.COLOR_BGR2GRAY)
+        cv2.imshow("gray", gray)
         white_mask = (gray > color_threshold).astype(np.float)
         font_img = (gray * (1-white_mask)).astype(np.uint8)
         back_img = (gray * white_mask).astype(np.uint8)
         # 迭代法计算背景
         self.back_depth = (dst * (white_mask)).sum()/white_mask.sum()/1000
-        white_mask = ((white_mask == 1) & (dst <= (self.back_depth)*1000)).astype(np.float)
+        white_mask = ((white_mask == 1) & (dst <= (self.back_depth+0.01)*1000)).astype(np.float)
 
         self.back_depth = (dst * (white_mask)).sum()/white_mask.sum()/1000
+        # white_mask = (dst == 0).astype(np.float)
         # back_img = (gray * white_mask).astype(np.uint8)
-        # cv2.imshow("platform(white pixel)", back_img)
-        white_mask = ((dst > (self.back_depth+0.001)*1000) | (dst == 0)).astype(np.float)
-
+        # cv2.imshow("platform(white pixel)1", back_img)
+        A = (dst > (self.back_depth+0.02)*1000)
+        B = (dst == 0)
+        white_mask = (A | B).astype(np.float)
+        # white_mask = ((dst > (self.back_depth+0.02)*1000) | (dst == 0)).astype(np.float)
+        back_img = (gray * white_mask).astype(np.uint8)
+        cv2.imshow("platform(white pixel)2", back_img)
         self.depth_image = (dst * (1 - white_mask) + self.back_depth * white_mask*1000).astype(np.uint16)
         gray = (gray * (1 - white_mask) + 255 * white_mask).astype(np.uint8)
         # cv2.imshow("set backgroud white", gray)
         # cv2.imshow("set backgroud depth as platform depth", self.depth_image*32)
         gray = gray * (gray < color_threshold).astype(np.float).astype(np.uint8)
-        kernel1 = np.ones((3, 3), np.uint8)
+        kernel1 = np.ones((11, 11), np.uint8)
         # 迭代法计算前景
 
         font_img = cv2.erode(gray, kernel1)
-        cv2.imshow("font1_img", gray)
+        # kernel1 = np.ones((3, 3), np.uint8)
+        # font_img = cv2.dilate(font_img, kernel1)
+        # cv2.imshow("font1_img", font_img)
         black_mask = (font_img != 0).astype(np.float)
         self.font_depth = (dst * black_mask).sum()/black_mask.sum()/1000
         mask = ((dst != 0)&(dst <= (self.font_depth)*1000)).astype(np.float)
@@ -167,13 +177,20 @@ class GraspGenerater(Node):
         # font_img = (font_img * mask).astype(np.uint8)
 
         color_img = cv2.cvtColor(self.color_image, cv2.COLOR_BGR2RGB)
-        cv2.imshow("color_img", color_img)
+        # cv2.imshow("color_img", color_img)
         cv2.imshow("font2_img", font_img)
 
         M = cv2.moments(font_img)
         # calculate x,y coordinate of center
-        cX = int(M["m10"] / M["m00"])
-        cY = int(M["m01"] / M["m00"])
+        if  M["m00"] != 0:
+            cX = int(M["m10"] / M["m00"])
+            cY = int(M["m01"] / M["m00"])
+            self.last_CX = cX
+            self.last_CY = cY
+        else:
+            cX = self.last_CX
+            cY = self.last_CY
+
         self.color_x = cX
         self.color_y = cY
         center = [cY, cX]

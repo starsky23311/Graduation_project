@@ -151,7 +151,7 @@ public:
 
                 m_robot.setMode(2);
                 Vector6d okpos;
-                okpos<<90,30,20,40,-90,0;
+                okpos<<90,20,30,40,-90,0;
 
                 m_robot.setJoints(okpos);
                 usleep(10000);

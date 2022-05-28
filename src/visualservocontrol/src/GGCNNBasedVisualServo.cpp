@@ -311,7 +311,7 @@ public:
             depth_get_mode = Camera;
             cout<<font_depth<<" Stop,NoRefresh,Camera,";
         }
-        if(font_depth < 0.3 && error < 2 * 0.00001)
+        if(font_depth < 0.3 && error < 5 * 0.0001)
         {
             if_refresh_target_point = false;
             running_mode = Stop;
@@ -851,7 +851,7 @@ public:
 
     NetGraspFeature2D(){
         this->feature_points_num = 21;
-        this->range_max = 200;
+        this->range_max = 150;
         this->target_depth = 0.25;
         feature_points.resize(feature_points_num);
         T.resize(2,feature_points_num);
@@ -861,6 +861,7 @@ public:
         featureModelInit(range_max);
         this->point_selected.resize(8);
         this->point_selected = {0,1,2,3,4,6,8,10};
+//        this->point_selected = {1,2,3,4,5,6,7,8};
     }
     ~NetGraspFeature2D(){}
     void drawSquares(cv::Mat& img2draw)
@@ -870,11 +871,13 @@ public:
 
             circle(img2draw,cv::Point2f(feature_points[i].x,feature_points[i].y),5,cv::Scalar(0,0,255),3);
             cv::putText(img2draw,to_string(i),cv::Point2f(feature_points[i].x,feature_points[i].y),cv::FONT_HERSHEY_PLAIN,2,cv::Scalar(255,0,0),1);
+//            if(i < feature_points_num-1)
+//                cv::line(img2draw,cv::Point2f(feature_points[i].x,feature_points[i].y),cv::Point2f(feature_points[i+1].x,feature_points[i+1].y),cv::Scalar(0,255,0),3);
         }
-        cv::line(img2draw,cv::Point2f(feature_points[6].x,feature_points[6].y),cv::Point2f(feature_points[8].x,feature_points[8].y),cv::Scalar(0,255,0),3);
-        cv::line(img2draw,cv::Point2f(feature_points[8].x,feature_points[8].y),cv::Point2f(feature_points[10].x,feature_points[10].y),cv::Scalar(0,255,0),3);
-        cv::line(img2draw,cv::Point2f(feature_points[10].x,feature_points[10].y),cv::Point2f(feature_points[12].x,feature_points[12].y),cv::Scalar(0,255,0),3);
-        cv::line(img2draw,cv::Point2f(feature_points[12].x,feature_points[12].y),cv::Point2f(feature_points[6].x,feature_points[6].y),cv::Scalar(0,255,0),3);
+//        cv::line(img2draw,cv::Point2f(feature_points[6].x,feature_points[6].y),cv::Point2f(feature_points[8].x,feature_points[8].y),cv::Scalar(0,255,0),3);
+//        cv::line(img2draw,cv::Point2f(feature_points[8].x,feature_points[8].y),cv::Point2f(feature_points[10].x,feature_points[10].y),cv::Scalar(0,255,0),3);
+//        cv::line(img2draw,cv::Point2f(feature_points[10].x,feature_points[10].y),cv::Point2f(feature_points[12].x,feature_points[12].y),cv::Scalar(0,255,0),3);
+//        cv::line(img2draw,cv::Point2f(feature_points[12].x,feature_points[12].y),cv::Point2f(feature_points[6].x,feature_points[6].y),cv::Scalar(0,255,0),3);
 
     }
     bool getFeaturePoint(Grasp_Data grasp_point_filtered, cv::Mat color_image, cv::Mat depth_image, float font_depth)
@@ -921,6 +924,12 @@ public:
     std_msgs::msg::String getSpeedCommand()
     {
         auto message = std_msgs::msg::String();
+        static bool if_first = true;
+        static double eric = 0;
+        static double min_ex_val = 0;
+        static double min_ey_val = 0;
+        static vpColVector minus_coeffication(42,0);
+
         vpServo task; // Visual servoing task
         float x,y,z;float bias = 0;
         float xd,yd,zd;
@@ -941,15 +950,57 @@ public:
         e = task.computeError();
         vpMatrix L = task.computeInteractionMatrix();
 
-        vpMatrix L_inverse = 1.5 * L.AtA().inverseByLU() * L.transpose();
+        vpMatrix A;
 //        cout<<"L_inverse:"<<L_inverse<<endl;
-        v =  - L_inverse * e;
-        v[0] *= -200;
+        if(if_first == true)
+        {
+            last_e = e;
+            e_init = e;//原2.2
+            vpColVector ex(21,0);vpColVector ey(21,0);
+            for(size_t i = 0;i < 42;i++)
+            {
+                if(i % 2 == 0)
+                    ex[i/2] = e_init[i];
+                else
+                    ey[i/2] = e_init[i];
+            }
 
-        v[1] *= -100;
-        v[2] *= 100;
+            min_ex_val = vpColVector::sort(ex)[0];
+            min_ey_val = vpColVector::sort(ey)[0];
+            for(size_t i = 0;i < 42;i++)
+            {
+                if(i % 2 == 0)
+                    minus_coeffication[i] = exp(0.05 *(std::abs(e[i]/min_ex_val)-1));
+                else
+                    minus_coeffication[i] = exp(0.05 *(std::abs(e[i]/min_ey_val)-1));
 
-        v[5] *= 180 / 3.1415926 * 0.3;
+                A = vpMatrix::stack(A,L.getRow(i) * minus_coeffication[i]);
+            }
+
+            vpMatrix L_inverse = A.AtA().inverseByLU() * A.transpose();
+            v =  - L_inverse * (2.0 * e + 50 * (e - last_e) + 15 * e_init * exp(- 1.5 * eric * 0.033));
+//            v =  - L_inverse * (2.0 * e + 50 * (e - last_e));
+            if_first = false;eric += 1;
+        }
+        else
+        {
+            for(size_t i = 0;i < 42;i++)
+            {
+                A = vpMatrix::stack(A,L.getRow(i) * (1+minus_coeffication[i] * exp(- 1.5 * eric * 0.033)));
+            }
+            vpMatrix L_inverse = A.AtA().inverseByLU() * A.transpose();
+            v =  - L_inverse * (2.0 * e + 50 * (e - last_e) + 15 * e_init * exp(- 1.5 * eric * 0.033));
+//            v =  - L_inverse * (2.0 * e + 50 * (e - last_e) );
+            last_e = e;
+            eric += 1;
+        }
+//原x=-100 y=-75
+        v[0] *= 150;
+
+        v[1] *= 150;
+        v[2] *= 50;
+
+        v[5] *= 180 / 3.1415926 * 1.25;
 //                v[0] *= 0;
 //
 //        v[1] *= 0;
@@ -1013,10 +1064,33 @@ private:
         model_feature_points(0,0) = 0;model_feature_points(1,0) = 0;
         float range_split_1_2 = range_max / 2;
         float range_split_1_4 = range_max / 4;
+//        model_feature_points(0,1) = -range_split_1_4;model_feature_points(1,1) = 0;
+//        model_feature_points(0,2) = -range_split_1_4;model_feature_points(1,2) = -range_split_1_4;
+//        model_feature_points(0,3) = 0;model_feature_points(1,3) = -range_split_1_4;
+//        model_feature_points(0,4) = 0;model_feature_points(1,4) = -range_split_1_2;
+//        model_feature_points(0,5) = -range_split_1_2;model_feature_points(1,5) = -range_split_1_2;
+//        model_feature_points(0,6) = -range_split_1_2;model_feature_points(1,6) = 0;
+//        model_feature_points(0,7) = -range_max;model_feature_points(1,7) = 0;
+//        model_feature_points(0,8) = 0;model_feature_points(1,8) = -range_max;
+
+
+
+
+
+
         model_feature_points(0,1) = range_max;model_feature_points(1,1) = 0;
         model_feature_points(0,2) = 0;model_feature_points(1,2) = -range_max;
         model_feature_points(0,3) = -range_max;model_feature_points(1,3) = 0;
         model_feature_points(0,4) = 0;model_feature_points(1,4) = range_max;
+
+//        model_feature_points(0,21) = range_split_1_2;model_feature_points(1,21) = -range_max;
+//        model_feature_points(0,22) = -range_split_1_2;model_feature_points(1,22) = -range_max;
+//        model_feature_points(0,23) = range_max;model_feature_points(1,23) = range_split_1_2;
+//        model_feature_points(0,24) = range_max;model_feature_points(1,24) = -range_split_1_2;
+//        model_feature_points(0,25) = -range_max;model_feature_points(1,25) = range_split_1_2;
+//        model_feature_points(0,26) = -range_max;model_feature_points(1,26) = -range_split_1_2;
+//        model_feature_points(0,27) = -range_split_1_2;model_feature_points(1,27) = range_max;
+//        model_feature_points(0,28) = range_split_1_2;model_feature_points(1,28) = range_max;
 
         model_feature_points(0,5) = range_split_1_2;model_feature_points(1,5) = 0;
         model_feature_points(0,6) = range_split_1_2;model_feature_points(1,6) = -range_split_1_2;
@@ -1041,8 +1115,8 @@ private:
 
     void project2CameraPlane(float& x,float & y,float z)
     { //focal is like (x - 611.075)/610.372*1.88
-        x = z * (x - 322.86)/610.372;
-        y = z * (y - 238.664)/611.075;
+        x = 1 * (x - 322.86)/610.372;
+        y = 1 * (y - 238.664)/611.075;
     }
     vpColVector dataSmooth(vpColVector input, int average_num, float learning_rate){
         static int init_num = 0;
@@ -1114,6 +1188,9 @@ private:
 //    视觉伺服
     float font_depth;
     vpColVector e;
+    vpColVector last_e;
+    vpColVector e_init;
+    vpMatrix Kb;
     std::vector<vpFeaturePoint> sd; //The desired point feature.
     std::vector<vpFeaturePoint> s;
     vpColVector v;
@@ -1281,7 +1358,7 @@ public:
                 net_grasp_feature.setTargetAngle(grasp_data_handle_tool.grasp_data.theta);
             }
             net_grasp_feature.setFeatureAngle(this->encoder_angle);
-            grasp_data_handle_tool.handleGraspData(1);
+            grasp_data_handle_tool.handleGraspData(0.5);
 
         }
         //更新特征
@@ -1298,7 +1375,7 @@ public:
         }
 
         //根据模式选择视觉伺服、抓取、停止
-        if(ignore_num < 80)
+        if(ignore_num < 60)
         {
             ignore_num++;
             net_grasp_feature.getSpeedCommand();
