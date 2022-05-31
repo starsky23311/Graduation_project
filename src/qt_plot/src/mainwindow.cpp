@@ -334,7 +334,7 @@ void MainWindow::addQCustomPlotData(vector<float> speed_command,vector<float> er
 void MainWindow::saveCurseData(){
 //    bool exist;
     QString fileName;
-    string ss = "";
+
 //    QDir *folder = new QDir;
 //    exist = folder->exists("C:/Users/no2/Desktop");//查看目录是否存在（例子是保存到桌面）
 //
@@ -346,20 +346,21 @@ void MainWindow::saveCurseData(){
 //            QMessageBox::warning(this,tr("创建目录"),tr("创建失败"));
 //        }
 //    }
-    fileName = tr("/home/wzf/main_folder/MyProject/Graduation_project/src/qt_plot/plot_image/%1.txt").arg("数据");
+    string ss = "";
+    fileName = tr("/home/wzf/main_folder/MyProject/Graduation_project/src/qt_plot/plot_image/%1.txt").arg("X");
 
     QFile f(fileName);
     if(!f.open(QIODevice::ReadWrite | QIODevice::Append | QIODevice::Text)){//追加写入 添加结束符\r\n
         QMessageBox::warning(this,tr("错误"),tr("打开文件失败,数据保存失败"));
         return ;
     }else{
-        for(auto iter = customPlot0->graph(0)->data()->begin();iter != customPlot0->graph(0)->data()->end();iter++)
+        for(auto iter = customPlot->graph(0)->data()->begin();iter != customPlot->graph(0)->data()->end();iter++)
         {
             ss += std::to_string(iter->key) + " ";
 //            ss += " " + std::to_string(iter->value) + " ";
         }
         ss += '\n';
-        for(auto iter = customPlot0->graph(0)->data()->begin();iter != customPlot0->graph(0)->data()->end();iter++)
+        for(auto iter = customPlot->graph(0)->data()->begin();iter != customPlot->graph(0)->data()->end();iter++)
         {
 //            ss += std::to_string(iter->key);
             ss +=std::to_string(iter->value) + " ";
@@ -369,6 +370,78 @@ void MainWindow::saveCurseData(){
     }
     f.close();
 
+
+    ss = "";
+    fileName = tr("/home/wzf/main_folder/MyProject/Graduation_project/src/qt_plot/plot_image/%1.txt").arg("Y");
+
+    QFile f3(fileName);
+    if(!f3.open(QIODevice::ReadWrite | QIODevice::Append | QIODevice::Text)){//追加写入 添加结束符\r\n
+        QMessageBox::warning(this,tr("错误"),tr("打开文件失败,数据保存失败"));
+        return ;
+    }else{
+        for(auto iter = customPlot->graph(1)->data()->begin();iter != customPlot->graph(1)->data()->end();iter++)
+        {
+            ss += std::to_string(iter->key) + " ";
+//            ss += " " + std::to_string(iter->value) + " ";
+        }
+        ss += '\n';
+        for(auto iter = customPlot->graph(1)->data()->begin();iter != customPlot->graph(1)->data()->end();iter++)
+        {
+//            ss += std::to_string(iter->key);
+            ss +=std::to_string(iter->value) + " ";
+        }
+        f3.write(ss.c_str());
+
+    }
+    f3.close();
+
+    ss = "";
+    fileName = tr("/home/wzf/main_folder/MyProject/Graduation_project/src/qt_plot/plot_image/%1.txt").arg("Z");
+
+    QFile f2(fileName);
+    if(!f2.open(QIODevice::ReadWrite | QIODevice::Append | QIODevice::Text)){//追加写入 添加结束符\r\n
+        QMessageBox::warning(this,tr("错误"),tr("打开文件失败,数据保存失败"));
+        return ;
+    }else{
+        for(auto iter = customPlot1->graph(2)->data()->begin();iter != customPlot1->graph(2)->data()->end();iter++)
+        {
+            ss += std::to_string(iter->key) + " ";
+//            ss += " " + std::to_string(iter->value) + " ";
+        }
+        ss += '\n';
+        for(auto iter = customPlot1->graph(2)->data()->begin();iter != customPlot1->graph(2)->data()->end();iter++)
+        {
+//            ss += std::to_string(iter->key);
+            ss +=std::to_string(iter->value) + " ";
+        }
+        f2.write(ss.c_str());
+
+    }
+    f2.close();
+
+    ss = "";
+    fileName = tr("/home/wzf/main_folder/MyProject/Graduation_project/src/qt_plot/plot_image/%1.txt").arg("ZZ");
+
+    QFile f1(fileName);
+    if(!f1.open(QIODevice::ReadWrite | QIODevice::Append | QIODevice::Text)){//追加写入 添加结束符\r\n
+        QMessageBox::warning(this,tr("错误"),tr("打开文件失败,数据保存失败"));
+        return ;
+    }else{
+        for(auto iter = customPlot2->graph(3)->data()->begin();iter != customPlot2->graph(3)->data()->end();iter++)
+        {
+            ss += std::to_string(iter->key) + " ";
+//            ss += " " + std::to_string(iter->value) + " ";
+        }
+        ss += '\n';
+        for(auto iter = customPlot2->graph(3)->data()->begin();iter != customPlot2->graph(3)->data()->end();iter++)
+        {
+//            ss += std::to_string(iter->key);
+            ss +=std::to_string(iter->value) + " ";
+        }
+        f1.write(ss.c_str());
+
+    }
+    f1.close();
 
 //    cout<<customPlot0->graph(0)->data()->begin()<<endl;
     cout<<"CurseData is saved successfully!"<<endl;

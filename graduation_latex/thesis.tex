@@ -1277,7 +1277,7 @@ GG-CNN的输出形式决定了如果要使用它的输出结果作为视觉伺�
 抓取目标将以对称的姿态在平台的八个方位的位置摆放，这么做可以很全面地测试伺服系统应对多样化的目标位姿的伺服情况。
 
 
-六轴JK机械臂初始状态各编码器显示数值为：机械臂末端在$\lbrace$\textit{B}$\rbrace$中的初始状态为：。在这样的初始参数设计下，摄像头获取的图片正好可以将整个平台尽收眼底。
+六轴JK机械臂初始状态各编码器显示数值为：$90\degree$、$20\degree$、$30\degree$、$40\degree$、$-90\degree$、$0\degree$。机械臂末端在$\lbrace$\textit{B}$\rbrace$中的初始状态为：$X=0.11m$、$Y=-0.55m$、$Z=0.65m$、$\theta_X=-180\degree$、$\theta_Y=0\degree$、$\theta_Z=-180\degree$。在这样的初始参数设计下，摄像头获取的图片正好可以将整个平台尽收眼底。
 所设定的目标物体坐标系相对于机械臂末端坐标系的相对位姿如表\ref{物体摆放位姿表}所示，相对深度不会改变。
 \begin{table}[htbp]
 \caption{物体摆放位姿表}
@@ -1287,14 +1287,14 @@ GG-CNN的输出形式决定了如果要使用它的输出结果作为视觉伺�
 \toprule[2pt]
 位姿序号 & X方向距离(m) & Y方向距离(m) & 沿Z轴旋转角($\degree$)\\
 \midrule[1pt]
- 1 & 0.3 & 0.3 & 30\\
- 2 & 0.3 & -0.3 & -30\\
- 3 & 0.3 & 0 & 15\\
- 4 & -0.3 & 0.3 & -15\\
- 5 & -0.3 & -0.3 & 0\\
- 6 & -0.3 & 0 & 30\\
- 7 & 0 & 0.3 & -30\\
- 8 & 0 & -0.3 & 0\\
+ 1 & -0.3 & 0.1 & -45\\
+ 2 & 0 & 0.1 & 0\\
+ 3 & 0.3 & 0。1 & 45\\
+ 4 & -0.3 & 0 & -20\\
+ 5 & 0.3 & 0 & 20\\
+ 6 & -0.3 & -0.1 & 45\\
+ 7 & 0 & -0.1 & 0\\
+ 8 & 0.3 & -0.1 & -45\\
 
 \bottomrule[1.5pt]
 \end{tabular}
@@ -1307,70 +1307,80 @@ GG-CNN的输出形式决定了如果要使用它的输出结果作为视觉伺�
 
 \section{实验验证}[Content specification]
 \subsection{系统稳定区间测试}[Content specification]
-二指夹爪只需要在-90°~90°工作即可，由于有对称性，只测试0°~90°的情况。将笔袋作为伺服目标，笔袋放置到摄像头中心，笔袋从0°~90°每10°进行一次伺服实验，记录它们的特征偏差平方和曲线绘制到图\ref{系统稳定特征偏差平方和1}中。
+二指夹爪只需要在$-90\degree\sim90\degree$工作即可，由于有对称性，只测试$0\degree\sim90\degree$的情况。将笔袋作为伺服目标，笔袋放置到摄像头中心，笔袋从$0\degree\sim90\degree$每$10\degree$进行一次伺服实验，记录它们的特征偏差平方和曲线绘制到图\ref{系统稳定特征偏差平方和（中心）}中。
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.6\textwidth]{chapter6/替身}
-	\caption{系统稳定特征偏差平方和1}
-	\label{系统稳定特征偏差平方和1}
+	\includegraphics[width=0.8\textwidth]{chapter6/系统稳定性测试（中心）}
+	\caption{系统稳定性测试（中心）}
+	\label{系统稳定特征偏差平方和（中心）}
 \end{figure}
 
 
-在视野边缘（第五章所设位置中）放置笔袋，笔袋从0°~90°每10°进行一次伺服实验，记录它们的特征偏差平方和曲线绘制到图\ref{系统稳定特征偏差平方和2}中。
+在视野边缘（第五章所设位置中）放置笔袋，笔袋从$0\degree\sim90\degree$每$10\degree$进行一次伺服实验，记录它们的特征偏差平方和曲线绘制到图\ref{系统稳定特征偏差平方和（边缘）}中。
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.6\textwidth]{chapter6/替身}
-	\caption{系统稳定特征偏差平方和2}
-	\label{系统稳定特征偏差平方和2}
+	\includegraphics[width=0.8\textwidth]{chapter6/系统稳定性测试（边缘）}
+	\caption{系统稳定性测试（边缘）}
+	\label{系统稳定特征偏差平方和（边缘）}
 \end{figure}
 
 
-将伺服成败情况记录到表\ref{}中，结合图\ref{系统稳定特征偏差平方和1}、\ref{系统稳定特征偏差平方和2}可以看出.。。
+将伺服成败情况记录到表\ref{系统稳定区间测试表}中，结合图\ref{系统稳定特征偏差平方和（中心）}、\ref{系统稳定特征偏差平方和（边缘）}可以看出系统在应对大角度时确实存在不稳定的倾向，尤其在$90\degree$处有明显波动。目标物体在边缘对伺服稳定性影响并不大，只要它初始位置在视野中。综上，该系统中不论应对物体在边缘或者物体在中心，依然是能保持稳定运行的。
+\begin{table}[htbp]
+\caption{系统稳定区间测试表}
+\label{系统稳定区间测试表}
+\vspace{0.5em}\centering\wuhao
+\begin{tabular}{ccccccccccc}
+\toprule[1.5pt]
+   & $00\degree$ & $10\degree$ & $20\degree$ & $30\degree$ & $40\degree$ & $50\degree$ & $60\degree$ & $70\degree$ & $80\degree$ & $90\degree$  \\
+\midrule[1pt]
+ 视野中心 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功\\
+ 视野边缘 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 \\
+
+\bottomrule[1.5pt]
+\end{tabular}
+\end{table}
+
+
 \subsection{边界鲁棒性测试}[Content specification]
-选取抓取对象为笔袋，一共做八组实验，每组实验分别在平台边缘处不同的八个位置放置抓取对象，记录它们的特征偏差平方和曲线。物体摆放时倾斜角度都为0°，摆放位置示意图如图\ref{边界鲁棒性测试摆放位置示意图}所示。将八次特征偏差平方和曲线绘制到一张图中如图\ref{边界环境特征偏差平方和}所示。
+选取抓取对象为笔袋，一共做八组实验，每组实验分别在平台边缘处不同的八个位置放置抓取对象，记录它们的特征偏差平方和曲线。物体摆放时倾斜角度都为$0\degree$，摆放位置分别对应平台的边界中心处和四个角点处，为了能让物体处于视野中，会适当地移动平台位置。将八次特征偏差平方和曲线绘制到一张图中如图\ref{边界环境特征偏差平方和}所示。
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.6\textwidth]{chapter6/替身}
-	\caption{边界鲁棒性测试摆放位置示意图}
-	\label{边界鲁棒性测试摆放位置示意图}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.6\textwidth]{chapter6/替身}
-	\caption{边界环境特征偏差平方和}
+	\includegraphics[width=0.8\textwidth]{chapter6/边界鲁棒性测试}
+	\caption{边界鲁棒性测试}
 	\label{边界环境特征偏差平方和}
 \end{figure}
 
 
-从曲线中可知。。。
+不论目标物体处于哪个边界处，曲线都没有很明显的波动现象。从曲线中可知系统具有很良好的边界环境自适应能力，可以应对突然的深度图变化。
 
 \subsection{重复性精度测试}[Content specification]
 将从伺服速度指令曲线和伺服结束时机械臂末端停止的位点的重复性对系统重复性精度进行测试。抓取对象为笔袋，以相同的位姿摆放在平台上，对它进行八次视觉伺服，获取八次速度指令，并将四个速度的每一个速度对应的八条曲线分别绘制到一张图中，比较它们之间的的相似度。得到的曲线图如图\ref{重复性精度测试速度指令比较}所示。
+\newpage
 \begin{figure}[h]
 	\centering
 	\subfigure[X方向速度]{
 		\begin{minipage}[h]{0.40\textwidth}
-			\includegraphics[width=1\textwidth]{chapter6/替身} 
+			\includegraphics[width=1\textwidth]{chapter6/重复性测试X} 
 		\end{minipage}
 		\label{重复性精度测试a}
 	}
     	\subfigure[Y方向速度]{
     		\begin{minipage}[h]{0.40\textwidth}
-   		 	\includegraphics[width=1\textwidth]{chapter6/替身}
+   		 	\includegraphics[width=1\textwidth]{chapter6/重复性测试Y}
     		\end{minipage}
 		\label{重复性精度测试b}
     	}
 	\\ 
 	\subfigure[Z方向速度]{
 		\begin{minipage}[h]{0.40\textwidth}
-			\includegraphics[width=1\textwidth]{chapter6/替身} 
+			\includegraphics[width=1\textwidth]{chapter6/重复性测试Z} 
 		\end{minipage}
 		\label{重复性精度测试c}
 	}
     	\subfigure[Z轴角速度]{
     		\begin{minipage}[h]{0.40\textwidth}
-		 	\includegraphics[width=1\textwidth]{chapter6/替身}
+		 	\includegraphics[width=1\textwidth]{chapter6/重复性测试ZZ}
     		\end{minipage}
 		\label{重复性精度测试d}
     	}
@@ -1378,15 +1388,15 @@ GG-CNN的输出形式决定了如果要使用它的输出结果作为视觉伺�
 	\label{重复性精度测试速度指令比较}
 \end{figure}
 
-
-曲线说明了。。。对笔袋做上标记，记录每次伺服结束时标记点在相机坐标系中的X、Y位置并绘图如图\ref{重复性精度测试定位测试}所示。
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.6\textwidth]{chapter6/替身}
+	\includegraphics[width=0.4\textwidth]{chapter6/替身}
 	\caption{重复性精度测试定位测试}
 	\label{重复性精度测试定位测试}
 \end{figure}
 
+
+八次实验得到的曲线中，X和Z方向速度曲线高度重合，Y方向速度有一次较为脱离其它曲线，Z轴角速度有一定的波动，这是由于神经网络的输出存在的波动性。总体上可以说明系统对应相同位姿的物体具有很良好的重复性。为了测试重复性精度，对笔袋做上标记，记录每次伺服结束时标记点在相机坐标系中的X、Y位置并绘图如图\ref{重复性精度测试定位测试}所示。从图\ref{重复性精度测试定位测试}可以看出，机械臂末端停止位置是十分集中的，具有很优秀的重复性精度。
 \subsection{伺服性能测试}[Content specification]
 图\ref{比较对象伺服效果}为同样基于GG-CNN但使用PBVS+IBVS来抓取未知物体的伺服过程中特征偏差曲线，他还测量了开环控制的情况，相关的红色曲线忽略。本文将只比较他工作中静止物体的伺服对应的蓝色曲线情况。
 \begin{figure}[h]
@@ -1397,53 +1407,57 @@ GG-CNN的输出形式决定了如果要使用它的输出结果作为视觉伺�
 \end{figure}
 
 
-选择的抓取目标为笔袋，把它不同的摆放位姿情况下的特征偏差平方和均值曲线绘制到同一坐标系下，将不同情况对应的超调量和响应时间绘制到直方图中，如图\ref{相同目标不同位姿抓取性能}所示。
+选择的抓取目标为笔袋，把它不同的摆放位姿情况下的特征偏差平方和均值曲线绘制到同一坐标系下。选择的位姿为3号位姿，把对应的不同目标情况下的特征偏差曲线绘制到同一坐标系下，如图\ref{伺服性能特征偏差平方和}所示，其中所选物体分别为笔袋、卷、橘子、鼠标 、卷尺和毛绒玩具。可见不论是相同物体不同位姿，还是不同物体相同位姿，曲线趋势几乎一致，都非常平滑，相比较图\ref{比较对象伺服效果}的蓝色曲线要更加理想平稳。
 \begin{figure}[h]
 	\centering
-	\subfigure[特征偏差平方和均值]{
+	\subfigure[相同目标不同位姿]{
 		\begin{minipage}[h]{0.4\textwidth}
-			\includegraphics[width=1\textwidth]{chapter6/替身}
+			\includegraphics[width=1\textwidth]{chapter6/相同物体不同位姿}
 		\end{minipage}
 		\label{相同目标不同位姿特征偏差平方和均值}
 	}
-	\subfigure[超调响应时间直方图]{
+	\subfigure[相同位姿不同目标]{
 		\begin{minipage}[h]{0.4\textwidth}
-			\includegraphics[width=1\textwidth]{chapter6/替身}
+			\includegraphics[width=1\textwidth]{chapter6/相同位姿不同物体}
 		\end{minipage}
 		\label{超调响应时间直方图1}
 	}
-	\caption{相同目标不同位姿抓取性能}
-	\label{相同目标不同位姿抓取性能}
+	\caption{特征偏差平方和}
+	\label{伺服性能特征偏差平方和}
 \end{figure}
 
 
-选择的位姿为。把对应的不同目标情况下的特征偏差曲线绘制到同一坐标系下，将不同情况对应的超调量和响应时间绘制到直方图中，如图\ref{相同位姿不同目标抓取性能}所示：
+选择的抓取目标为笔袋，将$X$方向特征偏差超调量和响应时间绘制到直方图\ref{相同物体不同位姿伺服性能}中;选择的位姿为3号位姿，将$X$方向特征偏差超调量和响应时间绘制到直方图\ref{相同位姿不同物体伺服性能}中,。不论是相同位姿不同物体，还是不同位姿相同物体，它们的伺服过程都是类似的，并且都能保证较小的超调量和调节时间。
 \begin{figure}[h]
 	\centering
-	\subfigure[特征偏差平方和均值]{
-		\begin{minipage}[h]{0.4\textwidth}
-			\includegraphics[width=1\textwidth]{chapter6/替身}
+	\subfigure[相同物体不同位姿]{
+		\begin{minipage}[h]{0.80\textwidth}
+			\includegraphics[width=1\textwidth]{chapter6/相同物体不同位姿（条形）} 
 		\end{minipage}
-		\label{相同位姿不同目标特征偏差平方和均值}
+		\label{相同物体不同位姿伺服性能}
 	}
-	\subfigure[超调响应时间直方图]{
-		\begin{minipage}[h]{0.4\textwidth}
-			\includegraphics[width=1\textwidth]{chapter6/替身}
+	\\ 
+	\subfigure[相同位姿不同物体]{
+		\begin{minipage}[h]{0.80\textwidth}
+			\includegraphics[width=1\textwidth]{chapter6/相同位姿不同物体（条形）} 
 		\end{minipage}
-		\label{超调响应时间直方图2}
+		\label{相同位姿不同物体伺服性能}
 	}
-	\caption{相同位姿不同目标抓取性能}
-	\label{相同位姿不同目标抓取性能}
+
+	\caption{超调量和响应时间直方图}
+	\label{伺服性能超调量和响应时间直方图}
 \end{figure}
+
+
 \subsection{抓取成功率测试}[Content specification]
-对总共48种情况的实验结果进行记录，不仅记录总的抓取成功率，同时记录相同物体的抓取成功率和相同位姿对应不同物体的抓取成功率，绘制表格如表\ref{物体抓取结果记录表}所示：
+对总共48种情况的实验结果进行记录，不仅记录总的抓取成功率，同时记录相同物体的抓取成功率和相同位姿对应不同物体的抓取成功率，绘制表格如表\ref{物体抓取结果记录表}所示。
 \begin{table}[htbp]
 \caption{物体抓取结果记录表}
 \label{物体抓取结果记录表}
 \vspace{0.5em}\centering\wuhao
 \begin{tabular}{cccccccc}
 \toprule[1.5pt]
-位姿序号 & 物体1 & 物体2 & 物体3 & 物体4 & 物体5 & 物体6 & 抓取成功率\\
+位姿序号 & 笔袋 & 卷纸 & 橘子 & 鼠标 & 卷尺 & 毛绒玩具 & 抓取成功率\\
 \midrule[1pt]
  1 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 100\%\\
  2 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 100\%\\
@@ -1461,7 +1475,7 @@ GG-CNN的输出形式决定了如果要使用它的输出结果作为视觉伺�
 \end{table}
 
 
-将实验获得的数据与各类成抓取合成方法的文献成果在一张表格中进行展现。
+将实验获得的数据与各类成抓取合成方法的文献成果在一张表格中进行展现。抓取的失败主要由物体类型造成，卷尺表面有反光性，这会对红外深度测量造成影响，系统会跑向不稳定。毛绒玩具过大，机械臂末端接近目标时，毛绒玩具几乎占领了整个画面导致抓取点生成不稳定，系统失稳。但算法依然对家用物体有很高的抓取率，并且高于许多类似工作的成果中对家用物体的抓取成功率。
 \begin{table}[htbp]
 \caption{各类成抓取合成成果抓取家常物体成功率对比}
 \label{各类成抓取合成成果抓取家常物体成功率对比}
@@ -1481,7 +1495,7 @@ GG-CNN的输出形式决定了如果要使用它的输出结果作为视觉伺�
 
 
 
-
+\newpage
 \section{本章小结}[Content specification]
 本章在六种不同家常的物体的八种不同位姿情况下对目标进行抓取实验，在所提出的特征提取、匹配的方法和与之配套的伺服控制律的加持下，在环境限制条件更少的情况下，拥有比许多类似工作的研究成果更高的抓取成功率。与另一个基于GG-CNN抓取未知目标文献成果比较，拥有更平滑而理想的伺服曲线。通过以上实验证明了本研究所提出的未知物体抓取算法有高鲁棒性和高伺服性能。
 %\include{body/introduction}
@@ -1508,8 +1522,8 @@ GG-CNN的输出形式决定了如果要使用它的输出结果作为视觉伺�
 % 本科书序为：
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 % \authorization %授权
-%  \authorization[scan.pdf] %添加扫描页的命令，与上互斥
-% \include{back/acknowledgements} %致谢
+  \authorization[scan.pdf] %添加扫描页的命令，与上互斥
+ \include{back/acknowledgements} %致谢
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 % 博后书序

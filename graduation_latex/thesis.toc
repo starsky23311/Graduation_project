@@ -59,10 +59,12 @@
 \contentsline {subsection}{\numberline {6.2.2}实验准备}{46}{subsection.6.2.2}%
 \contentsline {section}{\numberline {6.3}实验验证}{48}{section.6.3}%
 \contentsline {subsection}{\numberline {6.3.1}系统稳定区间测试}{48}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}边界鲁棒性测试}{48}{subsection.6.3.2}%
-\contentsline {subsection}{\numberline {6.3.3}重复性精度测试}{48}{subsection.6.3.3}%
-\contentsline {subsection}{\numberline {6.3.4}伺服性能测试}{50}{subsection.6.3.4}%
-\contentsline {subsection}{\numberline {6.3.5}抓取成功率测试}{50}{subsection.6.3.5}%
-\contentsline {section}{\numberline {6.4}本章小结}{51}{section.6.4}%
+\contentsline {subsection}{\numberline {6.3.2}边界鲁棒性测试}{49}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}重复性精度测试}{49}{subsection.6.3.3}%
+\contentsline {subsection}{\numberline {6.3.4}伺服性能测试}{51}{subsection.6.3.4}%
+\contentsline {subsection}{\numberline {6.3.5}抓取成功率测试}{52}{subsection.6.3.5}%
+\contentsline {section}{\numberline {6.4}本章小结}{53}{section.6.4}%
 \contentsline {chapter}{\heiti 结\hspace {\ccwd }论}{54}{section*.14}%
 \contentsline {chapter}{\heiti 参考文献}{56}{section*.17}%
+\contentsline {chapter}{哈尔滨工业大学本科毕业设计（论文）原创性声明}{59}{section*.19}%
+\contentsline {chapter}{\heiti 致\hspace {\ccwd }谢}{60}{section*.20}%

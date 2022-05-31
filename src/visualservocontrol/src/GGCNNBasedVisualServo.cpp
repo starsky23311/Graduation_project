@@ -852,7 +852,7 @@ public:
     NetGraspFeature2D(){
         this->feature_points_num = 21;
         this->range_max = 150;
-        this->target_depth = 0.25;
+        this->target_depth = 0.30;
         feature_points.resize(feature_points_num);
         T.resize(2,feature_points_num);
         R.resize(2,2);
