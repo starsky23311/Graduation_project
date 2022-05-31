@@ -1,247 +1,62 @@
-\chapter{外文资料原文}
-\label{cha:engorg}
-
-\title{The title of the English paper}
-
-\textbf{Abstract:} As one of the most widely used techniques in operations
-research, \emph{ mathematical programming} is defined as a means of maximizing a
-quantity known as \emph{bjective function}, subject to a set of constraints
-represented by equations and inequalities. Some known subtopics of mathematical
-programming are linear programming, nonlinear programming, multiobjective
-programming, goal programming, dynamic programming, and multilevel
-programming$^{[1]}$.
-
-It is impossible to cover in a single chapter every concept of mathematical
-programming. This chapter introduces only the basic concepts and techniques of
-mathematical programming such that readers gain an understanding of them
-throughout the book$^{[2,3]}$.
-
-
-\section{Single-Objective Programming}
-The general form of single-objective programming (SOP) is written
-as follows,
-\begin{equation}\tag*{(123)} % 如果附录中的公式不想让它出现在公式索引中，那就请
-                             % 用 \tag*{xxxx}
-\left\{\begin{array}{l}
-\max \,\,f(x)\\[0.1 cm]
-\mbox{subject to:} \\ [0.1 cm]
-\qquad g_j(x)\le 0,\quad j=1,2,\cdots,p
-\end{array}\right.
-\end{equation}
-which maximizes a real-valued function $f$ of
-$x=(x_1,x_2,\cdots,x_n)$ subject to a set of constraints.
-
-\newtheorem{mpdef}{Definition}[chapter]
-\begin{mpdef}
-In SOP, we call $x$ a decision vector, and
-$x_1,x_2,\cdots,x_n$ decision variables. The function
-$f$ is called the objective function. The set
-\begin{equation}\tag*{(456)} % 这里同理，其它不再一一指定。
-S=\left\{x\in\Re^n\bigm|g_j(x)\le 0,\,j=1,2,\cdots,p\right\}
-\end{equation}
-is called the feasible set. An element $x$ in $S$ is called a
-feasible solution.
-\end{mpdef}
-
-\newtheorem{mpdefop}[mpdef]{Definition}
-\begin{mpdefop}
-A feasible solution $x^*$ is called the optimal
-solution of SOP if and only if
-\begin{equation}
-f(x^*)\ge f(x)
-\end{equation}
-for any feasible solution $x$.
-\end{mpdefop}
-
-One of the outstanding contributions to mathematical programming was known as
-the Kuhn-Tucker conditions\ref{eq:ktc}. In order to introduce them, let us give
-some definitions. An inequality constraint $g_j(x)\le 0$ is said to be active at
-a point $x^*$ if $g_j(x^*)=0$. A point $x^*$ satisfying $g_j(x^*)\le 0$ is said
-to be regular if the gradient vectors $\nabla g_j(x)$ of all active constraints
-are linearly independent.
-
-Let $x^*$ be a regular point of the constraints of SOP and assume that all the
-functions $f(x)$ and $g_j(x),j=1,2,\cdots,p$ are differentiable. If $x^*$ is a
-local optimal solution, then there exist Lagrange multipliers
-$\lambda_j,j=1,2,\cdots,p$ such that the following Kuhn-Tucker conditions hold,
-\begin{equation}
-\label{eq:ktc}
-\left\{\begin{array}{l}
-    \nabla f(x^*)-\sum\limits_{j=1}^p\lambda_j\nabla g_j(x^*)=0\\[0.3cm]
-    \lambda_jg_j(x^*)=0,\quad j=1,2,\cdots,p\\[0.2cm]
-    \lambda_j\ge 0,\quad j=1,2,\cdots,p.
-\end{array}\right.
-\end{equation}
-If all the functions $f(x)$ and $g_j(x),j=1,2,\cdots,p$ are convex and
-differentiable, and the point $x^*$ satisfies the Kuhn-Tucker conditions
-(\ref{eq:ktc}), then it has been proved that the point $x^*$ is a global optimal
-solution of SOP.
-
-\subsection{Linear Programming}
-\label{sec:lp}
-
-If the functions $f(x),g_j(x),j=1,2,\cdots,p$ are all linear, then SOP is called
-a {\em linear programming}.
-
-The feasible set of linear is always convex. A point $x$ is called an extreme
-point of convex set $S$ if $x\in S$ and $x$ cannot be expressed as a convex
-combination of two points in $S$. It has been shown that the optimal solution to
-linear programming corresponds to an extreme point of its feasible set provided
-that the feasible set $S$ is bounded. This fact is the basis of the {\em simplex
-  algorithm} which was developed by Dantzig as a very efficient method for
-solving linear programming.
-\begin{table}[ht]
-\centering
-  \centering
-  \caption*{Table~1\hskip1em This is an example for manually numbered table, which
-    would not appear in the list of tables}
-  \label{tab:badtabular2}
-  \begin{tabular}[c]{|m{1.5cm}|c|c|c|c|c|c|}\hline
-    \multicolumn{2}{|c|}{Network Topology} & \# of nodes &
-    \multicolumn{3}{c|}{\# of clients} & Server \\\hline
-    GT-ITM & Waxman Transit-Stub & 600 &
-    \multirow{2}{2em}{2\%}&
-    \multirow{2}{2em}{10\%}&
-    \multirow{2}{2em}{50\%}&
-    \multirow{2}{1.2in}{Max. Connectivity}\\\cline{1-3}
-    \multicolumn{2}{|c|}{Inet-2.1} & 6000 & & & &\\\hline
-    & \multicolumn{2}{c|}{ABCDEF} &\multicolumn{4}{c|}{} \\\hline
-\end{tabular}
-\end{table}
-
-Roughly speaking, the simplex algorithm examines only the extreme points of the
-feasible set, rather than all feasible points. At first, the simplex algorithm
-selects an extreme point as the initial point. The successive extreme point is
-selected so as to improve the objective function value. The procedure is
-repeated until no improvement in objective function value can be made. The last
-extreme point is the optimal solution.
-
-\subsection{Nonlinear Programming}
-
-If at least one of the functions $f(x),g_j(x),j=1,2,\cdots,p$ is nonlinear, then
-SOP is called a {\em nonlinear programming}.
-
-A large number of classical optimization methods have been developed to treat
-special-structural nonlinear programming based on the mathematical theory
-concerned with analyzing the structure of problems.
-
-Now we consider a nonlinear programming which is confronted solely with
-maximizing a real-valued function with domain $\Re^n$.  Whether derivatives are
-available or not, the usual strategy is first to select a point in $\Re^n$ which
-is thought to be the most likely place where the maximum exists. If there is no
-information available on which to base such a selection, a point is chosen at
-random. From this first point an attempt is made to construct a sequence of
-points, each of which yields an improved objective function value over its
-predecessor. The next point to be added to the sequence is chosen by analyzing
-the behavior of the function at the previous points. This construction continues
-until some termination criterion is met. Methods based upon this strategy are
-called {\em ascent methods}, which can be classified as {\em direct methods},
-{\em gradient methods}, and {\em Hessian methods} according to the information
-about the behavior of objective function $f$. Direct methods require only that
-the function can be evaluated at each point. Gradient methods require the
-evaluation of first derivatives of $f$. Hessian methods require the evaluation
-of second derivatives. In fact, there is no superior method for all
-problems. The efficiency of a method is very much dependent upon the objective
-function.
-
-\subsection{Integer Programming}
-
-{\em Integer programming} is a special mathematical programming in which all of
-the variables are assumed to be only integer values. When there are not only
-integer variables but also conventional continuous variables, we call it {\em
-  mixed integer programming}. If all the variables are assumed either 0 or 1,
-then the problem is termed a {\em zero-one programming}. Although integer
-programming can be solved by an {\em exhaustive enumeration} theoretically, it
-is impractical to solve realistically sized integer programming problems. The
-most successful algorithm so far found to solve integer programming is called
-the {\em branch-and-bound enumeration} developed by Balas (1965) and Dakin
-(1965). The other technique to integer programming is the {\em cutting plane
-  method} developed by Gomory (1959).
-
-\hfill\textit{Uncertain Programming\/}\quad(\textsl{BaoDing Liu, 2006.2})
-
-\section*{References}
-\noindent{\itshape NOTE: These references are only for demonstration. They are
-  not real citations in the original text.}
-
-\begin{translationbib}
-\item Donald E. Knuth. The \TeX book. Addison-Wesley, 1984. ISBN: 0-201-13448-9
-\item Paul W. Abrahams, Karl Berry and Kathryn A. Hargreaves. \TeX\ for the
-  Impatient. Addison-Wesley, 1990. ISBN: 0-201-51375-7
-\item David Salomon. The advanced \TeX book.  New York : Springer, 1995. ISBN:0-387-94556-3
-\end{translationbib}
-
 \chapter{外文资料的调研阅读报告或书面翻译}
 
-\title{英文资料的中文标题}
+\title{将机器人抓取闭环：一种实时、生成的抓取合成方法}
 
-{\heiti 摘要：} 本章为外文资料翻译内容。如果有摘要可以直接写上来，这部分好像没有
-明确的规定。
+{\heiti 摘要：} 本文提出了一种实时的、与对象无关的抓取合成方法，可用于闭环抓取。我们提出的生成抓取卷积神经网络 (GG-CNN) 预测每个像素的抓取质量和姿势。这种来自深度图像的一对一映射克服了当前深度学习抓取技术的局限性，避免了抓取候选的离散采样和较长的计算时间。此外，我们的 GG-CNN 在检测稳定抓取的同时具有与当前最先进技术相当的性能，并且数量级更小。我们的 GG-CNN 的轻量级和单通道生成特性允许以高达 50Hz 的频率进行闭环控制，从而在物体移动的非静态环境中以及机器人控制不准确的情况下实现准确抓取。在我们的真实世界测试中，我们在一组先前未见过的具有对抗性几何形状的物体上实现了 83\% 的抓取成功率，在抓取尝试期间移动的一组家用物体上实现了 88\% 的抓取成功率。在动态杂波中抓取时，我们也达到了 81\% 的准确率。
 
-\section{单目标规划}
-北冥有鱼，其名为鲲。鲲之大，不知其几千里也。化而为鸟，其名为鹏。鹏之背，不知其几
-千里也。怒而飞，其翼若垂天之云。是鸟也，海运则将徙于南冥。南冥者，天池也。
-\begin{equation}\tag*{(123)}
- p(y|\mathbf{x}) = \frac{p(\mathbf{x},y)}{p(\mathbf{x})}=
-\frac{p(\mathbf{x}|y)p(y)}{p(\mathbf{x})}
-\end{equation}
-
-吾生也有涯，而知也无涯。以有涯随无涯，殆已！已而为知者，殆而已矣！为善无近名，为
-恶无近刑，缘督以为经，可以保身，可以全生，可以养亲，可以尽年。
-
-\subsection{线性规划}
-庖丁为文惠君解牛，手之所触，肩之所倚，足之所履，膝之所倚，砉然响然，奏刀騞然，莫
-不中音，合于桑林之舞，乃中经首之会。
-\begin{table}[ht]
-\centering
-  \centering
-  \caption*{表~1\hskip1em 这是手动编号但不出现在索引中的一个表格例子}
-  \label{tab:badtabular3}
-  \begin{tabular}[c]{|m{1.5cm}|c|c|c|c|c|c|}\hline
-    \multicolumn{2}{|c|}{Network Topology} & \# of nodes &
-    \multicolumn{3}{c|}{\# of clients} & Server \\\hline
-    GT-ITM & Waxman Transit-Stub & 600 &
-    \multirow{2}{2em}{2\%}&
-    \multirow{2}{2em}{10\%}&
-    \multirow{2}{2em}{50\%}&
-    \multirow{2}{1.2in}{Max. Connectivity}\\\cline{1-3}
-    \multicolumn{2}{|c|}{Inet-2.1} & 6000 & & & &\\\hline
-    & \multicolumn{2}{c|}{ABCDEF} &\multicolumn{4}{c|}{} \\\hline
-\end{tabular}
-\end{table}
-
-文惠君曰：“嘻，善哉！技盖至此乎？”庖丁释刀对曰：“臣之所好者道也，进乎技矣。始臣之
-解牛之时，所见无非全牛者；三年之后，未尝见全牛也；方今之时，臣以神遇而不以目视，
-官知止而神欲行。依乎天理，批大郤，导大窾，因其固然。技经肯綮之未尝，而况大坬乎！
-良庖岁更刀，割也；族庖月更刀，折也；今臣之刀十九年矣，所解数千牛矣，而刀刃若新发
-于硎。彼节者有间而刀刃者无厚，以无厚入有间，恢恢乎其于游刃必有余地矣。是以十九年
-而刀刃若新发于硎。虽然，每至于族，吾见其难为，怵然为戒，视为止，行为迟，动刀甚微，
-謋然已解，如土委地。提刀而立，为之而四顾，为之踌躇满志，善刀而藏之。”
-
-文惠君曰：“善哉！吾闻庖丁之言，得养生焉。”
+\section{引言}
+为了在现实世界的非结构化环境中执行抓取和操作任务，机器人必须能够计算它可能遇到的几乎无限数量的物体的抓取。此外，它还需要能够在动态环境中发挥作用，无论是机器人工作空间的变化、感知的噪声和错误、机器人控制的不准确，还是机器人本身的扰动。
 
 
-\subsection{非线性规划}
-孔子与柳下季为友，柳下季之弟名曰盗跖。盗跖从卒九千人，横行天下，侵暴诸侯。穴室枢
-户，驱人牛马，取人妇女。贪得忘亲，不顾父母兄弟，不祭先祖。所过之邑，大国守城，小
-国入保，万民苦之。孔子谓柳下季曰：“夫为人父者，必能诏其子；为人兄者，必能教其弟。
-若父不能诏其子，兄不能教其弟，则无贵父子兄弟之亲矣。今先生，世之才士也，弟为盗
-跖，为天下害，而弗能教也，丘窃为先生羞之。丘请为先生往说之。”
-
-柳下季曰：“先生言为人父者必能诏其子，为人兄者必能教其弟，若子不听父之诏，弟不受
-兄之教，虽今先生之辩，将奈之何哉？且跖之为人也，心如涌泉，意如飘风，强足以距敌，
-辩足以饰非。顺其心则喜，逆其心则怒，易辱人以言。先生必无往。”
-
-孔子不听，颜回为驭，子贡为右，往见盗跖。
-
-\subsection{整数规划}
-盗跖乃方休卒徒大山之阳，脍人肝而餔之。孔子下车而前，见谒者曰：“鲁人孔丘，闻将军
-高义，敬再拜谒者。”谒者入通。盗跖闻之大怒，目如明星，发上指冠，曰：“此夫鲁国之
-巧伪人孔丘非邪？为我告之：尔作言造语，妄称文、武，冠枝木之冠，带死牛之胁，多辞缪
-说，不耕而食，不织而衣，摇唇鼓舌，擅生是非，以迷天下之主，使天下学士不反其本，妄
-作孝弟，而侥幸于封侯富贵者也。子之罪大极重，疾走归！不然，我将以子肝益昼餔之膳。”
+机器人抓取已经研究了几十年，产生了大量不同的技术。最近，深度学习技术在未知项目的抓取合成方面取得了一些最大的进步。这些方法允许学习与超出人工设计特征能力的高质量抓取相对应的特征。
 
 
-\chapter{其它附录}
-前面两个附录主要是给本科生做例子。其它附录的内容可以放到这里，当然如果你愿意，可
-以把这部分也放到独立的文件中，然后将其到主文件中。
+但是，这些方法通常使用为对象识别而设计的卷积神经网络 (CNN) 架构的改编版本 ，并且在大多数情况下，单独对抓取候选对象进行采样和排序 ，导致计算时间较长大约一秒 到几十秒。因此，这些技术很少用于闭环抓取执行，并且依靠精确的相机校准和精确的机器人控制来成功抓取，即使在静态环境中也是如此。
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{附录/实时生成抓取管道}
+	\caption{实时生成抓取管道。安装在机器人手腕上的摄像头捕捉包含要抓取的物体的深度图像。我们的生成抓取卷积神经网络 (GG-CNN) 为输入图像中的每个像素生成对映抓取——参数化为抓取质量、角度和抓取器宽度在几分之一秒内。计算最佳抓握并向机器人发出速度命令 ($v$)。闭环系统能够抓取动态对象并对控制做出反应。}
+	\label{实时生成抓取管道}
+\end{figure}
+
+
+我们提出了一种不同的方法来为以前看不见的项目选择抓取点。我们的生成抓取卷积神经网络 (GG-CNN) 直接为输入深度图像中的每个像素生成对映抓取姿势和质量度量，并且对于动态环境中抓取的闭环控制来说足够快（图 1-1）。我们使用术语“生成”来区分我们的直接抓取生成方法和样本抓取候选的方法。
+
+
+GG-CNN 相对于其他最先进的合成 CNN 的优势是双重的。首先，我们不依赖于抓取候选的采样，而是直接在像素基础上生成抓取姿势，类似于对象检测的进步，其中全卷积网络通常用于执行像素语义分割，而不是依赖于滑动窗口或边界框 [19]。其次，我们的 GG-CNN 的参数比其他用于抓取合成的 CNN 少几个数量级，这使得我们的抓取检测管道在配备 GPU 的台式计算机上只需 19 毫秒即可执行，速度足以进行闭环抓取。
+
+
+我们在以下方面评估了我们系统的性能通过使用 Kinova Micorobot 对静态、动态和杂乱的物体进行抓取试验，实现不同的场景。在动态抓取试验中，在抓取尝试期间移动物体，我们在一组 8 个具有对抗几何的 3D 打印物体上实现了 83\% 的抓取成功率 [21]，在从标准化对象集中选择的一组 12 个家居用品上实现了 88\% 的抓取成功率。此外，我们重现了 [32] 的动态杂波抓取实验，并显示抓取成功率提高了 81\%。当人为的误差被添加到机器人的控制中时，我们通过报告实验结果进一步说明使用闭环方法的优势。
+\section{相关工作}
+抓取未知物体抓取合成是指为给定物体制定稳定的机器人抓取方式，这是一个已经被广泛研究的主题，导致了大量的技术。从广义上讲，这些可以分为分析方法和经验方法。分析方法使用几何、运动学和动力学的数学和物理模型来计算稳定的抓取，但由于难以对机械手和对象之间的物理交互进行建模，因此往往不能很好地转移到现实世界中。
+
+
+相比之下，经验方法侧重于使用模型和基于经验的方法。一些技术适用于已知项目，将良好的掌握点与对象模型或形状或熟悉的项目的离线数据库相关联，基于对象类或对象部分，但无法推广到新对象。
+
+
+在抓取未知物体方面，最近随着基于视觉的深度学习技术的普及，取得了巨大的进步。许多这些技术共享一个共同的流程：对从图像或点云中采样的抓取候选者进行分类，然后使用卷积神经网络 (CNN) 对它们进行单独排序。一旦确定了最佳抓取候选者，机器人就会执行抓取开环（无需任何反馈），这需要相机和机器人之间的精确校准，机器人的精确控制和完全静态的环境。执行时间是抓取开环执行的主要原因。
+
+
+在许多情况下，深度学习方法使用具有数百万个参数的大型神经网络 并使用滑动窗口以离散的偏移和旋转间隔处理抓取候选者，这在计算上是昂贵的，并且会导致抓取规划时间大约为一秒到几十秒。
+
+一些方法通过预处理和修剪抓取候选者或同时预测一组离散的抓取候选者的质量来减少执行时间，在执行时间与采样的抓取数量之间进行权衡，但是忽略一些潜在的把握。
+
+
+与我们的方法类似，Varley 等人，使用神经网络为图像中的手指放置生成像素级热图，但仍然依赖抓取规划器来确定最终的抓取姿势。
+
+
+我们通过直接同时为图像中的每个像素生成抓取姿势来解决执行时间和抓取采样的问题，使用相对较小的神经网络。
+
+
+闭环抓取使用视觉反馈将机器人闭环控制到所需姿势通常称为视觉伺服。视觉伺服方法的优点是它们能够适应动态环境并且不一定需要完全精确的相机校准或位置控制。许多工作将视觉伺服直接应用于抓取应用。然而，视觉伺服方法的性质意味着它们通常依赖于手工制作的图像特征来进行对象检测或对象姿态估计，因此不执行任何在线抓取合成，而是收敛到预先确定的目标姿势，并且不适用于未知对象。
+
+
+最近有人提出基于 CNN 的抓取控制器将深度学习与闭环抓取相结合。两个系统都不是明确地执行抓取合成，而是学习控制器，这些控制器将潜在的控制命令映射到执行控制后的预期质量或距离，需要在每个时间步对许多潜在的命令进行采样。在这两种情况下，控制都以不超过大约 5Hz 的频率执行。虽然两者都是闭环控制器，但动态场景中的抓取仅在一项工作中提出中提出，我们重现了这些实验。
+
+
+机器人抓取的基准测试由于使用的抓取检测技术范围广泛、对象集之间缺乏标准化以及不同物理硬件（例如机械臂、抓手或相机。许多人报告了对“家庭”对象集的抓取成功率，这些对象在使用的对象的数量和类型上差异很大。
+
+ACRV Picking Benchmark (APB)和 YCBObject Set定义了项目集和操作任务，但在诸如仓库订单履行 (APB) 等任务上进行了基准测试或表格设置和块堆叠 (YCB)，而不是通常报告的原始抓取成功率。此外，这两组中的许多项目对于许多机器人和抓手来说都是不切实际的小、大或重，因此尚未广泛用于机器人抓取实验。我们提出了一组 20 个可重复的测试项目，包括 8 个 3D 打印对抗来自的对象和来自 APB 和 YCB 对象集的 12 个项目，它们提供了足够广泛的尺寸、形状和难度，以有效地比较结果，同时不排除任何常见机器人、夹具或相机的使用。
+
+\section{总结}
+我们展示了我们的生成抓取卷积神经网络 (GG-CNN)，这是一种与对象无关的抓取合成模型，它直接从深度图像以像素为单位生成抓取姿势，而不是像其他深度学习技术那样对单个抓取候选对象进行采样和分类。我们的 GG-CNN 比其他最近的抓取网络小几个数量级，使我们能够以高达 50Hz 的速率生成抓取并执行闭环控制。我们通过抓取试验表明我们的系统能够获得最先进的技术导致抓取未知的动态对象，包括动态杂波中的对象。此外，在存在模拟机器人控制错误的情况下，我们的闭环抓取方法明显优于开环方法。我们通过使用两个标准对象集（一组具有对抗几何的八个 3D 打印对象）来鼓励机器人抓取实验的可重复性。 21]加上来自标准机器人基准对象集的十二个家居用品的建议集，并通过定义我们的动态抓取实验的参数。在我们的两个对象集上，当对象在抓取尝试期间移动时，抓取成功率分别为 83\% 和 88\%，而动态杂波中的对象抓取成功率为 81\%。

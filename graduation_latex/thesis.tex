@@ -409,7 +409,7 @@ L_e=\left[ \begin{matrix}
 \section{本章小结}[Content specification]
 本章讲述了基于特征点交互矩阵的IBVS的原理。在算法实现前建立系统坐标系和视觉坐标系，这会使之后的坐标描述便捷许多。搭建了IBVS的仿真运行环境，便于后续问题分析。搭建了实物运行环境，并成功运行了IBVS算法，这意味着研究真正的开始。
 %%%%%%%%%%%%%%%%%%%%%%%%%先验缺失的抓取点自主生成研究%%%%%%%%%%%%%%%%%%
-\chapter[先验缺失的抓取点自主生成研究]{先验缺失的抓取点自主生成研究}
+\chapter[先验信息缺失的抓取点自主生成]{先验信息缺失的抓取点自主生成}
 \section{引言}[Content specification]
 第二章完成了IBVS的模型建立、仿真系统搭建以及在实物上成功运行IBVS算法，这些为后续的研究提供了控制基础。现在机器人知道自己怎么动了，那么它面对未知物体抓取任务时如何知道自己往哪动呢？接下来，在本章中将对本次课题又一基石——伺服目标生成的研究进行展开。主要研究了基于模型的点云识别和抓取点生成网络两种方法，将它们进行比较后，选择了后者作为应对未知物体抓取任务时生成机器人伺服目标的方案。
 
@@ -463,22 +463,42 @@ E=\sum_{i=1}^N{\left| \vec{q}_t-R\vec{p}_t \right|}
 求得平移矩阵$T=\vec{q}-R\vec{p}$。
 \end{itemize}
 
+
+\begin{figure}[h]
+	\centering
+	\subfigure[两点云分布（初始）]{
+		\begin{minipage}[h]{0.4\textwidth}
+			\includegraphics[width=1\textwidth]{chapter3/ICP示意图0迭代}
+		\end{minipage}
+		\label{两点云分布（初始）}
+	}
+    	\subfigure[两点云分布（迭代20次）]{
+    		\begin{minipage}[h]{0.4\textwidth}
+   		 	\includegraphics[width=1\textwidth]{chapter3/ICP示意图20迭代}
+    		\end{minipage}
+		\label{两点云分布（迭代20次）}
+    	}
+	\caption{ICP算法效果展示}
+	\label{ICP算法效果展示}
+\end{figure}
+
+
+以猴子面部的点云模型为例，初始情况下将点云模型略微调整位姿，使用ICP算法不断迭代以求得两点云的变换矩阵。通过20次迭代，基本可以实现两点云重合。迭代前后点云位姿如图\ref{}所示，其中红色点云为正在迭代的点云分布，白色点云为猴子面部模型初始点云分布。
 \subsection{算法实现}
 深度传感器获得的点云往往不全是目标物体的点云，在姿态匹配前，经过三个方向的点云截断滤波、去离群点、降采样操作，最后提取出目标点云。基于模板匹配点云识别过程中所提取的点云特征选取了VFH特征，它是一种全局特征，可以快速计算和匹配。算法的实现效果如图\ref{基于模型的点云识别实操图}和图\ref{基于模型的点云识别效果图}所示。
 
 
 图\ref{基于模型的点云识别实操图}和图\ref{基于模型的点云识别效果图}分别是算法运行时第三方视角和电脑视角的图片，点云处理间隔为500ms，但识别和位姿解算间隔约为3s。
-\newpage
 \begin{figure}[h]
 \centering
-\includegraphics[width = 0.75\textwidth]{chapter3/基于模型的点云识别实操图}
+\includegraphics[width = 0.6\textwidth]{chapter3/基于模型的点云识别实操图}
 \caption{基于模型的点云识别实操图}
 \label{基于模型的点云识别实操图}
 \end{figure}
 
 \begin{figure}[h]
 \centering
-\includegraphics[width = 0.75\textwidth]{chapter3/基于模型的点云识别效果图}
+\includegraphics[width = 0.6\textwidth]{chapter3/基于模型的点云识别效果图}
 \caption{基于模型的点云识别效果图}
 \label{基于模型的点云识别效果图}
 \end{figure}
@@ -513,7 +533,13 @@ E=\sum_{i=1}^N{\left| \vec{q}_t-R\vec{p}_t \right|}
 \end{figure}
 
 
-这里特别解释一下图\ref{GG-CNN输出（初始）}中图Q表示抓取质量热度图，颜色越偏暖色越值得被抓，图Angle表示抓取角度图，单位是弧度，可以看到对柱形物体，抓取角度在高抓取质量点处几乎一致。
+这里特别解释一下图\ref{GG-CNN输出（初始）}中图Q表示抓取质量热度图，颜色越偏暖色越值得被抓，图Angle表示抓取角度图，单位是弧度，可以看到对柱形物体，抓取角度在高抓取质量点处几乎一致。另外，这里给出网络框架优化前后的训练过程折线图，优化后的网络（红线）将能更快的收敛并达到更高的预测准确率。
+\begin{figure}[h]
+\centering
+\includegraphics[width = 1.0\textwidth]{chapter3/训练对比图}
+\caption{优化前后预测准确率对比折线图}
+\label{训练对比图}
+\end{figure}
 
 
 在代码测试过程中发现Realsense D435i对深度的测量信噪比很低，测量深度波动很大，只依靠深度图像一阶图像矩无法稳定定位目标物体的位置，所以通过RGB图像和深度图像的一阶图像矩（如果能有更好的深度传感器，是不需要依赖颜色信息的）可以得到目标大致位置。使用这个作为中心对当前640*480的图像进行考虑边缘（如果超出原始图像范围，会平移中心）的300*300裁剪。将神经网络写成ROS2的一个节点，实时发布计算出的抓取点信息，视觉伺服节点会订阅它的主题，实时显示抓取方框。选择抓取对象为笔袋，图\ref{实时抓取点生成}为实时抓取点生成效果图。
@@ -607,7 +633,7 @@ P_{k+1}=\left( I-K_{k+1}H \right) \hat{P}_{k+1}
 \caption{抓取点中心方法替代与角度滤波}
 \label{抓取点中心方法替代与角度滤波}
 \end{figure}
-
+\newpage
 \subsection{方法小结}
 GG-CNN是十分契合本次研究目的的研究成果，因此它被选作未知物体抓取算法中解决机械臂怎么去抓取目标的方法。但是在复现工作中遇到了抓取中心波动过大的无法解决的问题，只能使用RGB图像的一阶图像矩方法代替它进行抓取点中心生成，最终只保留了该网络输出的角度项，在经过卡尔曼滤波处理后拥有比较稳定的输出值。
 
@@ -639,31 +665,31 @@ GG-CNN是十分契合本次研究目的的研究成果，因此它被选作未�
 \end{figure}
 
 
-深度图像经过处理变得十分可靠。注意到平台以外的部分为蓝色的地面和银色的机械臂基座，接下来的思路就是确定平台位置以及对应的深度，通过判断是否大于平台深度来排除地面和基座。可以通过颜色区分平台和地面，但是机械臂基座和平台颜色相近，二值化后使用颜色中心来确定平台位置并不合适。为此，在对RGB图像二值化后，取对应白色区域的深度图像的深度中值作为平台的深度。因为机械臂再怎么运动都不会离开平台过多，离开平台过多情况的出现往往意味着视觉伺服的失败，所以基座对应的RGB图像的范围相比平台是更小的，那么取中值能有效地找到平台对应的深度。最后将大于这个深度0.5cm位置的深度全部置为平台深度，这样就会把边界的深度都通过平台深度拓展，处理过程见图\ref{图像处理抑制边缘干扰}，图a是原始RGB图像，图b是提取的平台对应像素，图c是算法分割出背景后将背景置为白色的RGB图像，图d是算法分割出背景后将背景置为平台深度的深度图像。
+深度图像经过处理变得十分可靠。注意到平台以外的部分为蓝色的地面和银色的机械臂基座，接下来的思路就是确定平台位置以及对应的深度，通过判断是否大于平台深度来排除地面和基座。可以通过颜色区分平台和地面，但是机械臂基座和平台颜色相近，二值化后使用颜色中心来确定平台位置并不合适。为此，在对RGB图像二值化后，取对应白色区域的深度图像的深度中值作为平台的深度。因为机械臂再怎么运动都不会离开平台过多，离开平台过多情况的出现往往意味着视觉伺服的失败，所以基座对应的RGB图像的范围相比平台是更小的，那么取中值能有效地找到平台对应的深度。最后将大于这个深度0.5cm位置的深度全部置为平台深度，这样就会把边界的深度都通过平台深度拓展，处理过程见图\ref{图像处理抑制边缘干扰}，图a是原始RGB图像，图b是提取的平台对应像素，图c是算法分割出背景后将背景置为白色的RGB图像，图d是算法分割出背景后将背景置为平台深度的深度图像。最后，图\ref{}给出了以上说明的图像处理的流程架构。
 \newpage
 \begin{figure}[h]
 	\centering
 	\subfigure[]{
-		\begin{minipage}[h]{0.45\textwidth}
+		\begin{minipage}[h]{0.33\textwidth}
 			\includegraphics[width=1\textwidth]{chapter4/图像处理抑制边缘干扰a} 
 		\end{minipage}
 		\label{图像处理抑制边缘干扰a}
 	}
     	\subfigure[]{
-    		\begin{minipage}[h]{0.45\textwidth}
+    		\begin{minipage}[h]{0.33\textwidth}
    		 	\includegraphics[width=1\textwidth]{chapter4/图像处理抑制边缘干扰b}
     		\end{minipage}
 		\label{图像处理抑制边缘干扰b}
     	}
 	\\ 
 	\subfigure[]{
-		\begin{minipage}[h]{0.45\textwidth}
+		\begin{minipage}[h]{0.33\textwidth}
 			\includegraphics[width=1\textwidth]{chapter4/图像处理抑制边缘干扰c} 
 		\end{minipage}
 		\label{图像处理抑制边缘干扰c}
 	}
     	\subfigure[]{
-    		\begin{minipage}[h]{0.45\textwidth}
+    		\begin{minipage}[h]{0.33\textwidth}
 		 	\includegraphics[width=1\textwidth]{chapter4/图像处理抑制边缘干扰d}
     		\end{minipage}
 		\label{图像处理抑制边缘干扰d}
@@ -671,7 +697,12 @@ GG-CNN是十分契合本次研究目的的研究成果，因此它被选作未�
 	\caption{图像处理抑制边缘干扰}
 	\label{图像处理抑制边缘干扰}
 \end{figure}
-
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.93\textwidth]{chapter4/图像处理流程图}
+\caption{图像处理流程图}
+\label{图像处理流程图}
+\end{figure}
 
 
 \section{初步思路}[Content specification]
@@ -706,6 +737,7 @@ GG-CNN是十分契合本次研究目的的研究成果，因此它被选作未�
 
 
 但是将该算法实时运行时，出现了特征分布收缩的问题，而且仅仅在30帧内特征点会彻底聚集在一起。如图\ref{ORB特征点提取与匹配}中图b所示。经过后续的分析，认为这是必然的趋势。纯粹的依靠图像特征提取与匹配，加上距离的约束，那么4个几乎相同的特征点是最稳定的解，它们相似而又相近。
+\newpage
 \subsection{基于抓取点的IBVS}[Content specification]
 第三章中实现了一阶图像矩和GG-CNN实时输出抓取点。为了能将该信息使用于IBVS中，基于这个抓取点和相机一直保持俯视的条件，提出一种基于抓取点的IBVS。总特征点数还是4，会时刻计算抓取点附近的特征点并通过抓取点信息自主生成的目标特征，特征点丢失会补充。假设在深度测量器从深度相机向编码器切换后，特征点不会丢失。
 
@@ -713,7 +745,7 @@ GG-CNN是十分契合本次研究目的的研究成果，因此它被选作未�
 首先是目标特征$s^*$自主生成。认为机器人到达了期望位姿时，抓取点应当在图像的中心位置，那么由于相机俯视，此时检测到的特征$s$转化为$s^*$的过程实际上就是一个平面上平移、旋转和放缩的过程。如图\ref{俯视相机成图}所示，这是俯视相机所看到的世界，想把图中相机（三维坐标轴）变换到正对Apritag码（模拟抓取点）中心的位置，只需要在XY平面上平移，然后按照网络输出的Z轴旋转角度沿Z轴旋转，最后沿Z轴平移到期望深度即可。
 \begin{figure}[h]
 \centering
-\includegraphics[width = 0.65\textwidth]{chapter4/俯视相机成图}
+\includegraphics[width = 0.55\textwidth]{chapter4/俯视相机成图}
 \caption{俯视相机成图}
 \label{俯视相机成图}
 \end{figure}
@@ -760,16 +792,17 @@ s^*=\frac{\bar{Z}}{Z_d}\left( R\left( s+T \right) -T_0 \right)
 在笔袋上贴上黑色方框，将方框四个点作为特征来计算目标特征。最终实现效果如图\ref{目标特征生成图}所示，左边蓝色的四个点是根据抓取点生成的四个目标点，在机械臂处于期望位姿时，当前特征点应到处于这个位置。
 \begin{figure}[h]
 \centering
-\includegraphics[width = 0.7\textwidth]{chapter4/目标特征生成}
+\includegraphics[width = 0.64\textwidth]{chapter4/目标特征生成}
 \caption{目标特征生成}
 \label{目标特征生成图}
 \end{figure}
 
 
 但非常遗憾的是，该方法跑出的伺服指令曲线是发散的，如图\ref{指令发散现象}所示。究其原因在于抓取点生成状态的波动对目标特征的生成影响是很大的。因为机械臂末端处于初始位置时，当前特征比较聚集，生成的目标特征在沿Z轴放大后相对误差是很大的。另外，在当前特征的提取和目标特征生成算法下，当前特征和目标特征的位置和旋转角度同时在改变，它们的误差将叠加。
+\newpage
 \begin{figure}[h]
 \centering
-\includegraphics[width = 0.75\textwidth]{chapter4/指令发散}
+\includegraphics[width = 0.64\textwidth]{chapter4/指令发散}
 \caption{指令发散现象}
 \label{指令发散现象}
 \end{figure}
@@ -833,7 +866,7 @@ s=mR\left( s^*+T_0 \right) -T
 \end{figure}
 
 
-在运行IBVS程序，时遇到了Z轴速度指令一直接近0的问题，不论抓取对象是笔袋还是卷纸。指令曲线如图\ref{速度指令接近0的情况}所示。经过反复实验发现只要特征分布恰好全在现实世界的一个平面上且旋转角度偏差很小的时候就会导致这个问题。对于笔袋，当前设定的特征分布相对聚集，所有特征点都在笔袋上；对于卷纸，当前设定的特征分布相对松散，所有特征点都在平台上，所以需要优化当前特征分布。\begin{figure}[h]
+在运行IBVS程序，时遇到了Z轴速度指令一直接近0的问题，不论抓取对象是笔袋还是卷纸。指令曲线如图\ref{Z轴速度接近0的情况}所示。经过反复实验发现只要特征分布恰好全在现实世界的一个平面上且旋转角度偏差很小的时候就会导致这个问题。对于笔袋，当前设定的特征分布相对聚集，所有特征点都在笔袋上；对于卷纸，当前设定的特征分布相对松散，所有特征点都在平台上，所以需要优化当前特征分布。\begin{figure}[h]
 \centering
 \includegraphics[width = 0.75\textwidth]{chapter4/Z轴速度接近0的情况}
 \caption{Z轴速度接近0的情况}
@@ -847,6 +880,7 @@ s=mR\left( s^*+T_0 \right) -T
 	\caption{优化自定义目标特征}
 	\label{优化自定义目标特征}
 \end{figure}
+\newpage
 
 
 注意到在图\ref{伺服指令曲线}中，整个伺服过程所消耗的时间长达25s,此时的控制系统只能保证最基础的稳定性而已，在快速性方面有待提高。另外值得一提的是，所提出的特征分布不一定拘泥于GG-CNN算出的抓取点，对于俯视二指爪抓取物体的问题，任意算法给出一个抓取点，它都可以当一个插件挂上去，帮助运行IBVS。
@@ -1044,6 +1078,7 @@ v_c=L_{en}^{+}\left( -K_p\varepsilon\left( t \right) -k_a\varepsilon\left( 0 \ri
 
 
 式\ref{自适应IBVS}中的自适应项本质是惯性环节，但是它的系数是可变的，取自该特征偏差对应的初值，所以大的初始偏差对应特征的收敛将会被加快。这一项会在伺服过程中快速衰减至0，伺服末期控制律依然按照式\ref{PD控制律}进行。将算法应用于实物中运行，得到的伺服曲线如图\ref{视觉伺服曲线（自适应）}所示：
+\newpage
 \begin{figure}[h]
 	\centering
 	\subfigure[速度指令]{
@@ -1078,7 +1113,7 @@ v_c=L_{en}^{+}\left( -K_p\varepsilon\left( t \right) -k_a\varepsilon\left( 0 \ri
 
 参数中$k_a$是增益系数，调试中置为15。$T$是和该项衰减速度有关的参数，调试中置为150，$T$对系统稳定性影响是很大的。实际调试中发现了一个现象，机械臂末端初期会沿X轴反方向行动，在Z轴角度差不多转到期望位置时会转为正速度，这是IBVS控制本身具有的现象，它需要特征点在像素坐标系中走直线。所以$T$设置过大容易导致物体离开相机视野范围。由伺服曲线可以看出相较于图\ref{视觉伺服曲线（滑模控制）}中的曲线，调节时间从9.2s下降为7.9s，伺服速度提升了很多。$X$方向特征偏差最大超调为0.05，$Y$方向特征偏差最大超调为0.05，系统超调变得更加微弱，伺服性能已经达到了较高的水平（这一点在第六章与相关工作比较时会明显体现出）。
 
-
+\newpage
 \section{特征偏差收敛速度不一致性}[Content specification]
 对图\ref{视觉伺服曲线（自适应）}放大特征偏差曲线细节（以选取点的X、Y方向特征偏差为例），容易注意到每个特征偏差收敛的速度不一致，且特征偏差初值大的收敛速度更慢，这就是特征偏差收敛速度不一致性问题。原始视觉伺服控制律将所有偏差对偏差随时间变化率的影响一视同仁，事实上这是不合理的，那些收敛速度较慢的特征会对伺服速度造成不良影响，如果使它们的作用效果随着自己的大小做出改变并与收敛速度最快的特征同时收敛，会一定程度上提升伺服性能。
 
@@ -1137,19 +1172,17 @@ K_{bi}=\left[ \begin{array}{c}
 	\caption{视觉伺服曲线（最终效果）}
 	\label{视觉伺服曲线（最终效果）}
 \end{figure}
-
-
-根据特征偏差收敛速度一致性处理后，对X方向特征偏差放大细节并比较处理前的曲线，如图所示\ref{X方向特征偏差细节放大比较}，可以很明显看出处理后各个特征收敛曲线变得一致起来。
 \begin{figure}[h]
 	\centering
 	\subfigure[X方向特征偏差（处理前）]{
-		\begin{minipage}[h]{0.3\textwidth}
+		\begin{minipage}[h]{0.35\textwidth}
 			\includegraphics[width=1\textwidth]{chapter5/error_x0（处理前）}
 		\end{minipage}
 		\label{X方向特征偏差（处理前）}
 	}
+	\hspace{0.05\textwidth}
 	\subfigure[X方向特征偏差（处理后）]{
-		\begin{minipage}[h]{0.28\textwidth}
+		\begin{minipage}[h]{0.35\textwidth}
 			\includegraphics[width=1\textwidth]{chapter5/error_x0（处理后）}
 		\end{minipage}
 		\label{X方向特征偏差（处理后）}
@@ -1158,6 +1191,8 @@ K_{bi}=\left[ \begin{array}{c}
 	\label{X方向特征偏差细节放大比较}
 \end{figure}
 
+
+根据特征偏差收敛速度一致性处理后，对X方向特征偏差放大细节并比较处理前的曲线，如图所示\ref{X方向特征偏差细节放大比较}，可以很明显看出处理后各个特征收敛曲线变得一致起来。
 \section{方法小结}[Content specification]
 为了让系统拥有更好的伺服效果，使用了PD控制器进行优化。但是随之而来的是对物体表面深度的估计带来的指令波动影响，所以使用滑模控制器增强系统控制上对深度估计的鲁棒性。自适应IBVS为控制律增添了会随时间快速衰减至零的一项，旨在提升系统伺服过程中的初期增益，而在末期让系统按照自己原本的控制律控制。最后对图像雅可比矩阵进行改造，让各个特征收敛速度趋于一直，有效抑制系统超调，提升伺服性能。通过绘制直方图比较各个方法对超调量和调节时间的影响如图\ref{各方法对伺服性能提升比较}所示：
 \begin{figure}[h]
@@ -1179,7 +1214,6 @@ K_{bi}=\left[ \begin{array}{c}
 \end{figure}
 
 
-\newpage
 将方法名称、作用和效果列成表格如表\ref{控制律优化方法总结表}所示：
 \begin{table}[htbp]
 \caption{控制律优化方法总结表}
@@ -1199,14 +1233,19 @@ K_{bi}=\left[ \begin{array}{c}
 \end{table}
 
 
-就此已经完成了未知物体抓取算法中所有的研究内容，为了明确表达出整个系统的样子，最终系统控制示意框图确认为图\ref{控制示意框图}所示。系统通过图像处理和GG-CNN自主生成目标特征作为控制期望，比较当前提取出的基于抓取点的自定义特征，经过视觉伺服优化后的控制律，对整个系统下达末端速度指令。通过各关节逆运动解算对机械臂进行控制。
+就此已经完成了未知物体抓取算法中所有的研究内容，为了明确表达出整个系统的样子，最终系统控制示意框图确认为图\ref{控制示意框图}所示。系统通过图像处理和GG-CNN自主生成目标特征作为控制期望，比较当前提取出的基于抓取点的自定义特征，经过视觉伺服优化后的控制律，对整个系统下达末端速度指令。通过各关节逆运动解算对机械臂进行控制。由于程序中的类错综复杂，所以以ROS的节点流形式及那个程序绘制成图\ref{}所示，旨在形象表达程序的框架和运作方式。
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\textwidth]{chapter5/控制示意框图}
 	\caption{控制示意框图}
 	\label{控制示意框图}
 \end{figure}
-
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{chapter5/程序节点数据流图}
+	\caption{程序节点数据流图}
+	\label{程序节点数据流图}
+\end{figure}
 
 
 \section{本章小结}[Content specification]
@@ -1390,7 +1429,7 @@ GG-CNN的输出形式决定了如果要使用它的输出结果作为视觉伺�
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.4\textwidth]{chapter6/替身}
+	\includegraphics[width=0.45\textwidth]{chapter6/重复性精度测试定位测试}
 	\caption{重复性精度测试定位测试}
 	\label{重复性精度测试定位测试}
 \end{figure}
@@ -1522,6 +1561,10 @@ GG-CNN的输出形式决定了如果要使用它的输出结果作为视觉伺�
 % 本科书序为：
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 % \authorization %授权
+\begin{appendix}%附录
+\input{back/appendix01.tex}
+\end{appendix}
+
   \authorization[scan.pdf] %添加扫描页的命令，与上互斥
  \include{back/acknowledgements} %致谢
 
