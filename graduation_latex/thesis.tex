@@ -679,7 +679,7 @@ GG-CNN是十分契合本次研究目的的研究成果，因此它被选作未�
 基于特征点交互矩阵的IBVS依赖特征的提取与匹配来完成伺服任务。这需要要求特征点的提取与匹配具有很强的稳定性。不仅如此，式\ref{交互矩阵}不具备特征点顺序的对称性，这要求特征点匹配时需要保证顺序一致，否则速度指令会出现锯齿状的波形。研究中做了一次仿真，选择四个特征点，不断改变特征点对应的顺序，得到的速度指令波形如图\ref{特征变换指令波动}所示。指令存在较大波动，所以尽可能保证交互矩阵中的特征点顺序不要改变。
 \begin{figure}[h]
 \centering
-\includegraphics[width = 0.7\textwidth]{chapter4/特征变换指令波动}
+\includegraphics[width = 0.6\textwidth]{chapter4/特征变换指令波动}
 \caption{特征变换指令波动}
 \label{特征变换指令波动}
 \end{figure}
@@ -843,7 +843,7 @@ s=mR\left( s^*+T_0 \right) -T
 当前特征需要涵盖平台、物体和物体细节的位置信息，最终设计的特征分布如图\label{优化自定义目标特征}所示。这样的设计保证了特征点能针对任意常见物体获取更多位置信息，Z轴速度指令回归正常。将笔袋作为抓取对象，执行IBVS程序，伺服效果如图\ref{优化自定义效果}所示。
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.75\textwidth]{chapter4/优化自定义目标特征}
+	\includegraphics[width=0.7\textwidth]{chapter4/优化自定义目标特征}
 	\caption{优化自定义目标特征}
 	\label{优化自定义目标特征}
 \end{figure}
@@ -875,7 +875,7 @@ s=mR\left( s^*+T_0 \right) -T
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%IBVS控制律优化%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter[IBVS控制律优化]{IBVS控制律优化}
 \section{引言}[Content specification]
-之前的研究已经完成了机械臂基于视觉伺服的未知物体抓取算法，但是伺服性能是较差的。优秀的控制律会让视觉伺服系统精确、快速地收敛，这不仅会让抓取算法具有实用性，而且还能配合抓取算法提升系统抓取物体的成功率。本章将建立IBVS控制模型，使用PD控制器和自适应IBVS算法\cite{mansard2007task}提升伺服性能，使用滑摸控制器让系统对深度测量的不确定性具有鲁棒性，然后基于Lyapunov直接法证明系统稳定性。最后注意到特征偏差关联速度不一致性，利用特征偏差之间的相对大小改写交互矩阵，实现了一种自适应控制算法，使所有特征与最快收敛的特征同时收敛，提升了收敛速度。
+之前的研究已经完成了机械臂基于视觉伺服的未知物体抓取算法，但是伺服性能是较差的。优秀的控制律会让视觉伺服系统精确、快速地收敛，这不仅会让抓取算法具有实用性，而且还能配合抓取算法提升系统抓取物体的成功率。本章将建立IBVS控制模型，使用PD控制器和自适应IBVS算法\cite{mansard2007task}提升伺服性能，使用滑摸控制器让系统对深度测量的不确定性具有鲁棒性。最后注意到特征偏差关联速度不一致性，利用特征偏差之间的相对大小改写交互矩阵，实现了一种自适应控制算法，使所有特征与最快收敛的特征区域同时收敛，提升了伺服性能。
 
 
 \section{PD控制器与自适应IBVS}[Content specification]
@@ -906,19 +906,20 @@ s=mR\left( s^*+T_0 \right) -T
 
 在原始公式中设计了特征偏差随时间呈指数衰减，从而得到式\ref{当前特征变化率与相机位姿变化率的关系3}中速度指令的表达式，将它改写成式\ref{当前特征变化率与相机位姿变化率的关系3改写}，它类似于设计了一个比例控制器，外面通过交互矩阵广义逆将特征偏差向末端速度指令映射。所以IBVS控制律的本质在于设计速度末端和特征偏差的关系。
 \begin{equation}
-v_c=L_{e}^{+}\left( -\lambda e \right) 
+v_c=L_{en}^{+}\left( -\lambda \varepsilon_n \right) 
 \label{当前特征变化率与相机位姿变化率的关系3改写}
 \end{equation}
 
 \subsection{PD控制器设计}[Content specification]
-那么目前可以进行的优化在于原始公式中对应的比例项那一块。PID控制器被广泛应用于工业控制，实用可靠且简易。将原始的比例项改写成比例加微分项，其中它们的系数$K_p$和$K_d$都是正定矩阵。系数扩维会给调参制造麻烦，但是更为灵活，如果想要好的伺服性能，需要这一步。
+那么目前可以进行的优化在于原始公式中对应的比例项那一块。PID控制器被广泛应用于工业控制，实用可靠且简易。由于积分环节容易造成系统的不稳定，所以仅使用比例-微分环节。将原始的比例项改写成比例加微分项，其中它们的系数$K_p$和$K_d$都是正定矩阵。系数扩维会给调参制造麻烦，但是更为灵活，如果想要好的伺服性能，需要这一步。对每个自定义特征点，外围点、中间点和内部点使用相同的参数，具体怎么定义它们根据实际调参效果决定。
 \begin{equation}
-v_c\left( t \right) =L_{e}^{+}\left( -K_pe\left( t \right) -K_d\dot{e}\left( t \right) \right) 
+v_c\left( t \right) =L_{en}^{+}\left( -K_p\varepsilon_n\left( t \right) -K_d\dot{\varepsilon_n}\left( t \right) \right) 
 \label{PD控制律}
 \end{equation}
 
 
-同样的将笔袋作为抓取对象，放置位置使基坐标系下机械臂末端坐标系相对于物体坐标系的变换为$\varDelta X=0.3m,\varDelta Y=0.3m,\varDelta Z=0.5m,\varDelta \theta _x=0\degree,\varDelta \theta _y=0\degree,\varDelta \theta _z=15\degree$，本章中之后的试验都将保持这个相对位姿进行。伺服过程会在特征偏差的均方差小于$2*10^{-4}$时强制停止，从开始到此时的时间计为系统调节时间。为了能让抓取能成功进行，这是伺服精度的必须要求，没达到这个要求的都认为是失败的伺服，所以后续不再讨论精度的问题，而主要注重超调和调节时间。伺服曲线包括末端速度指令曲线和特征偏差曲线，其中特征偏差记录了12个特征点的$X$偏差和$Y$偏差，选取的点和初始情况下，笔袋在像素坐标系中的状态如图\ref{实验前准备}所示，图\ref{绘制曲线选取特征点}中红色的点为选取点。
+同样的将笔袋作为抓取对象，放置位置使基坐标系下机械臂末端坐标系相对于物体坐标系的变换为$\varDelta X=0.15m,\varDelta Y=0.1m,\varDelta Z=0.5m,\varDelta \theta _x=0\degree,\varDelta \theta _y=0\degree,\varDelta \theta _z=15\degree$，本章中之后的试验都将保持这个相对位姿进行（由于相机视场角较小，物体相对于相机的初始位置已经在相机视角中的极限位置）。伺服过程会在所有特征点的特征偏差的均方差之和小于$5*10^{-4}$时强制停止，从机械臂开始运动到此时的时间计为系统调节时间。
+特征偏差为了能让抓取能成功进行，这是伺服精度的必须要求，没达到这个要求的都认为是失败的伺服，所以后续不再讨论精度的问题，而主要注重超调和调节时间。另外，这里对超调的定义有所改变。由于每个特征点的初始位置不同，不好统一超调的概念，所以使用超调量作为超调的描述数据，认为系统所选定的特征点中第一次到达0后的最大值的绝对值为超调量。
 \begin{figure}[h]
 	\centering
 	\subfigure[笔袋在相机视野中初始位置]{
@@ -936,57 +937,62 @@ v_c\left( t \right) =L_{e}^{+}\left( -K_pe\left( t \right) -K_d\dot{e}\left( t \
 	\caption{实验前准备}
 	\label{实验前准备}
 \end{figure}
+伺服曲线包括末端速度指令曲线和特征偏差曲线，其中特征偏差记录了8个特征点的$X$偏差和$Y$偏差，选取的点和初始情况下，笔袋在像素坐标系中的状态如图\ref{实验前准备}所示，图\ref{绘制曲线选取特征点}中红色的点为选取点。
 
 
-参数调节好后将控制器应用于实物中运行，伺服曲线如图\ref{视觉伺服曲线（PD）}所示。指令曲线相较于图\ref{优化自定义效果}中的曲线要完善很多，调节时间从25s到15s，指令振荡在微分环节的作用下减弱许多。$X$方向特征偏差最大超调为0.2，$Y$方向特征偏差最大超调为0.2，控制系统还是存在超调现象，伺服速度还有优化的空间。
+此时参数调节过程是十分艰难的，因为稍微调高比例系数，系统就会进入不稳定。所以将机械臂末端初始位置设置到更靠近目标的位置（$\varDelta X=0.05m,\varDelta Y=0.05m,\varDelta Z=0.5m,\varDelta \theta _x=0\degree,\varDelta \theta _y=0\degree,\varDelta \theta _z=15\degree$）。参数调节好后将控制器应用于实物中运行，伺服曲线如图\ref{视觉伺服曲线（PD）}所示。指令曲线相较于图\ref{优化自定义效果}中的曲线响应速度变得更快，但是要有更多的波动。调节时间从25s到14s，指令振荡无法通过微分环节有效的抑制。
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.75\textwidth]{chapter5/替身}
+	\subfigure[速度指令]{
+		\begin{minipage}[h]{0.40\textwidth}
+			\includegraphics[width=1\textwidth]{chapter5/PD控制器/speed_command0} 
+		\end{minipage}
+		\label{视觉伺服曲线（PD）a}
+	}
+    	\subfigure[特征偏差平方和]{
+    		\begin{minipage}[h]{0.40\textwidth}
+   		 	\includegraphics[width=1\textwidth]{chapter5/PD控制器/error_squmean0}
+    		\end{minipage}
+		\label{视觉伺服曲线（PD）b}
+    	}
+	\\ 
+	\subfigure[X方向特征偏差]{
+		\begin{minipage}[h]{0.40\textwidth}
+			\includegraphics[width=1\textwidth]{chapter5/PD控制器/error_x0} 
+		\end{minipage}
+		\label{视觉伺服曲线（PD）c}
+	}
+    	\subfigure[Y方向特征偏差]{
+    		\begin{minipage}[h]{0.40\textwidth}
+		 	\includegraphics[width=1\textwidth]{chapter5/PD控制器/error_y0}
+    		\end{minipage}
+		\label{视觉伺服曲线（PD）d}
+    	}
 	\caption{视觉伺服曲线（PD）}
 	\label{视觉伺服曲线（PD）}
 \end{figure}
 
-\subsection{自适应IBVS}[Content specification]
-为了进一步提升IBVS系统的伺服性能，借鉴了这篇文献的算法思想\cite{mansard2007task}。该文献中中利用了特征偏差初值信息，放大了伺服系统在初期的指令，让伺服系统在一开始就快速收敛，并且在伺服过程中让这个放大效果快速衰减，不会对系统稳定性造成影响。所以继续改写式\ref{PD控制律}，得到下式。其中$k_a$为自适应项系数，它是一个常数，$T$为系统控制周期。
-\begin{equation}
-v_c=L_{e}^{+}\left( -K_pe\left( t \right) -k_ae\left( 0 \right) \exp \left( -\frac{t}{T} \right) -K_d\dot{e}\left( t \right) \right)  
-\label{自适应IBVS}
-\end{equation}
 
-
-式\ref{自适应IBVS}中的自适应项本质是惯性环节，但是它的系数是可变的，取自该特征偏差对应的初值，所以大的初始偏差对应特征的收敛将会被加快。这一项会在伺服过程中快速衰减至0，伺服末期控制律依然按照式\ref{PD控制律}进行。将算法应用于实物中运行，得到的伺服曲线如图\ref{视觉伺服曲线（自适应）}所示：
+图\ref{视觉伺服曲线（PD）}中（尤其是Z轴速度指令曲线）有波动所带来的毛刺。这是因为自定义特征分布松紧情况是取决于对目标物体表面深度的估计决定的，越靠近物体，当前自定义特征分布越向期望特征靠拢，所以越松散。但是对物体表面深度估计的方式是不断迭代非白色且在平台之上对应像素的深度均值，所以估计同时受到颜色和深度测量波动影响，如图\ref{自定义特征点分布松紧程度波动}所示：
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.75\textwidth]{chapter5/替身}
-	\caption{视觉伺服曲线（自适应）}
-	\label{视觉伺服曲线（自适应）}
-\end{figure}
-
-
-由伺服曲线可以看出相较于图\ref{视觉伺服曲线（PD）}中的曲线，调节时间从15s变为8s，伺服速度提升了很多。$X$方向特征偏差最大超调为0.05，$Y$方向特征偏差最大超调为0.05，系统超调变得更加微弱，伺服性能已经达到了较高的水平（这一点在第六章与相关工作比较时会明显体现出）。但是在伺服曲线中存在部分的波动，尤其是在伺服末期，这是深度测量不确定性带来的，将在下一节使用滑模控制器进行解决。
-
-\section{滑模控制器}[Content specification]
-在伺服系统运行过程中，之所以存在指令波动，是因为对物体表面深度的估算存在波动。由于物体表面深度决定了当前自定义特征点分布的松紧情况，如图\ref{自定义特征点分布松紧程度波动}所示，这将导致特征偏差跟随波动，最后使指令波动。
-\begin{figure}[h]
-	\centering
-	\subfigure[自定义特征点分布（正常）]{
+	\subfigure[特征分布（正常）]{
 		\begin{minipage}[h]{0.4\textwidth}
-			\includegraphics[width=1\textwidth]{chapter5/替身}
+			\includegraphics[width=1\textwidth]{chapter5/特征分布（正常）}
 		\end{minipage}
 		\label{自定义特征点分布（正常）}
 	}
-	\subfigure[自定义特征点分布（波动）]{
+	\subfigure[特征分布（波动）]{
 		\begin{minipage}[h]{0.4\textwidth}
-			\includegraphics[width=1\textwidth]{chapter5/绘制曲线选取特征点}
+			\includegraphics[width=1\textwidth]{chapter5/特征分布（波动）}
 		\end{minipage}
 		\label{自定义特征点分布（波动）}
 	}
 	\caption{自定义特征点分布松紧程度波动}
 	\label{自定义特征点分布松紧程度波动}
 \end{figure}
-
-
-观察式\ref{当前特征变化率与相机位姿变化率的关系3改写}，所设计的控制律就是括号中的部分，而交互矩阵的广义逆就是对IBVS系统性质的描述，它是本章研究中真正的控制对象，而并非机械臂本身（这并不在本文的研究范围中）。它是抽象的并且模型和特征点位置有关的对象。对物体表面深度估计的不确定性导致了交互矩阵的变化，使系统模型产生摄动。所以现在要解决的实际上是模型摄动的问题。在多项研究成果中都表明了滑模控制对系统鲁棒性的提升有着积极的作用\cite{yuksel2015ibvs,parsapour2013position}，尤其是系统模型或者参数模型存在不确定性的时候，因为滑模控制通过系统状态的情况切换系统控制律以保证系统应对各个情况都有相应的处理办法。
+\subsection{滑模控制器设计}[Content specification]
+对物体表面深度估计的不确定性带来的影响越在机械臂末端高速运动的初期越大。观察式\ref{当前特征变化率与相机位姿变化率的关系3改写}，所设计的控制律就是括号中的部分，而交互矩阵的广义逆就是对IBVS系统性质的描述，它是本章研究中真正的控制对象，而并非机械臂本身（这并不在本文的研究范围中）。它是抽象的并且模型和特征点位置有关的对象。对物体表面深度估计的不确定性导致了交互矩阵的变化，使系统模型产生摄动。所以现在要解决的实际上是模型摄动的问题。在多项研究成果中都表明了滑模控制对系统鲁棒性的提升有着积极的作用\cite{yuksel2015ibvs,parsapour2013position}，尤其是系统模型或者参数模型存在不确定性的时候，因为滑模控制通过系统状态的情况切换系统控制律以保证系统应对各个情况都有相应的处理办法。
 
 
 物体表面深度估算的波动会使部分特征的偏差出现不确定的变大或变小，这将影响PD控制器的工作。所以使用滑模控制器\cite{li2018enhanced}抑制这个影响，定义滑动面$sur\left( t \right) =e\left( t \right) =s\left( t \right) -s^*\left( t \right) $，特征偏差到达滑动面会一直停留在该处。改造公式\ref{自适应IBVS}如式\ref{滑模控制器}。使用了饱和函数代替符号函数减弱滑模控制带来的颤动。
@@ -996,75 +1002,240 @@ v_c=L_{e}^{+}\left( -K_pe\left( t \right) -k_ae\left( 0 \right) \exp \left( -\fr
 \end{equation}
 
 
-图\ref{视觉伺服曲线（滑模控制）}是将该算法应用于实物运行时的伺服曲线。系统调节时间为8s。$X$方向特征偏差最大超调为0.04，$Y$方向特征偏差最大超调为0.04，这与之前变化不大，但是从指令曲线上可以明显看出波动减少了，物体表面深度估算的波动带来的影响被有效抑制。
+图\ref{视觉伺服曲线（滑模控制）}是将该算法应用于实物运行时的伺服曲线。系统调节时间为9.2s，得到了很大程度的改善。这是因为速度指令在控制初期的波动消失了，替而代之的是较为光滑的指令曲线，所以相应地系统具有更小的超调和更好的稳定性，用于能量耗散的过程时间减少了。$X$方向特征偏差最大超调量为0.05m，$Y$方向特征偏差最大超调为0.1m，物体表面深度估算的波动带来的影响被有效抑制。
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.6\textwidth]{chapter5/替身}
+	\subfigure[速度指令]{
+		\begin{minipage}[h]{0.4\textwidth}
+			\includegraphics[width=1\textwidth]{chapter5/滑模控制器/speed_command0} 
+		\end{minipage}
+		\label{视觉伺服曲线（滑模控制）a}
+	}
+    	\subfigure[特征偏差平方和]{
+    		\begin{minipage}[h]{0.4\textwidth}
+   		 	\includegraphics[width=1\textwidth]{chapter5/滑模控制器/error_squmean0}
+    		\end{minipage}
+		\label{视觉伺服曲线（滑模控制）b}
+    	}
+	\\ 
+	\subfigure[X方向特征偏差]{
+		\begin{minipage}[h]{0.4\textwidth}
+			\includegraphics[width=1\textwidth]{chapter5/滑模控制器/error_x0} 
+		\end{minipage}
+		\label{视觉伺服曲线（滑模控制）c}
+	}
+    	\subfigure[Y方向特征偏差]{
+    		\begin{minipage}[h]{0.4\textwidth}
+		 	\includegraphics[width=1\textwidth]{chapter5/滑模控制器/error_y0}
+    		\end{minipage}
+		\label{视觉伺服曲线（滑模控制）d}
+    	}
 	\caption{视觉伺服曲线（滑模控制）}
 	\label{视觉伺服曲线（滑模控制）}
 \end{figure}
-\section{系统稳定性}[Content specification]
-下面利用李雅普诺夫直接法证明当前系统的稳定性，并非完全严格，有一定近似成分。假设在当前IBVS控制律下，特征偏差会收敛到0，并且认为自适应项系统控制周期相对于系统调节时间非常小。李雅普诺夫方程和它的导数如下所示：
+
+
+\section{自适应IBVS}[Content specification]
+为了进一步提升IBVS系统的伺服性能，借鉴了这篇文献的算法思想\cite{mansard2007task}。该文献中中利用了特征偏差初值信息，放大了伺服系统在初期的指令，让伺服系统在一开始就快速收敛，并且在伺服过程中让这个放大效果快速衰减，不会对系统稳定性造成影响。所以继续改写式\ref{PD控制律}，得到下式。其中$k_a$为自适应项系数，它是一个常数，$T$为系统控制周期。
 \begin{equation}
-\left\{ \begin{array}{c}
-	V=\frac{1}{2}e^Te\\
-	\dot{V}=e^T\dot{e}\\
-\end{array} \right. 
-\label{李雅普诺夫方程}
+v_c=L_{en}^{+}\left( -K_p\varepsilon\left( t \right) -k_a\varepsilon\left( 0 \right) \exp \left( -\frac{t}{T} \right) -K_d\dot{\varepsilon}\left( t \right) \right)  
+\label{自适应IBVS}
 \end{equation}
 
 
-$\dot{e}$与速度$v_c$的关系由式\ref{当前特征变化率与相机位姿变化率的关系1}给出，并且根据设计的控制器的表达式\ref{滑模控制器}可以得到下式：
-\begin{equation}
-\dot{e}=L_{en}L_{en}^{+}\left( -K_pe\left( t \right) -k_ae\left( 0 \right) \exp \left( -\frac{t}{T} \right) -K_d\dot{e}\left( t \right) -K_ssat\left( sur\left( t \right) \right) \right) 
-\label{特征偏差导数表达式}
-\end{equation}
-
-
-\section{特征偏差收敛速度不一致性}[Content specification]
-对图\ref{视觉伺服曲线（滑模控制）}放大特征偏差曲线细节（以X方向偏差为例）得到图\ref{特征偏差细节放大（X方向）}。可知，每个特征偏差收敛的速度不一致，且特征偏差初值大的收敛速度更慢，这就是特征偏差收敛速度不一致性问题。原始视觉伺服控制律将所有偏差对偏差随时间变化率的影响一视同仁，事实上这是不合理的，那些收敛速度较慢的特征会对伺服速度造成不良影响，如果使它们的作用效果随着自己的大小做出改变并与收敛速度最快的特征同时收敛，会一定程度上提升伺服性能。
+式\ref{自适应IBVS}中的自适应项本质是惯性环节，但是它的系数是可变的，取自该特征偏差对应的初值，所以大的初始偏差对应特征的收敛将会被加快。这一项会在伺服过程中快速衰减至0，伺服末期控制律依然按照式\ref{PD控制律}进行。将算法应用于实物中运行，得到的伺服曲线如图\ref{视觉伺服曲线（自适应）}所示：
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.5\textwidth]{chapter5/替身}
-	\caption{特征偏差细节放大（X方向）}
-	\label{特征偏差细节放大（X方向）}
+	\subfigure[速度指令]{
+		\begin{minipage}[h]{0.40\textwidth}
+			\includegraphics[width=1\textwidth]{chapter5/自适应控制器/speed_command0} 
+		\end{minipage}
+		\label{视觉伺服曲线（自适应）a}
+	}
+    	\subfigure[特征偏差平方和]{
+    		\begin{minipage}[h]{0.40\textwidth}
+   		 	\includegraphics[width=1\textwidth]{chapter5/自适应控制器/error_squmean0}
+    		\end{minipage}
+		\label{视觉伺服曲线（自适应）b}
+    	}
+	\\ 
+	\subfigure[X方向特征偏差]{
+		\begin{minipage}[h]{0.40\textwidth}
+			\includegraphics[width=1\textwidth]{chapter5/自适应控制器/error_x0} 
+		\end{minipage}
+		\label{视觉伺服曲线（自适应）c}
+	}
+    	\subfigure[Y方向特征偏差]{
+    		\begin{minipage}[h]{0.40\textwidth}
+		 	\includegraphics[width=1\textwidth]{chapter5/自适应控制器/error_y0}
+    		\end{minipage}
+		\label{视觉伺服曲线（自适应）d}
+    	}
+	\caption{视觉伺服曲线（自适应）}
+	\label{视觉伺服曲线（自适应）}
 \end{figure}
 
 
-注意到式\ref{当前特征变化率与相机位姿变化率的关系1}，假设末端速度保持不变，每一个特征偏差随时间变化率和图像雅可比矩阵的对应行有着直接对应关系。根据当前想法提出一个自适应的方法，对图像雅可比矩阵的进行改造。应当使偏差更大的特征有着更快的变化率。注意到偏差初值不同的特征，它们抵达稳定状态所消耗的时间是随它们的偏差大小是非线性增加的，所以采用指数来扩大它们的影响更为恰当。所以对图像雅可比矩阵改造如下：
+参数中$k_a$是增益系数，调试中置为15。$T$是和该项衰减速度有关的参数，调试中置为150，$T$对系统稳定性影响是很大的。实际调试中发现了一个现象，机械臂末端初期会沿X轴反方向行动，在Z轴角度差不多转到期望位置时会转为正速度，这是IBVS控制本身具有的现象，它需要特征点在像素坐标系中走直线。所以$T$设置过大容易导致物体离开相机视野范围。由伺服曲线可以看出相较于图\ref{视觉伺服曲线（滑模控制）}中的曲线，调节时间从9.2s下降为7.9s，伺服速度提升了很多。$X$方向特征偏差最大超调为0.05，$Y$方向特征偏差最大超调为0.05，系统超调变得更加微弱，伺服性能已经达到了较高的水平（这一点在第六章与相关工作比较时会明显体现出）。
+
+
+\section{特征偏差收敛速度不一致性}[Content specification]
+对图\ref{视觉伺服曲线（自适应）}放大特征偏差曲线细节（以选取点的X、Y方向特征偏差为例），容易注意到每个特征偏差收敛的速度不一致，且特征偏差初值大的收敛速度更慢，这就是特征偏差收敛速度不一致性问题。原始视觉伺服控制律将所有偏差对偏差随时间变化率的影响一视同仁，事实上这是不合理的，那些收敛速度较慢的特征会对伺服速度造成不良影响，如果使它们的作用效果随着自己的大小做出改变并与收敛速度最快的特征同时收敛，会一定程度上提升伺服性能。
+
+
+注意到式\ref{当前特征变化率与相机位姿变化率的关系1}，假设末端速度保持不变，每一个特征偏差随时间变化率和图像雅可比矩阵的对应行有着直接对应关系。根据当前想法提出一个自适应的方法，对图像雅可比矩阵的进行改造。应当使偏差更大的特征有着更快的变化率。所以对图像雅可比矩阵改造如下：
 \begin{equation}
-\left\{ \begin{array}{c}
-	L_{enew}=K_bL_e\\
-	K_b=\exp \left( \beta \left( \frac{e^T}{\min \left( e \right)}-1 \right) \right)\\
-\end{array} \right.
-\label{特征偏差收敛速度不一致性}
+L_{enew}=\left[ \begin{array}{c}
+	K_{b1}+1\\
+	...\\
+	K_{bn}+1\\
+\end{array} \right] \left[ \begin{array}{c}
+	L_{e|P=P_1}\\
+	...\\
+	L_{e|P=Pn}\\
+\end{array} \right] 
+\label{特征偏差收敛速度不一致性1}
+\end{equation}
+对图像雅可比矩阵的每一行乘上一个放大系数，从原理上放大相同速度指令对特征偏差随时间的变化率的影响。接下来确定$K_{bi}$应该怎么计算。图像雅可比矩阵每两行对应一个特征点，并且分别对应特征点的X、Y方向特征偏差随时间的变化率，$K_{bi}$应该是一个二行一列的矩阵，它的大小应该由不同特征偏差的相对大小决定。而这个相对应该有一个基准，所以选定初始特征偏差绝对值的最小值为基准（如果这个值为0，则取一个适当的小值）。注意到偏差初值不同的特征，它们抵达稳定状态所消耗的时间是随它们的偏差大小是非线性增加的，所以采用指数来扩大它们的影响更为恰当。所以$K_{bi}$的表达式被确定为式\ref{特征偏差收敛速度不一致性2}：
+\begin{equation}
+K_{bi}=\left[ \begin{array}{c}
+	\exp \left( \beta \left( \frac{e_{ix}\left( 0 \right)}{\min x\left( \varepsilon _n\left( 0 \right) \right)}-1 \right) \right)\\
+	\exp \left( \beta \left( \frac{e_{iy}\left( 0 \right)}{\min y\left( \varepsilon _n\left( 0 \right) \right)}-1 \right) \right)\\
+\end{array} \right] 
+\label{特征偏差收敛速度不一致性2}
 \end{equation}
 
 
-这里的取指数是指对列维度的广播，并非对矩阵求指数。这么做让偏差最小的特征控制律保持不变，其它特征偏差越大，给出相同末端速度指令情况下会使该特征的变化速度更大。另外，这个算法是自适应的，只需要对$\beta$一个参数进行调节。图\ref{视觉伺服曲线（最终效果）}是将该算法应用于实物运行时的伺服曲线。最终在$X$方向特征偏差最大超调为0.01，$Y$方向特征偏差最大超调为0.01情况下，做到了4s的调节时间，伺服性能提升是显而易见的。
+这么做让偏差最小的特征控制律保持不变，其它特征偏差越大，给出相同末端速度指令情况下会使该特征的变化速度更大。另外，这个算法是根据每次伺服时，特征偏差的初值自适应的，只需要对$\beta$一个参数进行调节，在调试中发现这个值并不需要给太高，0.05即可。图\ref{视觉伺服曲线（最终效果）}是将该算法应用于实物运行时的伺服曲线。最终在$X$方向特征偏差最大超调为0.017，$Y$方向特征偏差最大超调为0.05情况下，调节时间为7.75s。从数据上，该方法对伺服速度的优化是有限的，但是能很好的抑制超调。
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.5\textwidth]{chapter5/替身}
+	\subfigure[速度指令]{
+		\begin{minipage}[h]{0.40\textwidth}
+			\includegraphics[width=1\textwidth]{chapter5/特征偏差收敛一致化/speed_command0} 
+		\end{minipage}
+		\label{视觉伺服曲线（最终效果）a}
+	}
+    	\subfigure[特征偏差平方和]{
+    		\begin{minipage}[h]{0.40\textwidth}
+   		 	\includegraphics[width=1\textwidth]{chapter5/特征偏差收敛一致化/error_squmean0}
+    		\end{minipage}
+		\label{视觉伺服曲线（最终效果）b}
+    	}
+	\\ 
+	\subfigure[X方向特征偏差]{
+		\begin{minipage}[h]{0.40\textwidth}
+			\includegraphics[width=1\textwidth]{chapter5/特征偏差收敛一致化/error_x0} 
+		\end{minipage}
+		\label{视觉伺服曲线（最终效果）c}
+	}
+    	\subfigure[Y方向特征偏差]{
+    		\begin{minipage}[h]{0.40\textwidth}
+		 	\includegraphics[width=1\textwidth]{chapter5/特征偏差收敛一致化/error_y0}
+    		\end{minipage}
+		\label{视觉伺服曲线（最终效果）d}
+    	}
 	\caption{视觉伺服曲线（最终效果）}
 	\label{视觉伺服曲线（最终效果）}
 \end{figure}
 
 
-\section{本章小结}[Content specification]
-本章在当前抓取算法下对视觉伺服系统的控制律进行优化。PD控制器和自适应IBVS算法能有效提升伺服性能，滑摸控制器一定程度抑制了深度相机对深度测量的不确定性，然后基于Lyapunov直接法证明系统稳定性。针对出现的特征偏差关联速度不一致性，提出了一种自适应控制算法，通过使所有特征与最快收敛的特征同时收敛，带来了收敛速度的提升。经过对控制律的不断优化，最终系统控制示意框图确认为图\ref{控制示意框图}所示。
+根据特征偏差收敛速度一致性处理后，对X方向特征偏差放大细节并比较处理前的曲线，如图所示\ref{X方向特征偏差细节放大比较}，可以很明显看出处理后各个特征收敛曲线变得一致起来。
+\begin{figure}[h]
+	\centering
+	\subfigure[X方向特征偏差（处理前）]{
+		\begin{minipage}[h]{0.3\textwidth}
+			\includegraphics[width=1\textwidth]{chapter5/error_x0（处理前）}
+		\end{minipage}
+		\label{X方向特征偏差（处理前）}
+	}
+	\subfigure[X方向特征偏差（处理后）]{
+		\begin{minipage}[h]{0.28\textwidth}
+			\includegraphics[width=1\textwidth]{chapter5/error_x0（处理后）}
+		\end{minipage}
+		\label{X方向特征偏差（处理后）}
+	}
+	\caption{X方向特征偏差细节放大比较}
+	\label{X方向特征偏差细节放大比较}
+\end{figure}
+
+\section{方法小结}[Content specification]
+为了让系统拥有更好的伺服效果，使用了PD控制器进行优化。但是随之而来的是对物体表面深度的估计带来的指令波动影响，所以使用滑模控制器增强系统控制上对深度估计的鲁棒性。自适应IBVS为控制律增添了会随时间快速衰减至零的一项，旨在提升系统伺服过程中的初期增益，而在末期让系统按照自己原本的控制律控制。最后对图像雅可比矩阵进行改造，让各个特征收敛速度趋于一直，有效抑制系统超调，提升伺服性能。通过绘制直方图比较各个方法对超调量和调节时间的影响如图\ref{各方法对伺服性能提升比较}所示：
+\begin{figure}[h]
+	\centering
+	\subfigure[超调量比较]{
+		\begin{minipage}[h]{0.45\textwidth}
+			\includegraphics[width=1\textwidth]{chapter5/超调量比较}
+		\end{minipage}
+		\label{超调量比较}
+	}
+	\subfigure[调节时间比较]{
+		\begin{minipage}[h]{0.45\textwidth}
+			\includegraphics[width=1\textwidth]{chapter5/调节时间比较}
+		\end{minipage}
+		\label{调节时间比较}
+	}
+	\caption{各方法对伺服性能提升比较}
+	\label{各方法对伺服性能提升比较}
+\end{figure}
+
+
+\newpage
+将方法名称、作用和效果列成表格如表\ref{控制律优化方法总结表}所示：
+\begin{table}[htbp]
+\caption{控制律优化方法总结表}
+\label{控制律优化方法总结表}
+\vspace{0.5em}\centering\wuhao
+\begin{tabular}{cccc}
+\toprule[2pt]
+方法名称 & 方法作用 & 对超调量影响 & 对调节时间影响\\
+\midrule[1pt]
+ PD控制器 & 提升伺服性能 & 显著抑制 & 显著下降\\
+ 滑模控制器 & 抑制系统模型不确定性 & 显著抑制 & 显著下降\\
+ 自适应IBVS & 提升伺服性能 & 抑制 & 下降\\
+ 收敛一致性 & 提升伺服性能 & 显著抑制 & 微弱下降\\
+
+\bottomrule[1.5pt]
+\end{tabular}
+\end{table}
+
+
+就此已经完成了未知物体抓取算法中所有的研究内容，为了明确表达出整个系统的样子，最终系统控制示意框图确认为图\ref{控制示意框图}所示。系统通过图像处理和GG-CNN自主生成目标特征作为控制期望，比较当前提取出的基于抓取点的自定义特征，经过视觉伺服优化后的控制律，对整个系统下达末端速度指令。通过各关节逆运动解算对机械臂进行控制。
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\textwidth]{chapter5/控制示意框图}
 	\caption{控制示意框图}
 	\label{控制示意框图}
 \end{figure}
+
+
+
+\section{本章小结}[Content specification]
+本章在当前抓取算法下对视觉伺服系统的控制律进行优化。PD控制器和自适应IBVS算法能有效提升伺服性能，滑摸控制器一定程度抑制了深度相机对深度测量的不确定性。针对出现的特征偏差关联速度不一致性，提出了一种自适应控制算法，通过使所有特征与最快收敛的特征趋于同时收敛，带来了伺服性能的提升。
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%实验设计与验证%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{实验设计与验证}
 \section{引言}[Content specification]
-前面的章节中详细说明了通过视觉伺服抓取未知物体的思路、视觉伺服控制律的优化以及它们的实现过程。在前人的研究成果基础上，这套未知物体抓取算法提出创新性的特征点提取、匹配方式和与之配套的视觉伺服控制律。它将在更少的环境条件限制下拥有更高的未知物体抓取率和更理想平滑的曲线。本章将对一共六个家常物体，每个物体六种位姿进行抓取实验，然后将抓取成功率与各生成抓取合成类方法进行比较，证明这套未知物体抓取算法的优越性。另外，会对不同物体同一位姿、相同物体不同位姿的伺服曲线进行记录，通过超调、响应时间等参数反映算法应对多种多样情况下的高鲁棒性。
+前面的章节中详细说明了通过视觉伺服抓取未知物体的思路、视觉伺服控制律的优化以及它们的实现过程。在前人的研究成果基础上，这套未知物体抓取算法提出创新性的特征点提取、匹配方式和与之配套的视觉伺服控制律。它将在更少的环境条件限制下拥有更高的未知物体抓取率和更理想平滑的曲线。本章将对该算法对边界条件的鲁棒性和重复性精度进行测试。另外，会对不同物体同一位姿、相同物体不同位姿的伺服曲线进行记录，通过超调、响应时间等参数反映算法应对多种多样情况下的高鲁棒性。最后对一共六个家常物体，每个物体六种位姿进行抓取实验，然后将抓取成功率与各生成抓取合成类方法进行比较，证明这套未知物体抓取算法的优越性。
 
 \section{实验设计}[Content specification]
-对于未知物体抓取任务，抓取成功率是最需要关注的指标。为了使成功率的测试结果能体现系统应对各种情形下的抓取能力，需要实验中的抓取目标种类多样化和位姿多样化。另外，为了能与提出GG-CNN原文献抓取成功率结果相对公平性的横向比较，尽量搭建相同的实验环境和使用相同的抓取目标。
+\subsection{设计理念}[Content specification]
+为了全面测试算法性能，将根据算法中针对的各个问题，以及算法目的对实验进行设计。
+
+
+因为IBVS仅具有局部收敛性，所以测量系统运行的稳定区间是有必要的。在第五章中已经能验证只要目标初始位置在相机视野中，机械臂末端就可以伺服过去。但是一般来说，IBVS对特征点偏差中角度偏差的要求是很高的，如果初始情况具有很大的角度偏差，系统容易进入不稳定状态。所以需要通过实验获得此时特征点角度偏差最多可以是多少。
+
+
+在第四章的图像处理中特别考虑了伺服目标的位置接近平台边缘的情况，系统将对环境边界具有鲁棒性。系统也应该具有这项能力，这会使它面对复杂化环境时也能正常工作。所以设计了这样一个实验，在将物体刻意放到平台边缘让机械臂伺服过去的情况下，系统依然能正常运行即可得到验证。物体初始位置应当多样化，伺服曲线应当与物体不在平台边界时相似。
+
+
+抓取成功率的高低的决定因素之一是控制的重复性精度。在物体形状、初始姿态都不改变的情况下，应当生成相同的抓取点并且有相同的伺服过程。所以对同一情况伺服多次，它们的速度指令应当是一致的，伺服停止时停下来的位点应该也是一致的。所以将在实验中记录它们并获得关于系统重复性精度的结论。
+
+
+抓取成功率的高低的另一决定因素是控制的性能。实验中将会在六种不同的物体的八种不同位姿情况下对目标进行抓取，记录的实验结果包括是否成功抓取，伺服超调量和响应时间。响应时间不包括抓物体所需时间，因为抓取是开环控制的，所需时间固定，没有记录的必要。然后会与各个基于生成抓取合成方法来抓取未知物体的文献成果进行比较。最后对不同物体相同位姿以及抓取率百分之百的一个物体不同位姿伺服曲线进行分析，并与同样基于GG-CNN但使用PBVS+IBVS来抓取未知物体的文献成果\cite{haviland2020control}进行比较。
+
+
+最后，对于未知物体抓取任务，抓取成功率是最需要关注的指标。为了使成功率的测试结果能体现系统应对各种情形下的抓取能力，需要实验中的抓取目标种类多样化和位姿多样化。另外，为了能与提出GG-CNN原文献抓取成功率结果相对公平性的横向比较，尽量搭建相同的实验环境和使用相同的抓取目标。
 
 
 根据算法的实现过程，实验过程中存在的限制条件如下：
@@ -1076,14 +1247,30 @@ GG-CNN的输出形式决定了如果要使用它的输出结果作为视觉伺�
 \item[（3）]
 深度传感器使用的Realsense D435i，它是基于结构光的原理测量深度的，所以对漫反射能力差的目标，获取的深度值几乎是无效值，所以选用的目标都是漫反射效果好的物体。另外，它的深度测量精度为1mm，这决定了选用目标不可以是铅笔等过小的物体，当然，也不可以过大，这会让神经网络无法区分谁是目标谁是背景。
 \end{itemize}
+\subsection{实验准备}[Content specification]
 
 
-实物环境搭建如图\ref{实物环境搭建展示图}，这与GG-CNN原文是类似的。但值得一提的是，经过第四章中对RGB图像和深度图像的特别处理，本文中机械臂的运动范围可以超出平台范围（但初始情况时，目标必须在相机视野范围内），这是相对GG-CNN原文具有优势的地方。根据限制条件（3）和仿照GG-CNN原文使用的抓取目标，选择了六种家常抓取目标用于本次实验的各种测试与验证，它们正如图所示\ref{抓取目标选取}：
+
+实物环境搭建如图\ref{实物环境搭建展示图}，这与GG-CNN原文是类似的，这里不多作赘述。但值得一提的是，经过第四章中对RGB图像和深度图像的特别处理，本文中机械臂的运动范围可以超出平台范围（但初始情况时，目标必须在相机视野范围内），这是相对GG-CNN原文具有优势的地方。
+
+
+实验中使用的执行器为敬科公司提供的JK机器人，视觉传感器选择RealSense D435i，它同时作为实验的深度传感器，夹爪使用大寰公司提供的AG145二指夹爪，它们的实物图如图\ref{硬件实物图}所示。根据限制条件（3）和仿照GG-CNN原文使用的抓取目标，选择了六种家常抓取目标用于本次实验的各种测试与验证，它们正如图所示\ref{抓取目标选取}。
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.6\textwidth]{chapter6/替身}
-	\caption{抓取目标选取}
-	\label{抓取目标选取}
+	\subfigure[硬件实物图]{
+		\begin{minipage}[h]{0.43\textwidth}
+			\includegraphics[width=1\textwidth]{chapter6/硬件实物图}
+		\end{minipage}
+		\label{硬件实物图}
+	}
+	\subfigure[抓取目标选取]{
+		\begin{minipage}[h]{0.47\textwidth}
+			\includegraphics[width=1\textwidth]{chapter6/抓取目标选取}
+		\end{minipage}
+		\label{抓取目标选取}
+	}
+	\caption{实验准备}
+	\label{实验准备}
 \end{figure}
 
 
@@ -1098,7 +1285,7 @@ GG-CNN的输出形式决定了如果要使用它的输出结果作为视觉伺�
 \vspace{0.5em}\centering\wuhao
 \begin{tabular}{cccc}
 \toprule[2pt]
-位姿序号 & $\varDelta X$(m) & $\varDelta Y$(m) & $\theta _z$($\degree$)\\
+位姿序号 & X方向距离(m) & Y方向距离(m) & 沿Z轴旋转角($\degree$)\\
 \midrule[1pt]
  1 & 0.3 & 0.3 & 30\\
  2 & 0.3 & -0.3 & -30\\
@@ -1114,56 +1301,94 @@ GG-CNN的输出形式决定了如果要使用它的输出结果作为视觉伺�
 \end{table}
 
 
-实验中将会在六种不同的物体的八种不同位姿情况下对目标进行抓取，记录的实验结果包括是否成功抓取，伺服超调量和响应时间。响应时间不包括抓物体所需时间，因为抓取是开环控制的，所需时间固定，没有记录的必要。然后会与各个基于生成抓取合成方法来抓取未知物体的文献成果进行比较。最后对不同物体相同位姿以及抓取率百分之百的一个物体不同位姿伺服曲线进行分析，并与同样基于GG-CNN但使用PBVS+IBVS来抓取未知物体的文献成果\cite{haviland2020control}进行比较。
+
 %\section{人机交互界面设计}[Content specification]
 
 
 \section{实验验证}[Content specification]
-\subsection{抓取成功率测试}[Content specification]
-对总共48种情况的实验结果进行记录，不仅记录总的抓取成功率，同时记录相同物体的抓取成功率和相同位姿对应不同物体的抓取成功率，绘制表格如表\ref{物体抓取结果记录表}所示：
-\begin{table}[htbp]
-\caption{物体抓取结果记录表}
-\label{物体抓取结果记录表}
-\vspace{0.5em}\centering\wuhao
-\begin{tabular}{cccccccc}
-\toprule[1.5pt]
-位姿序号 & 物体1 & 物体2 & 物体3 & 物体4 & 物体5 & 物体6 & 抓取成功率\\
-\midrule[1pt]
- 1 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 100\%\\
- 2 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 100\%\\
- 3 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 100\%\\
- 4 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 100\%\\
- 5 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 100\%\\
- 6 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 100\%\\
- 7 & 成功 & 成功 & 成功 & 成功 & 失败 & 成功 & 83.3\%\\
- 8 & 成功 & 成功 & 成功 & 成功 & 成功 & 失败 & 83.3\%\\
-
-\bottomrule[1.5pt]
-抓取成功率 & 100\% & 100\% & 100\% & 100\% & 87.5\% & 87.5\% & \\
-\hline
-\end{tabular}
-\end{table}
+\subsection{系统稳定区间测试}[Content specification]
+二指夹爪只需要在-90°~90°工作即可，由于有对称性，只测试0°~90°的情况。将笔袋作为伺服目标，笔袋放置到摄像头中心，笔袋从0°~90°每10°进行一次伺服实验，记录它们的特征偏差平方和曲线绘制到图\ref{系统稳定特征偏差平方和1}中。
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{chapter6/替身}
+	\caption{系统稳定特征偏差平方和1}
+	\label{系统稳定特征偏差平方和1}
+\end{figure}
 
 
-将实验获得的数据与各类成抓取合成方法的文献成果在一张表格中进行展现。
-\begin{table}[htbp]
-\caption{各类成抓取合成成果抓取家常物体成功率对比}
-\label{各类成抓取合成成果抓取家常物体成功率对比}
-\vspace{0.5em}\centering\wuhao
-\begin{tabular}{ccccccc}
-\toprule[1.5pt]
-   & 文献1\cite{lenz2015deep} & 文献2\cite{pinto2016supersizing} & 文献3\cite{johns2016deep} & 文献4\cite{mahler2017dex} & 文献5\cite{levine2018learning} & 文献6\cite{haviland2020control}\\
-\midrule[1pt]
- 抓取成功率 & 89\% & 73\% & 80\% & 80\% & 80\% & 92\% \\
- 提升 & 6.6\% & 22.6\% & 15.6\% & 15.6\% & 15.6\% & 3.6\% \\
-
-\bottomrule[1.5pt]
-\end{tabular}
-\end{table}
+在视野边缘（第五章所设位置中）放置笔袋，笔袋从0°~90°每10°进行一次伺服实验，记录它们的特征偏差平方和曲线绘制到图\ref{系统稳定特征偏差平方和2}中。
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{chapter6/替身}
+	\caption{系统稳定特征偏差平方和2}
+	\label{系统稳定特征偏差平方和2}
+\end{figure}
 
 
-\subsection{抓取性能验证}[Content specification]
-图\ref{比较对象伺服效果}为同样基于GG-CNN但使用PBVS+IBVS来抓取未知物体的伺服过程中特征偏差曲线，他还测量了运动物体的伺服情况，相关的蓝色曲线忽略。本文将只比较他工作中静止物体的伺服对应的红色曲线情况。
+将伺服成败情况记录到表\ref{}中，结合图\ref{系统稳定特征偏差平方和1}、\ref{系统稳定特征偏差平方和2}可以看出.。。
+\subsection{边界鲁棒性测试}[Content specification]
+选取抓取对象为笔袋，一共做八组实验，每组实验分别在平台边缘处不同的八个位置放置抓取对象，记录它们的特征偏差平方和曲线。物体摆放时倾斜角度都为0°，摆放位置示意图如图\ref{边界鲁棒性测试摆放位置示意图}所示。将八次特征偏差平方和曲线绘制到一张图中如图\ref{边界环境特征偏差平方和}所示。
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{chapter6/替身}
+	\caption{边界鲁棒性测试摆放位置示意图}
+	\label{边界鲁棒性测试摆放位置示意图}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{chapter6/替身}
+	\caption{边界环境特征偏差平方和}
+	\label{边界环境特征偏差平方和}
+\end{figure}
+
+
+从曲线中可知。。。
+
+\subsection{重复性精度测试}[Content specification]
+将从伺服速度指令曲线和伺服结束时机械臂末端停止的位点的重复性对系统重复性精度进行测试。抓取对象为笔袋，以相同的位姿摆放在平台上，对它进行八次视觉伺服，获取八次速度指令，并将四个速度的每一个速度对应的八条曲线分别绘制到一张图中，比较它们之间的的相似度。得到的曲线图如图\ref{重复性精度测试速度指令比较}所示。
+\begin{figure}[h]
+	\centering
+	\subfigure[X方向速度]{
+		\begin{minipage}[h]{0.40\textwidth}
+			\includegraphics[width=1\textwidth]{chapter6/替身} 
+		\end{minipage}
+		\label{重复性精度测试a}
+	}
+    	\subfigure[Y方向速度]{
+    		\begin{minipage}[h]{0.40\textwidth}
+   		 	\includegraphics[width=1\textwidth]{chapter6/替身}
+    		\end{minipage}
+		\label{重复性精度测试b}
+    	}
+	\\ 
+	\subfigure[Z方向速度]{
+		\begin{minipage}[h]{0.40\textwidth}
+			\includegraphics[width=1\textwidth]{chapter6/替身} 
+		\end{minipage}
+		\label{重复性精度测试c}
+	}
+    	\subfigure[Z轴角速度]{
+    		\begin{minipage}[h]{0.40\textwidth}
+		 	\includegraphics[width=1\textwidth]{chapter6/替身}
+    		\end{minipage}
+		\label{重复性精度测试d}
+    	}
+	\caption{重复性精度测试速度指令比较}
+	\label{重复性精度测试速度指令比较}
+\end{figure}
+
+
+曲线说明了。。。对笔袋做上标记，记录每次伺服结束时标记点在相机坐标系中的X、Y位置并绘图如图\ref{重复性精度测试定位测试}所示。
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{chapter6/替身}
+	\caption{重复性精度测试定位测试}
+	\label{重复性精度测试定位测试}
+\end{figure}
+
+\subsection{伺服性能测试}[Content specification]
+图\ref{比较对象伺服效果}为同样基于GG-CNN但使用PBVS+IBVS来抓取未知物体的伺服过程中特征偏差曲线，他还测量了开环控制的情况，相关的红色曲线忽略。本文将只比较他工作中静止物体的伺服对应的蓝色曲线情况。
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\textwidth]{chapter6/对比工作伺服效果}
@@ -1172,7 +1397,7 @@ GG-CNN的输出形式决定了如果要使用它的输出结果作为视觉伺�
 \end{figure}
 
 
-选择的目标为，把它不同的摆放位姿情况下的特征偏差平方和均值曲线绘制到同一坐标系下，将不同情况对应的超调量和响应时间绘制到直方图中，如图\ref{相同目标不同位姿抓取性能}所示。
+选择的抓取目标为笔袋，把它不同的摆放位姿情况下的特征偏差平方和均值曲线绘制到同一坐标系下，将不同情况对应的超调量和响应时间绘制到直方图中，如图\ref{相同目标不同位姿抓取性能}所示。
 \begin{figure}[h]
 	\centering
 	\subfigure[特征偏差平方和均值]{
@@ -1210,9 +1435,53 @@ GG-CNN的输出形式决定了如果要使用它的输出结果作为视觉伺�
 	\caption{相同位姿不同目标抓取性能}
 	\label{相同位姿不同目标抓取性能}
 \end{figure}
+\subsection{抓取成功率测试}[Content specification]
+对总共48种情况的实验结果进行记录，不仅记录总的抓取成功率，同时记录相同物体的抓取成功率和相同位姿对应不同物体的抓取成功率，绘制表格如表\ref{物体抓取结果记录表}所示：
+\begin{table}[htbp]
+\caption{物体抓取结果记录表}
+\label{物体抓取结果记录表}
+\vspace{0.5em}\centering\wuhao
+\begin{tabular}{cccccccc}
+\toprule[1.5pt]
+位姿序号 & 物体1 & 物体2 & 物体3 & 物体4 & 物体5 & 物体6 & 抓取成功率\\
+\midrule[1pt]
+ 1 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 100\%\\
+ 2 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 100\%\\
+ 3 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 100\%\\
+ 4 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 100\%\\
+ 5 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 100\%\\
+ 6 & 成功 & 成功 & 成功 & 成功 & 成功 & 成功 & 100\%\\
+ 7 & 成功 & 成功 & 成功 & 成功 & 失败 & 成功 & 83.3\%\\
+ 8 & 成功 & 成功 & 成功 & 成功 & 成功 & 失败 & 83.3\%\\
+
+\bottomrule[1.5pt]
+抓取成功率 & 100\% & 100\% & 100\% & 100\% & 87.5\% & 87.5\% & {\color{red}95.83\%}\\
+\hline
+\end{tabular}
+\end{table}
 
 
-\newpage
+将实验获得的数据与各类成抓取合成方法的文献成果在一张表格中进行展现。
+\begin{table}[htbp]
+\caption{各类成抓取合成成果抓取家常物体成功率对比}
+\label{各类成抓取合成成果抓取家常物体成功率对比}
+\vspace{0.5em}\centering\wuhao
+\begin{tabular}{ccccccc}
+\toprule[1.5pt]
+   & 文献1\cite{lenz2015deep} & 文献2\cite{pinto2016supersizing} & 文献3\cite{johns2016deep} & 文献4\cite{mahler2017dex} & 文献5\cite{levine2018learning} & 文献6\cite{haviland2020control}\\
+\midrule[1pt]
+ 抓取成功率 & 89\% & 73\% & 80\% & 80\% & 80\% & 92\% \\
+ 提升 & 6.6\% & 22.6\% & 15.6\% & 15.6\% & 15.6\% & 3.6\% \\
+
+\bottomrule[1.5pt]
+\end{tabular}
+\end{table}
+
+
+
+
+
+
 \section{本章小结}[Content specification]
 本章在六种不同家常的物体的八种不同位姿情况下对目标进行抓取实验，在所提出的特征提取、匹配的方法和与之配套的伺服控制律的加持下，在环境限制条件更少的情况下，拥有比许多类似工作的研究成果更高的抓取成功率。与另一个基于GG-CNN抓取未知目标文献成果比较，拥有更平滑而理想的伺服曲线。通过以上实验证明了本研究所提出的未知物体抓取算法有高鲁棒性和高伺服性能。
 %\include{body/introduction}

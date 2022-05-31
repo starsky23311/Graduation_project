@@ -47,17 +47,22 @@
 \contentsline {section}{\numberline {5.1}引言}{35}{section.5.1}%
 \contentsline {section}{\numberline {5.2}PD控制器与自适应IBVS}{35}{section.5.2}%
 \contentsline {subsection}{\numberline {5.2.1}PD控制器设计}{36}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}自适应IBVS}{37}{subsection.5.2.2}%
-\contentsline {section}{\numberline {5.3}滑模控制器}{38}{section.5.3}%
-\contentsline {section}{\numberline {5.4}系统稳定性}{40}{section.5.4}%
-\contentsline {section}{\numberline {5.5}特征偏差收敛速度不一致性}{40}{section.5.5}%
-\contentsline {section}{\numberline {5.6}本章小结}{41}{section.5.6}%
-\contentsline {chapter}{\numberline {第6章}实验设计与验证}{43}{chapter.6}%
-\contentsline {section}{\numberline {6.1}引言}{43}{section.6.1}%
-\contentsline {section}{\numberline {6.2}实验设计}{43}{section.6.2}%
-\contentsline {section}{\numberline {6.3}实验验证}{45}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}抓取成功率测试}{45}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}抓取性能验证}{45}{subsection.6.3.2}%
-\contentsline {section}{\numberline {6.4}本章小结}{47}{section.6.4}%
-\contentsline {chapter}{\heiti 结\hspace {\ccwd }论}{48}{section*.14}%
-\contentsline {chapter}{\heiti 参考文献}{50}{section*.17}%
+\contentsline {subsection}{\numberline {5.2.2}滑模控制器设计}{38}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}自适应IBVS}{39}{section.5.3}%
+\contentsline {section}{\numberline {5.4}特征偏差收敛速度不一致性}{41}{section.5.4}%
+\contentsline {section}{\numberline {5.5}方法小结}{43}{section.5.5}%
+\contentsline {section}{\numberline {5.6}本章小结}{44}{section.5.6}%
+\contentsline {chapter}{\numberline {第6章}实验设计与验证}{45}{chapter.6}%
+\contentsline {section}{\numberline {6.1}引言}{45}{section.6.1}%
+\contentsline {section}{\numberline {6.2}实验设计}{45}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}设计理念}{45}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}实验准备}{46}{subsection.6.2.2}%
+\contentsline {section}{\numberline {6.3}实验验证}{48}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}系统稳定区间测试}{48}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}边界鲁棒性测试}{48}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}重复性精度测试}{48}{subsection.6.3.3}%
+\contentsline {subsection}{\numberline {6.3.4}伺服性能测试}{50}{subsection.6.3.4}%
+\contentsline {subsection}{\numberline {6.3.5}抓取成功率测试}{50}{subsection.6.3.5}%
+\contentsline {section}{\numberline {6.4}本章小结}{51}{section.6.4}%
+\contentsline {chapter}{\heiti 结\hspace {\ccwd }论}{54}{section*.14}%
+\contentsline {chapter}{\heiti 参考文献}{56}{section*.17}%
