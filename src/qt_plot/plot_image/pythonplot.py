@@ -105,63 +105,63 @@
 #     height = rect.get_height()
 #     plt.text(rect.get_x() + rect.get_width() / 2, height+0.005, str(height), ha="center", va="bottom", size=7)
 # plt.show()
-############################################ 条形图绘制（超调为例5）############################################
-import matplotlib.pyplot as plt
-import numpy as np
-import matplotlib
-# 设置中文字体和负号正常显示
-# matplotlib.rcParams['font.sans-serif'] = ['SimHei']
-# matplotlib.rcParams['axes.unicode_minus'] = False
-
-label_list = ['O1', 'O2', 'O3', 'O4', 'O5', 'O6']    # 横坐标刻度显示值
-num_list1 = [0.02, 0, 0, 0.01, 0.018, 0.018]     # 纵坐标值1
-num_list2 = [0.05, 0.175, 0.125, 0.11, 0.10, 0.125]      # 纵坐标值2
-x = np.arange(len(num_list1))
-# 字体调整
-ax = plt.subplot(111)
-# 设置刻度字体大小
-plt.xticks(fontsize=13)
-plt.yticks(fontsize=13)
-# # 设置坐标标签字体大小
-ax.set_xlabel("Object", fontsize=15)
-ax.set_ylabel("Data", fontsize=15)
-# # 设置图例字体大小
-# ax.legend(..., fontsize=20)
-
-"""
-绘制条形图
-left:长条形中点横坐标
-height:长条形高度
-width:长条形宽度，默认值0.8
-label:为后面设置legend准备
-"""
-# rects1 = plt.bar(x=x-0.15, height=num_list1, width=0.3, alpha=0.8, color='red', label=chr(916)+"overshoot(m)")
-# rects2 = plt.bar(x=x+0.15, height=num_list2, width=0.3, alpha=0.8, color='blue', label=chr(916)+"time*0.01(s)")
-rects1 = plt.bar(x=x-0.15, height=num_list1, width=0.3, alpha=0.8, color='red', label="overshoot(m)")
-rects2 = plt.bar(x=x+0.15, height=num_list2, width=0.3, alpha=0.8, color='blue', label="time*0.01(s)")
-plt.ylim(0, 0.2)     # y轴取值范围
-# plt.ylabel("Overshoot(m)")
-"""
-设置x轴刻度显示值
-参数一：中点坐标
-参数二：显示值
-"""
-# plt.xticks([index + 0.2 for index in x], label_list)
-plt.xticks([index for index in x], label_list)
-# plt.xlabel("position")
-# plt.title("4")
-plt.legend()     # 设置题注
-# 编辑文本
+# ############################################ 条形图绘制（超调为例5）############################################
+# import matplotlib.pyplot as plt
+# import numpy as np
+# import matplotlib
+# # 设置中文字体和负号正常显示
+# # matplotlib.rcParams['font.sans-serif'] = ['SimHei']
+# # matplotlib.rcParams['axes.unicode_minus'] = False
+#
+# label_list = ['O1', 'O2', 'O3', 'O4', 'O5', 'O6']    # 横坐标刻度显示值
+# num_list1 = [0.02, 0, 0, 0.01, 0.018, 0.018]     # 纵坐标值1
+# num_list2 = [0.05, 0.175, 0.125, 0.11, 0.10, 0.125]      # 纵坐标值2
+# x = np.arange(len(num_list1))
+# # 字体调整
+# ax = plt.subplot(111)
+# # 设置刻度字体大小
+# plt.xticks(fontsize=13)
+# plt.yticks(fontsize=13)
+# # # 设置坐标标签字体大小
+# ax.set_xlabel("Object", fontsize=15)
+# ax.set_ylabel("Data", fontsize=15)
+# # # 设置图例字体大小
+# # ax.legend(..., fontsize=20)
+#
+# """
+# 绘制条形图
+# left:长条形中点横坐标
+# height:长条形高度
+# width:长条形宽度，默认值0.8
+# label:为后面设置legend准备
+# """
+# # rects1 = plt.bar(x=x-0.15, height=num_list1, width=0.3, alpha=0.8, color='red', label=chr(916)+"overshoot(m)")
+# # rects2 = plt.bar(x=x+0.15, height=num_list2, width=0.3, alpha=0.8, color='blue', label=chr(916)+"time*0.01(s)")
+# rects1 = plt.bar(x=x-0.15, height=num_list1, width=0.3, alpha=0.8, color='red', label="overshoot(m)")
+# rects2 = plt.bar(x=x+0.15, height=num_list2, width=0.3, alpha=0.8, color='blue', label="time*0.01(s)")
+# plt.ylim(0, 0.2)     # y轴取值范围
+# # plt.ylabel("Overshoot(m)")
+# """
+# 设置x轴刻度显示值
+# 参数一：中点坐标
+# 参数二：显示值
+# """
+# # plt.xticks([index + 0.2 for index in x], label_list)
+# plt.xticks([index for index in x], label_list)
+# # plt.xlabel("position")
+# # plt.title("4")
+# plt.legend()     # 设置题注
+# # 编辑文本
+# # for rect in rects1:
+# #     height = rect.get_height()
+# #     plt.text(rect.get_x() + rect.get_width() / 2, height+1, str(height), ha="center", va="bottom")
 # for rect in rects1:
 #     height = rect.get_height()
-#     plt.text(rect.get_x() + rect.get_width() / 2, height+1, str(height), ha="center", va="bottom")
-for rect in rects1:
-    height = rect.get_height()
-    plt.text(rect.get_x() + rect.get_width() / 2, height+0.005, str(height), ha="center", va="bottom", size=7)
-for rect in rects2:
-    height = rect.get_height()
-    plt.text(rect.get_x() + rect.get_width() / 2, height+0.005, str(height), ha="center", va="bottom", size=7)
-plt.show()
+#     plt.text(rect.get_x() + rect.get_width() / 2, height+0.005, str(height), ha="center", va="bottom", size=7)
+# for rect in rects2:
+#     height = rect.get_height()
+#     plt.text(rect.get_x() + rect.get_width() / 2, height+0.005, str(height), ha="center", va="bottom", size=7)
+# plt.show()
 ############################################ 条形图绘制（调节时间4）############################################
 # import matplotlib.pyplot as plt
 # import matplotlib
@@ -215,20 +215,26 @@ plt.show()
 ############################################ 折线图绘制 ############################################
 # import numpy as np
 # import matplotlib.pyplot as plt
-# x1=[20,33,51,79,101,121,132,145,162,182,203,219,232,243,256,270,287,310,325]
-# y1=[49,48,48,48,48,87,106,123,155,191,233,261,278,284,297,307,341,319,341]
-# x2=[31,52,73,92,101,112,126,140,153,175,186,196,215,230,240,270,288,300]
-# y2=[48,48,48,48,49,89,162,237,302,378,443,472,522,597,628,661,690,702]
-# x3=[30,50,70,90,105,114,128,137,147,159,170,180,190,200,210,230,243,259,284,297,311]
-# y3=[48,48,48,48,66,173,351,472,586,712,804,899,994,1094,1198,1360,1458,1578,1734,1797,1892]
+# x1 = range(1, 41)
+# y1 = [0.00, 0.35, 0.40, 0.63, 0.65, 0.68, 0.69, 0.71, 0.72, 0.71, 0.71, 0.72, 0.73, 0.69, 0.71, 0.71, 0.72, 0.73, 0.73, 0.73,
+#       0.73, 0.70, 0.74, 0.73, 0.73, 0.73, 0.71, 0.72, 0.73, 0.75, 0.75, 0.74, 0.75, 0.76, 0.76, 0.77, 0.70, 0.78, 0.79, 0.80 ]
+# x2 = range(1, 41)
+# y2 = [0.00, 0.12, 0.39, 0.41, 0.49, 0.57, 0.51, 0.57, 0.51, 0.59, 0.55, 0.56, 0.57, 0.57, 0.59, 0.67, 0.66, 0.67, 0.66, 0.68,
+#       0.69, 0.75, 0.70, 0.70, 0.71, 0.73, 0.71, 0.59, 0.63, 0.65, 0.71, 0.73, 0.75, 0.73, 0.73, 0.72, 0.74, 0.73, 0.75, 0.76]
+# # x3=[30,50,70,90,105,114,128,137,147,159,170,180,190,200,210,230,243,259,284,297,311]
+# # y3=[48,48,48,48,66,173,351,472,586,712,804,899,994,1094,1198,1360,1458,1578,1734,1797,1892]
 # x=np.arange(20,350)
-# l1=plt.plot(x1,y1,'r--',label='type1')
-# l2=plt.plot(x2,y2,'g--',label='type2')
-# l3=plt.plot(x3,y3,'b--',label='type3')
-# plt.plot(x1,y1,'ro-',x2,y2,'g+-',x3,y3,'b^-')
-# plt.title('The Lasers in Three Conditions')
-# plt.xlabel('row')
-# plt.ylabel('column')
+# l1=plt.plot(x1, y1, 'r--',label='optimized frame')
+# l2=plt.plot(x2, y2, 'b--',label='original frame')
+# plt.xticks(fontsize=13)
+# plt.yticks(fontsize=13)
+# plt.plot(x1, y1, 'ro-', x2, y2, 'b+-')
+# ax = plt.subplot(111)
+# ax.set_xlabel("iteration times", fontsize=15)
+# ax.set_ylabel("success rate", fontsize=15)
+# # plt.title('The Lasers in Three Conditions')
+# # plt.xlabel('training accuracy')
+# # plt.ylabel('column')
 # plt.legend()
 # plt.show()
 
@@ -421,3 +427,29 @@ plt.show()
 #
 # plt.legend() # 显示图例
 # plt.show()
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+p1=[5.44, 5.4, 5.4, 5.43, 5.4, 5.3, 5.32, 5.35, 5.3, 5.4, 5.44, 5.36, 5.34, 5.33, 5.32, 5.42]  # 数据点
+p2=[3.32, 3.33, 3.43, 2.98, 3.21, 3.34, 3.32, 3.23, 3.1, 3.0, 3.05, 3.10, 3.05, 3.10, 3.22, 3.05]
+
+#创建绘图图表对象，可以不显式创建，跟cv2中的cv2.namedWindow()用法差不多
+plt.figure('Draw')
+ax = plt.subplot(111)
+ax.set_xlabel("X(mm)", fontsize=15)
+ax.set_ylabel("Y(mm)", fontsize=15)
+plt.scatter(p1, p2)  # scatter绘制散点图
+
+plt.draw()  # 显示绘图
+plt.show()
+# plt.pause(10)  #显示10秒
+
+# plt.savefig("easyplot.jpg")  #保存图象
+
+# plt.close()   #关闭图表
+
+
+
+
