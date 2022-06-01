@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.5.15)  1 JUN 2022 00:32
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.5.15)  1 JUN 2022 19:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2733,9 +2733,6 @@ Requested font "tcrm0700" at 7.0pt
  -> c:/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/tcrm0700.tfm
 Requested font "tcrm0500" at 5.0pt
  -> c:/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/tcrm0500.tfm
-
-LaTeX Warning: Reference `' on page 44 undefined on input line 1236.
-
 File: ./figures//chapter5/控制示意框图.png Graphic file (type bmp)
 <./figures//chapter5/控制示意框图.png>
 File: ./figures//chapter5/程序节点数据流图.png Graphic file (type bmp)
@@ -2884,7 +2881,7 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 Here is how much of TeX's memory you used:
  47273 strings out of 476133
  1020862 string characters out of 5811991
- 1279813 words of memory out of 5000000
+ 1279815 words of memory out of 5000000
  67054 multiletter control sequences out of 15000+600000
  530205 words of font info for 210 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
